@@ -2,6 +2,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Categoría")
+    min_stock = models.PositiveIntegerField(default=5, verbose_name="Stock mínimo para alerta")
 
     def __str__(self):
         return self.name
@@ -16,6 +17,12 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio (ARS)")
     stock = models.IntegerField(default=0, verbose_name="Stock disponible")
     barcode = models.CharField(max_length=50, unique=True, verbose_name="Código de barras")
+
+    def is_low_stock(self):
+        """
+        Comprueba si el stock está por debajo del mínimo de la categoría.
+        """
+        return self.stock < self.category.min_stock
 
     def __str__(self):
         return f"{self.name} - {self.price} ARS"
