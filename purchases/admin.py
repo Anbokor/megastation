@@ -5,10 +5,12 @@ from django.utils.timezone import now
 from .models import Invoice, InvoiceItem
 from store.models import Product, StockMovement
 
+
 class InvoiceItemInline(admin.TabularInline):
     model = InvoiceItem
     extra = 0  # 🔥 Отключает автоматическое добавление пустых строк
     readonly_fields = ["total_cost"]
+
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = ["invoice_number", "supplier", "get_total_cost", "created_at", "status"]
@@ -41,13 +43,13 @@ class InvoiceAdmin(admin.ModelAdmin):
                 return
 
             if old_invoice.status == "procesada" and obj.status == "pendiente":
-                self.revert_stock(obj)  # ✅ Возвращаем товары обратно на склад
+                self.revert_stock(request, obj)  # ✅ Возвращаем товары обратно на склад
 
             elif old_invoice.status == "pendiente" and obj.status == "procesada":
-                self.update_stock(obj)  # ✅ Добавляем товары на склад
+                self.update_stock(request, obj)  # ✅ Добавляем товары на склад
 
             elif old_invoice.status == "procesada" and obj.status == "anulada":
-                self.revert_stock(obj)  # ✅ Убираем товары со склада при аннулировании
+                self.revert_stock(request, obj)  # ✅ Убираем товары со склада при аннулировании
 
         super().save_model(request, obj, form, change)
 
@@ -56,12 +58,12 @@ class InvoiceAdmin(admin.ModelAdmin):
         return obj.total_cost
     get_total_cost.short_description = "Costo total"
 
-    def update_stock(self, invoice):
+    def update_stock(self, request, invoice):
         """
         ✅ Обновляет склад при проведении накладной.
         """
         if not invoice.items.exists():
-            messages.error(None, f"Factura {invoice.invoice_number} no tiene artículos.")
+            messages.error(request, f"Factura {invoice.invoice_number} no tiene artículos.")  # ✅ Передаем request
             return
 
         with transaction.atomic():
@@ -84,10 +86,14 @@ class InvoiceAdmin(admin.ModelAdmin):
                 Product.objects.bulk_update(updated_products, ["stock"])
                 StockMovement.objects.bulk_create(stock_movements)
 
-    def revert_stock(self, invoice):
+    def revert_stock(self, request, invoice):
         """
         ✅ Возвращает товар обратно при отмене накладной или откате `procesada → pendiente` или `procesada → anulada`.
         """
+        if not invoice.items.exists():
+            messages.warning(request, f"La factura {invoice.invoice_number} no tiene productos para revertir.")
+            return
+
         with transaction.atomic():
             stock_movements = []
             updated_products = []
@@ -114,7 +120,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         ✅ При удалении накладной возвращает товар обратно на склад.
         """
         if obj.status == "procesada":
-            self.revert_stock(obj)
+            self.revert_stock(request, obj)
         super().delete_model(request, obj)
 
     @admin.action(description=_("Procesar facturas seleccionadas y actualizar stock"))
@@ -128,7 +134,7 @@ class InvoiceAdmin(admin.ModelAdmin):
                     if not invoice.items.exists():
                         messages.error(request, f"Factura {invoice.invoice_number} no tiene artículos.")
                         continue
-                    self.update_stock(invoice)
+                    self.update_stock(request, invoice)
                     invoice.status = "procesada"
                     invoice.save()
         messages.success(request, _("Facturas procesadas y stock actualizado."))
@@ -141,9 +147,10 @@ class InvoiceAdmin(admin.ModelAdmin):
         with transaction.atomic():
             for invoice in queryset:
                 if invoice.status == "procesada":
-                    self.revert_stock(invoice)
+                    self.revert_stock(request, invoice)
                     invoice.status = "anulada"
                     invoice.save()
         messages.success(request, _("Facturas revertidas y stock actualizado."))
+
 
 admin.site.register(Invoice, InvoiceAdmin)

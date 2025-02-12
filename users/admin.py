@@ -3,20 +3,22 @@ from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    list_display = ('id', 'username', 'email', 'role', 'is_staff', 'is_active')  # Поля, которые отображаются в списке
-    list_filter = ('role', 'is_staff', 'is_active')  # Фильтры
+    list_display = ("username", "email", "role", "is_staff", "is_superuser")
+    list_filter = ("role", "is_staff")
+
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password', 'role')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        (None, {"fields": ("username", "password")}),
+        ("Información personal", {"fields": ("first_name", "last_name", "email")}),
+        ("Permisos", {"fields": ("role", "is_staff", "is_superuser", "groups")}),
     )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'role', 'is_staff', 'is_active'),
-        }),
-    )
-    search_fields = ('username', 'email')
-    ordering = ('id',)
+
+    def get_queryset(self, request):
+        """
+        ✅ Ограничивает доступ, чтобы продавцы не могли видеть других пользователей.
+        """
+        qs = super().get_queryset(request)
+        if not request.user.is_superuser:
+            return qs.filter(role__in=['store_admin', 'seller', 'customer'])
+        return qs
 
 admin.site.register(CustomUser, CustomUserAdmin)
