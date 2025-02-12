@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # External Apps
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
 
     # Custom Apps
     'users',
@@ -151,4 +152,9 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,  # После обновления refresh-токена он добавляется в черный список
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # ✅ Redis будет обрабатывать задачи
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 

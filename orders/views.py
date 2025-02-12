@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from cart.models import CartItem
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
-
+from store.models import Product, StockMovement
 
 
 class OrderListView(generics.ListAPIView):
@@ -49,7 +49,6 @@ class OrderDetailView(generics.RetrieveUpdateAPIView):
             serializer.save()
 
 
-
 class OrderCreateView(generics.CreateAPIView):
     """
     API para crear un pedido a partir del carrito.
@@ -64,38 +63,86 @@ class OrderCreateView(generics.CreateAPIView):
         if not cart_items.exists():
             return Response({"error": "El carrito está vacío."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # 🔥 Оптимизируем подсчёт суммы
         total_price = sum(item.product.price * item.quantity for item in cart_items)
 
-        # 🔥 Создаём заказ сразу со всеми позициями
         order = Order.objects.create(user=user, total_price=total_price, status="pendiente")
 
-        # 🔥 Используем bulk_create для лучшей производительности
-        order_items = [OrderItem(order=order, product=item.product, quantity=item.quantity) for item in cart_items]
-        OrderItem.objects.bulk_create(order_items)
+        order_items = []
+        stock_movements = []  # ✅ Логируем изменения склада
 
-        cart_items.delete()  # 🔥 Очищаем корзину после создания заказа
+        for item in cart_items:
+            if item.product.stock < item.quantity:
+                return Response({"error": f"Stock insuficiente para {item.product.name}."},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+            # 🔥 Списываем товар со склада
+            item.product.stock -= item.quantity
+
+            # 🔥 Логируем изменение склада
+            stock_movements.append(StockMovement(
+                product=item.product,
+                change=-item.quantity,
+                reason=f"Venta en pedido {order.id}"
+            ))
+
+            order_items.append(OrderItem(order=order, product=item.product, quantity=item.quantity))
+
+        # ✅ Массовая вставка в БД
+        OrderItem.objects.bulk_create(order_items)
+        Product.objects.bulk_update([item.product for item in cart_items], ['stock'])
+        StockMovement.objects.bulk_create(stock_movements)  # ✅ Записываем в лог склада
+
+        cart_items.delete()  # 🔥 Очищаем корзину после оформления заказа
 
         return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
 
+
 class CancelOrderView(APIView):
     """
-    API for canceling an order.
+    API para cancelar un pedido.
     """
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
-        order = Order.objects.filter(pk=pk).first()  # 🔥 Используем `.filter().first()`, чтобы не обрабатывать `DoesNotExist`
-        if not order:
+        try:
+            order = Order.objects.prefetch_related('items').get(pk=pk)
+        except Order.DoesNotExist:
             return Response({"error": "El pedido no existe."}, status=status.HTTP_404_NOT_FOUND)
 
+        # 🔥 Проверяем, можно ли отменить заказ
         if order.status == "enviado":
             return Response({"error": "No se puede cancelar un pedido enviado."}, status=status.HTTP_400_BAD_REQUEST)
 
+        # 🔥 Проверяем права доступа
         if not request.user.is_staff and order.user != request.user:
             return Response({"error": "No tienes permiso para cancelar este pedido."}, status=status.HTTP_403_FORBIDDEN)
 
+        # ✅ 1. Дебаг: Выводим список товаров в заказе (убедимся, что список не пуст)
+        print(f"Cancelando pedido {order.id}, productos: {[item.product.name for item in order.items.all()]}")
+
+        # 🔥 2. Возвращаем товары на склад
+        stock_movements = []
+        updated_products = []
+
+        for item in order.items.all():
+            item.product.stock += item.quantity  # ✅ Возвращаем товар в stock
+            updated_products.append(item.product)  # ✅ Добавляем в список обновлений
+
+            stock_movements.append(StockMovement(
+                product=item.product,
+                change=item.quantity,
+                reason=f"Cancelación de pedido {order.id}"
+            ))
+
+        # 🔥 3. Применяем обновления в базе (гарантированно работает)
+        if updated_products:
+            Product.objects.bulk_update(updated_products, ['stock'])  # ✅ Массово обновляем stock
+            StockMovement.objects.bulk_create(stock_movements)  # ✅ Логируем в склад
+
+        # 🔥 4. Меняем статус заказа
         order.status = "cancelado"
-        order.save(update_fields=["status"])  # 🔥 Обновляем только одно поле, а не весь объект
+        order.save()
+
+        print(f"Pedido {order.id} cancelado. Stock actualizado.")  # ✅ Дебаг
 
         return Response({"message": "Pedido cancelado con éxito."}, status=status.HTTP_200_OK)

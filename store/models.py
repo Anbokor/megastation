@@ -30,3 +30,12 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Producto"
         verbose_name_plural = "Productos"
+
+class StockMovement(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Producto")
+    change = models.IntegerField(verbose_name="Cambio en el stock")  # 🔥 Количество (+ или -)
+    reason = models.CharField(max_length=255, verbose_name="Motivo")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de movimiento")
+
+    def __str__(self):
+        return f"{self.product.name}: {self.change} unidades ({self.reason})"
