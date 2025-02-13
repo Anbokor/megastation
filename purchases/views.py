@@ -47,3 +47,18 @@ class InvoiceCreateView(generics.CreateAPIView):
         InvoiceItem.objects.bulk_create(order_items)
 
         return Response(InvoiceSerializer(invoice).data, status=status.HTTP_201_CREATED)
+
+class InvoiceListView(generics.ListAPIView):
+    """
+    ✅ API для просмотра накладных
+    - Администратор видит все.
+    - Продавец видит только свои накладные.
+    """
+    serializer_class = InvoiceSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff:
+            return Invoice.objects.all()
+        return Invoice.objects.filter(user=user)  # Продавец видит только свои накладные

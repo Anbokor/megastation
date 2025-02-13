@@ -3,6 +3,7 @@ from django.db.models import Sum, F
 from store.models import Product
 from django.utils.timezone import now
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -24,31 +25,54 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        ✅ Генерация номера накладной, если не задан.
-        ✅ Разрешает перевод `pendiente → procesada`.
-        ✅ Разрешает возврат `procesada → pendiente`.
-        ✅ Блокирует любые другие изменения `procesada`.
-        ✅ Блокирует любые изменения `anulada`.
+        ✅ Логика сохранения накладной:
+        - Генерирует `invoice_number`, если пустой.
+        - Автоматически подставляет `user`, если пустой.
+        - Разрешает `pendiente → procesada` (увеличивает склад).
+        - Разрешает `procesada → pendiente` (уменьшает склад).
+        - Разрешает `procesada → anulada` (уменьшает склад).
+        - Запрещает любые изменения `anulada`, кроме удаления.
         """
         if not self.invoice_number:
             self.invoice_number = f"INV-{now().strftime('%Y%m%d-%H%M%S')}"
 
         if not self.pk and not self.user_id:
-            raise ValueError("No se puede crear una factura sin usuario.")
+            raise ValidationError("No se puede crear una factura sin usuario.")
 
         if self.pk:
             old_invoice = Invoice.objects.get(pk=self.pk)
 
             if old_invoice.status == "procesada" and self.status == "pendiente":
-                pass  # ✅ Разрешаем возврат в `pendiente` (для исправления ошибки)
+                self.revert_stock()  # ✅ Откат склада при возврате в `pendiente`
+
+            elif old_invoice.status == "procesada" and self.status == "anulada":
+                self.revert_stock()  # ✅ Убираем товары со склада при аннулировании
 
             elif old_invoice.status == "procesada" and self.status != "procesada":
-                raise ValueError("No se puede modificar una factura procesada.")
+                raise ValidationError("No se puede modificar una factura procesada.")
 
             elif old_invoice.status == "anulada":
-                raise ValueError("No se puede modificar una factura anulada.")
+                raise ValidationError("No se puede modificar una factura anulada.")
 
         super().save(*args, **kwargs)
+
+    def revert_stock(self):
+        """
+        ✅ Возвращает товары обратно на склад при откате `procesada → pendiente` или `procesada → anulada`.
+        """
+        for item in self.items.all():
+            item.product.stock -= item.quantity
+            item.product.save()
+
+    def delete(self, *args, **kwargs):
+        """
+        ✅ При удалении накладной проверяет статус:
+        - `procesada` → убирает товары со склада.
+        - Удаляет накладную, если `pendiente` или `anulada`.
+        """
+        if self.status == "procesada":
+            self.revert_stock()
+        super().delete(*args, **kwargs)
 
     @property
     def total_cost(self):
@@ -60,6 +84,7 @@ class Invoice(models.Model):
     class Meta:
         verbose_name = "Factura"
         verbose_name_plural = "Facturas"
+
 
 class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name="items", verbose_name="Factura")

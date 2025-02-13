@@ -7,7 +7,9 @@ from cart.models import CartItem
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from store.models import Product, StockMovement
-
+from users.permissions import CanAdvanceOrderStatus
+from django.shortcuts import get_object_or_404
+from .utils import send_order_status_email
 
 class OrderListView(generics.ListAPIView):
     """
@@ -146,3 +148,26 @@ class CancelOrderView(APIView):
         print(f"Pedido {order.id} cancelado. Stock actualizado.")  # ✅ Дебаг
 
         return Response({"message": "Pedido cancelado con éxito."}, status=status.HTTP_200_OK)
+
+class OrderUpdateView(generics.UpdateAPIView):
+    """
+    Allows sellers to update order status forward and sends email notifications.
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated, CanAdvanceOrderStatus]
+
+    def update(self, request, *args, **kwargs):
+        order = get_object_or_404(Order, pk=kwargs["pk"])
+        old_status = order.status
+        new_status = request.data.get("status")
+
+        if old_status == new_status:
+            return Response({"detail": "El estado ya está actualizado."}, status=status.HTTP_400_BAD_REQUEST)
+
+        response = super().update(request, *args, **kwargs)
+
+        # Отправляем email-уведомление
+        send_order_status_email(order.user.email, order.id, new_status)
+
+        return response

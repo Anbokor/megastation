@@ -3,26 +3,31 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    ROLE_CHOICES = [
-        ('admin', 'Administrador del sistema'),
-        ('store_admin', 'Administrador de tienda'),
-        ('seller', 'Vendedor'),
-        ('customer', 'Cliente'),
-    ]
+    class Role(models.TextChoices):
+        ADMIN = "admin", "Administrador del sistema"
+        STORE_ADMIN = "store_admin", "Administrador de tienda"
+        SELLER = "seller", "Vendedor"
+        CUSTOMER = "customer", "Cliente"
 
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='customer', verbose_name="Rol")
+    role = models.CharField(
+        max_length=20, choices=Role.choices, default=Role.CUSTOMER, verbose_name="Rol"
+    )
 
+    @property
     def is_admin(self):
-        return self.role == 'admin'
+        return self.role == CustomUser.Role.ADMIN
 
+    @property
     def is_store_admin(self):
-        return self.role == 'store_admin'
+        return self.role == CustomUser.Role.STORE_ADMIN
 
+    @property
     def is_seller(self):
-        return self.role == 'seller'
+        return self.role == CustomUser.Role.SELLER
 
+    @property
     def is_customer(self):
-        return self.role == 'customer'
+        return self.role == CustomUser.Role.CUSTOMER
 
     class Meta:
         verbose_name = "Usuario"

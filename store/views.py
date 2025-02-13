@@ -1,60 +1,78 @@
-from .models import Category, Product, StockMovement
-from .serializers import CategorySerializer, ProductSerializer, StockMovementSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from django.db.models import F
 from rest_framework.exceptions import PermissionDenied
-from users.permissions import IsAdmin, IsStoreAdmin, IsSeller, IsCustomer  # ✅ Подключаем кастомные права доступа
-from rest_framework.request import Request
+from django.db.models import F, Q
+from store.models import Product, StockMovement, Category
+from store.serializers import ProductSerializer, StockMovementSerializer, CategorySerializer
 
-### ✅ Категории товаров (только администраторы)
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAdminUser]  # ✅ Только админы
+    permission_classes = [permissions.IsAuthenticated]
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAdminUser]  # ✅ Только админы
+    permission_classes = [permissions.IsAuthenticated]
 
-### ✅ Товары
 class ProductListView(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
-    def get_permissions(self):
-        """
-        ✅ Все могут просматривать товары.
-        ✅ Только администраторы и продавцы могут добавлять новые товары.
-        """
-        if self.request.method == 'POST':
-            return [IsAdmin | IsStoreAdmin | IsSeller()]  # 🔥 Продавцы могут создавать товары
-        return [permissions.AllowAny()]
-
-class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-    def get_permissions(self):
-        """
-        ✅ Все могут просматривать товары.
-        ✅ Только администраторы и продавцы могут редактировать и удалять.
-        """
-        if self.request.method in ['PUT', 'DELETE']:
-            return [IsAdmin | IsStoreAdmin | IsSeller()]
-        return [permissions.AllowAny()]
-
-### ✅ Товары с низким остатком (только администраторы и продавцы)
-class LowStockProductsView(generics.ListAPIView):
-    serializer_class = ProductSerializer
-    permission_classes = [IsAdmin | IsStoreAdmin]  # ✅ Только админы и админы магазинов
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
-        ✅ Возвращает товары, у которых остаток ниже минимального уровня.
+        ✅ Продавцы видят только свои товары.
+        ✅ Админы видят все товары.
         """
-        return Product.objects.filter(stock__lt=F('category__min_stock'))
+        user = self.request.user
+        if user.is_staff:
+            return Product.objects.all()
+        return Product.objects.filter(user=user)
+
+    def perform_create(self, serializer):
+        """
+        ✅ Продавец может добавлять только свои товары.
+        """
+        user = self.request.user
+        if not user.is_staff:
+            serializer.save(user=user)  # Привязываем товар к продавцу
+        else:
+            serializer.save()  # Админ может указать владельца вручную
+
+class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        ✅ Продавцы могут редактировать только свои товары.
+        ✅ Администраторы могут редактировать все товары.
+        """
+        user = self.request.user
+        if user.is_staff:
+            return Product.objects.all()
+        return Product.objects.filter(user=user)
+
+class LowStockProductsView(generics.ListAPIView):
+    """
+    ✅ Показывает товары с низким запасом.
+    - Если товаров мало → предупреждение.
+    """
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_staff:
+            raise PermissionDenied("No tienes permisos para ver el stock bajo.")
+
+        category_id = self.request.query_params.get("category_id")
+        queryset = Product.objects.filter(stock__lt=F('category__min_stock'))
+
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+
+        return queryset
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -62,28 +80,27 @@ class LowStockProductsView(generics.ListAPIView):
             return Response({"message": "No hay productos con stock bajo."})
         return super().list(request, *args, **kwargs)
 
-### ✅ История движения товара (только администраторы и админы магазинов)
 class StockMovementListView(generics.ListAPIView):
     """
-    API para obtener el historial de movimientos de stock.
+    ✅ API для просмотра истории складских движений.
+    - Фильтры: `product_id`, `date_from`, `date_to`.
+    - Доступ только у администраторов.
     """
     serializer_class = StockMovementSerializer
-    permission_classes = [permissions.IsAdminUser]  # ✅ Доступ только для админов
+    permission_classes = [permissions.IsAdminUser]
 
     def get_queryset(self):
-        """
-        ✅ Фильтрация по product_id, если передан параметр.
-        """
-        request = self.request  # 🔥 Теперь `request` будет объектом `Request`, а не `HttpRequest`
-
-        if isinstance(request, Request):  # ✅ Проверяем, что это `Request`
-            product_id = request.query_params.get("product_id")
-        else:
-            product_id = None  # 🔥 На случай, если что-то пошло не так
-
         queryset = StockMovement.objects.all().order_by("-created_at")
+        product_id = self.request.query_params.get("product_id")
+        date_from = self.request.query_params.get("date_from")
+        date_to = self.request.query_params.get("date_to")
 
+        filters = Q()
         if product_id:
-            queryset = queryset.filter(product_id=product_id)
+            filters &= Q(product_id=product_id)
+        if date_from:
+            filters &= Q(created_at__gte=date_from)
+        if date_to:
+            filters &= Q(created_at__lte=date_to)
 
-        return queryset
+        return queryset.filter(filters)

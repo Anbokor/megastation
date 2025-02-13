@@ -2,6 +2,7 @@ from django.contrib import admin, messages
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now
+from django.contrib.auth.models import Group
 from .models import Invoice, InvoiceItem
 from store.models import Product, StockMovement
 
@@ -18,6 +19,28 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_filter = ["created_at", "status"]
     inlines = [InvoiceItemInline]
     actions = ["process_invoices", "revert_invoice"]
+
+    def has_module_permission(self, request):
+        """✅ Только администраторы и продавцы могут видеть раздел Invoices"""
+        return request.user.is_superuser or request.user.groups.filter(name__in=["Administradores", "Vendedores"]).exists()
+
+    def has_view_permission(self, request, obj=None):
+        """✅ Только администраторы и продавцы могут просматривать накладные"""
+        return self.has_module_permission(request)
+
+    def has_add_permission(self, request):
+        """✅ Только администраторы и продавцы могут добавлять накладные"""
+        return self.has_module_permission(request)
+
+    def has_change_permission(self, request, obj=None):
+        """✅ Только администраторы и продавцы могут изменять накладные"""
+        return self.has_module_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        """✅ Запрещаем удалять проведенные накладные"""
+        if obj and obj.status == "procesada":
+            return False
+        return self.has_module_permission(request)
 
     def save_model(self, request, obj, form, change):
         """
@@ -39,17 +62,23 @@ class InvoiceAdmin(admin.ModelAdmin):
             old_invoice = Invoice.objects.get(pk=obj.pk)
 
             if old_invoice.status == "anulada":
-                messages.error(request, "No se puede modificar una factura anulada.")
+                messages.error(request, "⛔ No se puede modificar una factura anulada.")
                 return
 
             if old_invoice.status == "procesada" and obj.status == "pendiente":
                 self.revert_stock(request, obj)  # ✅ Возвращаем товары обратно на склад
+                messages.success(request, f"✅ Factura {obj.invoice_number} revertida a 'pendiente'. Stock actualizado.")
 
             elif old_invoice.status == "pendiente" and obj.status == "procesada":
+                if not obj.items.exists():
+                    messages.error(request, f"⛔ Factura {obj.invoice_number} no tiene artículos.")
+                    return
                 self.update_stock(request, obj)  # ✅ Добавляем товары на склад
+                messages.success(request, f"✅ Factura {obj.invoice_number} procesada. Stock actualizado.")
 
             elif old_invoice.status == "procesada" and obj.status == "anulada":
                 self.revert_stock(request, obj)  # ✅ Убираем товары со склада при аннулировании
+                messages.warning(request, f"⚠️ Factura {obj.invoice_number} anulada. Stock reducido.")
 
         super().save_model(request, obj, form, change)
 
@@ -63,7 +92,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         ✅ Обновляет склад при проведении накладной.
         """
         if not invoice.items.exists():
-            messages.error(request, f"Factura {invoice.invoice_number} no tiene artículos.")  # ✅ Передаем request
+            messages.error(request, f"⛔ Factura {invoice.invoice_number} no tiene artículos.")
             return
 
         with transaction.atomic():
@@ -91,7 +120,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         ✅ Возвращает товар обратно при отмене накладной или откате `procesada → pendiente` или `procesada → anulada`.
         """
         if not invoice.items.exists():
-            messages.warning(request, f"La factura {invoice.invoice_number} no tiene productos para revertir.")
+            messages.warning(request, f"⚠️ La factura {invoice.invoice_number} no tiene productos para revertir.")
             return
 
         with transaction.atomic():
@@ -115,14 +144,6 @@ class InvoiceAdmin(admin.ModelAdmin):
                 Product.objects.bulk_update(updated_products, ["stock"])
                 StockMovement.objects.bulk_create(stock_movements)
 
-    def delete_model(self, request, obj):
-        """
-        ✅ При удалении накладной возвращает товар обратно на склад.
-        """
-        if obj.status == "procesada":
-            self.revert_stock(request, obj)
-        super().delete_model(request, obj)
-
     @admin.action(description=_("Procesar facturas seleccionadas y actualizar stock"))
     def process_invoices(self, request, queryset):
         """
@@ -132,12 +153,12 @@ class InvoiceAdmin(admin.ModelAdmin):
             for invoice in queryset:
                 if invoice.status == "pendiente":
                     if not invoice.items.exists():
-                        messages.error(request, f"Factura {invoice.invoice_number} no tiene artículos.")
+                        messages.error(request, f"⛔ Factura {invoice.invoice_number} no tiene artículos.")
                         continue
                     self.update_stock(request, invoice)
                     invoice.status = "procesada"
                     invoice.save()
-        messages.success(request, _("Facturas procesadas y stock actualizado."))
+        messages.success(request, _("✅ Facturas procesadas y stock actualizado."))
 
     @admin.action(description=_("Revertir facturas seleccionadas y devolver stock"))
     def revert_invoice(self, request, queryset):
@@ -150,7 +171,7 @@ class InvoiceAdmin(admin.ModelAdmin):
                     self.revert_stock(request, invoice)
                     invoice.status = "anulada"
                     invoice.save()
-        messages.success(request, _("Facturas revertidas y stock actualizado."))
+        messages.success(request, _("⚠️ Facturas revertidas y stock actualizado."))
 
 
 admin.site.register(Invoice, InvoiceAdmin)
