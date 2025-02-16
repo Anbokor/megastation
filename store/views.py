@@ -2,8 +2,10 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from django.db.models import F, Q
-from store.models import Product, StockMovement, Category
-from store.serializers import ProductSerializer, StockMovementSerializer, CategorySerializer
+from store.models import Product, Category
+from store.serializers import ProductSerializer, CategorySerializer
+from inventory.models import Stock, StockMovement
+from inventory.serializers import StockMovementSerializer
 
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
@@ -15,29 +17,34 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class ProductListView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
-        ✅ Продавцы видят только свои товары.
+        ✅ Продавцы видят только товары своих точек продаж.
         ✅ Админы видят все товары.
         """
         user = self.request.user
         if user.is_staff:
             return Product.objects.all()
-        return Product.objects.filter(user=user)
+
+        sales_points = user.sales_points.all()  # Получаем все точки продаж продавца
+        return Product.objects.filter(stock_info__sales_point__in=sales_points).distinct()
 
     def perform_create(self, serializer):
         """
-        ✅ Продавец может добавлять только свои товары.
+        ✅ Продавец может добавлять только товары в свои точки продаж.
         """
         user = self.request.user
-        if not user.is_staff:
-            serializer.save(user=user)  # Привязываем товар к продавцу
-        else:
-            serializer.save()  # Админ может указать владельца вручную
+        product = serializer.save()
+
+        # Автоматически создаём `Stock` для всех точек продаж продавца
+        sales_points = user.sales_points.all()
+        for sales_point in sales_points:
+            Stock.objects.create(product=product, sales_point=sales_point, quantity=0)
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
@@ -67,16 +74,18 @@ class LowStockProductsView(generics.ListAPIView):
             raise PermissionDenied("No tienes permisos para ver el stock bajo.")
 
         category_id = self.request.query_params.get("category_id")
-        queryset = Product.objects.filter(stock__lt=F('category__min_stock'))
+
+        # Используем Stock для поиска товаров с низким запасом
+        low_stock_products = Stock.objects.filter(quantity__lt=F("product__category__min_stock")).select_related("product")
 
         if category_id:
-            queryset = queryset.filter(category_id=category_id)
+            low_stock_products = low_stock_products.filter(product__category_id=category_id)
 
-        return queryset
+        return [stock.product for stock in low_stock_products]
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        if not queryset.exists():
+        if not queryset:
             return Response({"message": "No hay productos con stock bajo."})
         return super().list(request, *args, **kwargs)
 

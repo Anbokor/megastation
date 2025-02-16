@@ -6,6 +6,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "megastation.settings")
 app = Celery("megastation")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
+# 🔥 Автоматически загружает все задачи из `tasks.py`
 app.autodiscover_tasks()
 
 @app.task(bind=True)

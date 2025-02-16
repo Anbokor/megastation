@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'orders',
     'cart',
     'purchases',
+    'inventory',
 ]
 
 MIDDLEWARE = [
@@ -158,6 +159,7 @@ SIMPLE_JWT = {
 
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # ✅ Redis будет обрабатывать задачи
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 

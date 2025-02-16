@@ -1,11 +1,22 @@
 from django.db import models
 from users.models import CustomUser
 from store.models import Product
+from inventory.models import Stock  # Импортируем склад
 
 class CartItem(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="cart")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
+    def save(self, *args, **kwargs):
+        """
+        Перед сохранением проверяем, есть ли достаточно товара на складе.
+        """
+        stock = Stock.objects.filter(product=self.product).first()
+        if not stock or stock.quantity < self.quantity:
+            raise ValueError(f"No hay suficiente stock para {self.product.name}")
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} (Usuario: {self.user.username})"
