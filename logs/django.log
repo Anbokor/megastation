@@ -1,0 +1,14 @@
+WARNING 2025-02-16 20:46:57,555 log Unauthorized: /api/token/
+WARNING 2025-02-16 20:46:57,555 basehttp "POST /api/token/ HTTP/1.1" 401 63
+WARNING 2025-02-16 20:46:58,638 log Unauthorized: /api/token/
+WARNING 2025-02-16 20:46:58,638 basehttp "POST /api/token/ HTTP/1.1" 401 63
+WARNING 2025-02-16 20:46:59,685 log Unauthorized: /api/token/
+WARNING 2025-02-16 20:46:59,686 basehttp "POST /api/token/ HTTP/1.1" 401 63
+WARNING 2025-02-16 20:47:00,860 log Unauthorized: /api/token/
+WARNING 2025-02-16 20:47:00,861 basehttp "POST /api/token/ HTTP/1.1" 401 63
+WARNING 2025-02-16 20:47:01,918 log Unauthorized: /api/token/
+WARNING 2025-02-16 20:47:01,918 basehttp "POST /api/token/ HTTP/1.1" 401 63
+WARNING 2025-02-16 20:47:02,451 log Too Many Requests: /api/token/
+WARNING 2025-02-16 20:47:02,453 basehttp "POST /api/token/ HTTP/1.1" 429 69
+WARNING 2025-02-16 20:47:03,542 log Too Many Requests: /api/token/
+WARNING 2025-02-16 20:47:03,542 basehttp "POST /api/token/ HTTP/1.1" 429 69

@@ -30,22 +30,21 @@ class OrderDetailView(generics.RetrieveUpdateAPIView):
     ✅ API para ver y actualizar un pedido (solo admin puede actualizar).
     """
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]  # 🔥 Только админы могут изменять заказы
 
     def get_queryset(self):
-        user = self.request.user
-        return Order.objects.all() if user.is_staff else Order.objects.filter(user=user)
+        return Order.objects.all()  # 🔥 Обычные пользователи не могут редактировать заказы
 
     def perform_update(self, serializer):
         request = self.request
         if isinstance(request, Request):
             if "status" in request.data:
-                if not request.user.is_staff:
-                    raise ValidationError({"status": "No tienes permiso para cambiar el estado del pedido."})
-
                 order = self.get_object()
                 old_status = order.status
                 new_status = request.data["status"]
+
+                if not request.user.is_staff:
+                    raise ValidationError({"status": "No tienes permiso para cambiar el estado del pedido."})
 
                 if old_status in ["pendiente", "en_proceso"] and new_status == "enviado":
                     self.finalize_stock(order)

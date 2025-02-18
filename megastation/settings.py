@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-91&ks*_6zj)0d7aqndj^053=g=egln(zokk3l$h#ns8m$tkmr+'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -96,6 +96,9 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+        'TEST': {
+            'NAME': os.getenv('TEST_DB_NAME', 'test_megastation'),
+        },
     }
 }
 
@@ -146,6 +149,21 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+        'users.throttling.LoginAttemptThrottle',  # ✅ Ограничение попыток входа (анонимы)
+        'users.throttling.LoginAttemptUserThrottle',  # ✅ Ограничение попыток входа (зарегистрированные)
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/minute',  # 10 запросов в минуту для анонимов
+        'user': '100/minute',  # 100 запросов в минуту для авторизованных пользователей
+        'login_attempt': '5/minute',  # ✅ 5 попыток входа в минуту (анонимы)
+        'login_attempt_user': '10/minute',  # ✅ 10 попыток входа в минуту (авторизованные)
+        'user_register': '3/minute',  # 3 регистрации в минуту
+        'user_list': '10/minute',  # 10 запросов списка пользователей в минуту
+        'user_detail': '5/minute',  # 5 запросов деталей пользователя в минуту
+    },
 }
 
 # JWT settings
@@ -174,5 +192,46 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Почта, с которой будет отправляться письмо в .env
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD") # Пароль в .env
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs/django.log"),
+            "formatter": "verbose",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "security": {
+            "handlers": ["file"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+    },
+}
+
 
 
