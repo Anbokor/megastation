@@ -1038,3 +1038,53 @@ WARNING 2025-02-23 13:23:22,757 log Unauthorized: /api/login/
 WARNING 2025-02-23 13:23:23,057 log Unauthorized: /api/login/
 WARNING 2025-02-23 13:23:23,058 log Too Many Requests: /api/login/
 WARNING 2025-02-23 13:23:23,059 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:08:23,504 log Forbidden: /api/967/
+WARNING 2025-02-23 14:08:24,665 log Forbidden: /api/971/
+WARNING 2025-02-23 14:08:25,236 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:08:25,237 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:08:25,238 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:08:25,523 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:08:25,807 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:08:26,088 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:08:26,090 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:08:26,091 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:09:57,493 log Forbidden: /api/1026/
+WARNING 2025-02-23 14:09:58,656 log Forbidden: /api/1030/
+WARNING 2025-02-23 14:09:59,225 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:09:59,227 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:09:59,228 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:09:59,517 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:09:59,799 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:10:00,081 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:10:00,083 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:10:00,084 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:12:21,054 log Forbidden: /api/1085/
+WARNING 2025-02-23 14:12:22,200 log Forbidden: /api/1089/
+WARNING 2025-02-23 14:12:22,775 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:12:22,776 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:12:22,778 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:12:23,062 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:12:23,343 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:12:23,625 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:12:23,626 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:12:23,628 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:14:57,625 log Forbidden: /api/1144/
+WARNING 2025-02-23 14:14:58,780 log Forbidden: /api/1148/
+WARNING 2025-02-23 14:14:59,361 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:14:59,362 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:14:59,363 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:14:59,651 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:14:59,943 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:15:00,232 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:15:00,233 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:15:00,234 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:26:29,571 log Forbidden: /api/1203/
+WARNING 2025-02-23 14:26:30,761 log Forbidden: /api/1207/
+WARNING 2025-02-23 14:26:31,345 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:26:31,346 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:26:31,347 log Too Many Requests: /api/register/
+WARNING 2025-02-23 14:26:31,629 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:26:31,911 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:26:32,194 log Unauthorized: /api/login/
+WARNING 2025-02-23 14:26:32,195 log Too Many Requests: /api/login/
+WARNING 2025-02-23 14:26:32,197 log Too Many Requests: /api/login/

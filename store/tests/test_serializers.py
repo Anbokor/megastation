@@ -74,6 +74,10 @@ def test_product_serializer_with_image():
 
     assert serializer.data["image_url"] == request.build_absolute_uri(product.image.url)
 
+    # ✅ Удаляем файл после теста
+    if product.image:
+        product.image.delete()
+
 
 @pytest.mark.django_db
 def test_stock_movement_serializer():

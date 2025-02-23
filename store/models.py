@@ -18,8 +18,10 @@ class Category(models.Model):
 def product_image_path(instance, filename):
     """Функция для хранения изображений в каталоге 'products/' с уникальным именем файла."""
     ext = filename.split('.')[-1]
+    if not instance.pk:
+        return f'products/temp/{uuid.uuid4()}.{ext}'  # Временная папка для несохранённых товаров
     filename = f"{uuid.uuid4()}.{ext}"
-    return f'products/{instance.id}/{filename}'
+    return f'products/{instance.pk}/{filename}'
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Nombre del producto")

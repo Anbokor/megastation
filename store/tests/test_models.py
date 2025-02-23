@@ -1,7 +1,10 @@
 import pytest
+import os
+from django.conf import settings
 from store.models import Product, Category
 from django.db.utils import IntegrityError
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.storage import default_storage
 
 @pytest.mark.django_db
 def test_create_category():
@@ -71,7 +74,7 @@ def test_unique_barcode():
 @pytest.mark.django_db
 def test_product_image_upload():
     """
-    ✅ Проверяем загрузку изображения.
+    ✅ Проверяем загрузку изображения и его удаление после теста.
     """
     category = Category.objects.create(name="Tablets")
     image = SimpleUploadedFile("test.jpg", b"file_content", content_type="image/jpeg")
@@ -79,6 +82,14 @@ def test_product_image_upload():
     product = Product.objects.create(name="iPad", price=500, category=category, image=image)
 
     assert product.image.name.startswith("products/")
+
+    # ✅ Удаляем файл после теста
+    image_path = os.path.join(settings.MEDIA_ROOT, product.image.name)
+    if os.path.exists(image_path):
+        os.remove(image_path)
+
+    # Также можно добавить `product.image.delete()` на случай использования `Storage`
+    product.image.delete()
 
 @pytest.mark.django_db
 def test_category_deletion_sets_null():
