@@ -9,7 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     stock = serializers.SerializerMethodField()
-    image_url = serializers.SerializerMethodField()  # ✅ Добавим image_url как отдельное поле
+    image_url = serializers.SerializerMethodField()  # ✅ Добавляем `image_url` как отдельное поле
 
     def get_stock(self, obj):
         """✅ Возвращает количество товара со склада."""
@@ -17,11 +17,11 @@ class ProductSerializer(serializers.ModelSerializer):
         return stock.quantity if stock else 0
 
     def get_image_url(self, obj):
-        """✅ Возвращает полный URL изображения."""
+        """✅ Возвращает полный URL изображения, если оно есть."""
         request = self.context.get("request")
         if obj.image:
             return request.build_absolute_uri(obj.image.url) if request else obj.image.url
-        return request.build_absolute_uri("/media/default_product.jpg") if request else "/media/default_product.jpg"
+        return None  # ✅ Теперь возвращает `None`, если изображения нет
 
     class Meta:
         model = Product
@@ -29,20 +29,26 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class StockMovementSerializer(serializers.ModelSerializer):
     product_name = serializers.ReadOnlyField(source="product.name")
-    category_name = serializers.ReadOnlyField(source="product.category.name")  # ✅ Показываем категорию товара
+    category_name = serializers.ReadOnlyField(source="product.category.name")
 
     def validate(self, data):
         """
-        ✅ Проверяем, что изменение не приведёт к отрицательному `Stock.quantity`.
+        ✅ Проверяем, что изменение `change` не приведёт к отрицательному `Stock.quantity`.
         """
-        product = data.get("product") or self.instance.product
-        stock = Stock.objects.filter(product=product).first()
+        product = data.get("product")
+        sales_point = data.get("sales_point")
 
-        if stock and stock.quantity + data["change"] < 0:
+        # ✅ Проверяем, существует ли складская запись для товара в этой точке продаж
+        stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
+        if not stock:
+            raise serializers.ValidationError({"sales_point": "No hay stock registrado para este producto en este punto de venta."})
+
+        # ✅ Проверяем, не уходит ли запас в минус
+        if stock.quantity + data["change"] < 0:
             raise serializers.ValidationError({"change": "El stock no puede ser negativo."})
 
         return data
 
     class Meta:
         model = StockMovement
-        fields = ["id", "product", "product_name", "category_name", "change", "created_at", "reason"]
+        fields = ["id", "product", "product_name", "category_name", "sales_point", "change", "created_at", "reason"]

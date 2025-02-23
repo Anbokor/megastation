@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
-from .models import Stock, SalesPoint
-from .serializers import StockSerializer, SalesPointSerializer
+from .models import Stock, SalesPoint, StockMovement
+from .serializers import StockSerializer, SalesPointSerializer, StockMovementSerializer
 from django.db.models import Q
 
 class StockListView(generics.ListAPIView):
@@ -26,3 +26,11 @@ class SalesPointListView(generics.ListCreateAPIView):
         """✅ Автоматически добавляем текущего пользователя в администраторы при создании"""
         sales_point = serializer.save()
         sales_point.administrators.add(self.request.user)
+
+class StockMovementListCreateView(generics.ListCreateAPIView):
+    """
+    ✅ API для списка перемещений товаров.
+    """
+    queryset = StockMovement.objects.all()
+    serializer_class = StockMovementSerializer
+    permission_classes = [permissions.IsAuthenticated]

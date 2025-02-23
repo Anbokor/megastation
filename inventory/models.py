@@ -22,11 +22,11 @@ class Stock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="stock_info")
     sales_point = models.ForeignKey(
         "SalesPoint", on_delete=models.CASCADE, related_name="stock", verbose_name="Punto de venta", default=1
-    )  # ✅ ВРЕМЕННО устанавливаем `default=1`
+    )
     quantity = models.PositiveIntegerField(default=0)
+    reserved_quantity = models.PositiveIntegerField(default=0)  # Добавляем поле для резервирования
     low_stock_threshold = models.PositiveIntegerField(default=5)
     updated_at = models.DateTimeField(auto_now=True)
-
 
     def is_low_stock(self):
         """Returns True if stock is below the threshold."""
@@ -45,7 +45,6 @@ class Stock(models.Model):
         self.quantity += change
         self.save()
 
-        # ✅ Логируем изменение на складе
         StockMovement.objects.create(
             product=self.product,
             sales_point=self.sales_point,
@@ -54,24 +53,22 @@ class Stock(models.Model):
         )
 
     def __str__(self):
-        """✅ Теперь не выдаёт ошибку, если `sales_point` пустой."""
         return f"{self.product.name} - {self.sales_point.name} - {self.quantity} en stock"
 
     class Meta:
-        unique_together = ("product", "sales_point")  # ✅ Запрещает дублирующиеся записи склада
+        unique_together = ("product", "sales_point")
 
 class StockMovement(models.Model):
     """✅ Логируем изменения на складе (теперь учитывает `SalesPoint`)."""
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     sales_point = models.ForeignKey(
         "SalesPoint", on_delete=models.CASCADE, related_name="stock_movements", verbose_name="Punto de venta"
-    )  # ✅ Теперь `sales_point` обязательный (`NOT NULL`)
+    )
     change = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
-        """✅ Теперь `sales_point` всегда указан и не может быть `None`."""
         return f"{self.product.name} ({self.sales_point.name}): {self.change} ({self.reason})"
 
     class Meta:

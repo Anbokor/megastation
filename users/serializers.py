@@ -3,10 +3,10 @@ from django.contrib.auth.hashers import make_password
 from .models import CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
-    is_admin = serializers.BooleanField(source='is_admin', read_only=True)
-    is_store_admin = serializers.BooleanField(source='is_store_admin', read_only=True)
-    is_seller = serializers.BooleanField(source='is_seller', read_only=True)
-    is_customer = serializers.BooleanField(source='is_customer', read_only=True)
+    is_admin = serializers.SerializerMethodField()
+    is_store_admin = serializers.SerializerMethodField()
+    is_seller = serializers.SerializerMethodField()
+    is_customer = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
@@ -16,6 +16,18 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {'password': {'write_only': True}}
 
+    def get_is_admin(self, obj):
+        return obj.is_admin
+
+    def get_is_store_admin(self, obj):
+        return obj.is_store_admin
+
+    def get_is_seller(self, obj):
+        return obj.is_seller
+
+    def get_is_customer(self, obj):
+        return obj.is_customer
+
     def create(self, validated_data):
         """
         ✅ Автоматически назначает `customer` по умолчанию.
@@ -23,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
         ✅ Обычные пользователи не могут выбирать роль.
         """
         request = self.context.get('request')
-        if not request or not request.user.is_authenticated or not request.user.is_admin():
+        if not request or not request.user.is_authenticated or not request.user.is_admin:
             validated_data['role'] = 'customer'  # 🔥 Только админ может задать другую роль
 
         validated_data['password'] = make_password(validated_data['password'])  # ✅ Хешируем пароль

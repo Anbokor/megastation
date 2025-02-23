@@ -1,7 +1,7 @@
 from django.db import models
 from users.models import CustomUser
 from store.models import Product
-from inventory.models import Stock  # Импортируем склад
+from inventory.models import Stock
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
 
@@ -22,28 +22,26 @@ class Order(models.Model):
         return f"Orden {self.id} - {self.user.username} - {self.get_status_display()}"
 
     def update_status(self, new_status):
-        """
-        ✅ Обновляет статус заказа и управляет резервами.
-        """
         if self.status == "pendiente" and new_status == "en_proceso":
-            # ✅ Подтверждение заказа → списываем товар
             for item in self.items.all():
                 stock = Stock.objects.get(product=item.product)
                 if stock.reserved_quantity < item.quantity:
                     raise ValidationError(f"Error en stock de {item.product.name}.")
                 stock.reserved_quantity -= item.quantity
-                stock.quantity -= item.quantity
                 stock.save()
 
         elif self.status == "pendiente" and new_status == "cancelado":
-            # ✅ Отмена заказа → возвращаем резерв
             for item in self.items.all():
                 stock = Stock.objects.get(product=item.product)
+                stock.quantity += item.quantity
                 stock.reserved_quantity -= item.quantity
                 stock.save()
 
         elif self.status == "en_proceso" and new_status == "cancelado":
-            raise ValidationError("No se puede cancelar un pedido en proceso.")
+            for item in self.items.all():
+                stock = Stock.objects.get(product=item.product)
+                stock.quantity += item.quantity
+                stock.save()
 
         self.status = new_status
         self.save()
@@ -58,26 +56,19 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(verbose_name="Cantidad")
 
     def save(self, *args, **kwargs):
-        """
-        ✅ При создании `OrderItem` резервируем товар, но не списываем сразу.
-        """
         stock = Stock.objects.get(product=self.product)
-        if stock.quantity - stock.reserved_quantity < self.quantity:
+        if stock.quantity < self.quantity:
             raise ValidationError(f"No hay suficiente stock para {self.product.name}.")
-
+        stock.quantity -= self.quantity
         stock.reserved_quantity += self.quantity
         stock.save()
-
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        """
-        ✅ При удалении `OrderItem` освобождаем резерв.
-        """
         stock = Stock.objects.get(product=self.product)
+        stock.quantity += self.quantity
         stock.reserved_quantity -= self.quantity
         stock.save()
-
         super().delete(*args, **kwargs)
 
     def __str__(self):

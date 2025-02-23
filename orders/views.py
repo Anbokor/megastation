@@ -12,11 +12,7 @@ from .serializers import OrderSerializer
 from .utils import send_order_status_email
 from rest_framework.request import Request
 
-
 class OrderListView(generics.ListAPIView):
-    """
-    ✅ API para listar los pedidos del usuario actual.
-    """
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -24,16 +20,12 @@ class OrderListView(generics.ListAPIView):
         user = self.request.user
         return Order.objects.all() if user.is_staff else Order.objects.filter(user=user)
 
-
 class OrderDetailView(generics.RetrieveUpdateAPIView):
-    """
-    ✅ API para ver y actualizar un pedido (solo admin puede actualizar).
-    """
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]  # 🔥 Только админы могут изменять заказы
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
     def get_queryset(self):
-        return Order.objects.all()  # 🔥 Обычные пользователи не могут редактировать заказы
+        return Order.objects.all()
 
     def perform_update(self, serializer):
         request = self.request
@@ -56,18 +48,20 @@ class OrderDetailView(generics.RetrieveUpdateAPIView):
             raise ValidationError("Error interno: request no es un objeto válido de DRF.")
 
     def finalize_stock(self, order):
-        """
-        ✅ Окончательно списывает товар при отправке заказа.
-        """
         stock_movements = []
         for item in order.items.all():
             stock = Stock.objects.filter(product=item.product).first()
             if stock:
-                stock.quantity -= item.quantity
+                if stock.reserved_quantity >= item.quantity:
+                    stock.reserved_quantity -= item.quantity  # Списываем из резерва
+                else:
+                    stock.quantity -= item.quantity  # Только если нет резерва
+
                 stock.save()
 
                 stock_movements.append(StockMovement(
                     product=item.product,
+                    sales_point=stock.sales_point,
                     change=-item.quantity,
                     reason=f"Pedido enviado {order.id}"
                 ))
@@ -75,11 +69,7 @@ class OrderDetailView(generics.RetrieveUpdateAPIView):
         if stock_movements:
             StockMovement.objects.bulk_create(stock_movements)
 
-
 class OrderCreateView(generics.CreateAPIView):
-    """
-    ✅ API para crear un pedido a partir del carrito.
-    """
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -104,10 +94,12 @@ class OrderCreateView(generics.CreateAPIView):
                                 status=status.HTTP_400_BAD_REQUEST)
 
             stock.quantity -= item.quantity
+            stock.reserved_quantity += item.quantity
             updated_stocks.append(stock)
 
             stock_movements.append(StockMovement(
                 product=item.product,
+                sales_point=stock.sales_point,
                 change=-item.quantity,
                 reason=f"Reserva para pedido {order.id}"
             ))
@@ -115,18 +107,14 @@ class OrderCreateView(generics.CreateAPIView):
             order_items.append(OrderItem(order=order, product=item.product, quantity=item.quantity))
 
         OrderItem.objects.bulk_create(order_items)
-        Stock.objects.bulk_update(updated_stocks, ['quantity'])
+        Stock.objects.bulk_update(updated_stocks, ['quantity', 'reserved_quantity'])
         StockMovement.objects.bulk_create(stock_movements)
 
         cart_items.delete()
 
         return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
 
-
 class CancelOrderView(APIView):
-    """
-    ✅ API para cancelar un pedido y devolver stock.
-    """
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
@@ -145,16 +133,19 @@ class CancelOrderView(APIView):
             stock = Stock.objects.filter(product=item.product).first()
             if stock:
                 stock.quantity += item.quantity
+                if order.status == "pendiente":
+                    stock.reserved_quantity -= item.quantity
                 updated_stocks.append(stock)
 
                 stock_movements.append(StockMovement(
                     product=item.product,
+                    sales_point=stock.sales_point,
                     change=item.quantity,
                     reason=f"Cancelación de pedido {order.id}"
                 ))
 
         if updated_stocks:
-            Stock.objects.bulk_update(updated_stocks, ['quantity'])
+            Stock.objects.bulk_update(updated_stocks, ['quantity', 'reserved_quantity'])
             StockMovement.objects.bulk_create(stock_movements)
 
         order.status = "cancelado"
@@ -162,11 +153,7 @@ class CancelOrderView(APIView):
 
         return Response({"message": "Pedido cancelado con éxito."}, status=status.HTTP_200_OK)
 
-
 class OrderUpdateView(generics.UpdateAPIView):
-    """
-    ✅ Allows sellers to update order status forward and sends email notifications.
-    """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated, CanAdvanceOrderStatus]

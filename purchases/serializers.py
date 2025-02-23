@@ -2,18 +2,13 @@ from rest_framework import serializers
 from .models import Invoice, InvoiceItem, InvoiceReturn
 from store.models import Product
 from inventory.models import SalesPoint
+from inventory.serializers import SalesPointSerializer
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ["id", "name", "price"]
-
-
-class SalesPointSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SalesPoint
-        fields = ["id", "name"]
 
 
 class InvoiceItemSerializer(serializers.ModelSerializer):

@@ -12,3 +12,1029 @@ WARNING 2025-02-16 20:47:02,451 log Too Many Requests: /api/token/
 WARNING 2025-02-16 20:47:02,453 basehttp "POST /api/token/ HTTP/1.1" 429 69
 WARNING 2025-02-16 20:47:03,542 log Too Many Requests: /api/token/
 WARNING 2025-02-16 20:47:03,542 basehttp "POST /api/token/ HTTP/1.1" 429 69
+WARNING 2025-02-18 18:30:30,840 log Not Found: /favicon.ico
+WARNING 2025-02-18 18:30:30,842 basehttp "GET /favicon.ico HTTP/1.1" 404 3806
+ERROR 2025-02-18 19:53:34,804 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 19:54:25,278 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 19:59:53,546 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 19:59:54,054 log Internal Server Error: /api/token/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 19:59:54,392 log Internal Server Error: /api/logout/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:22:24,839 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:22:25,401 log Internal Server Error: /api/token/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:22:25,729 log Internal Server Error: /api/logout/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:23:12,350 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:23:12,780 log Internal Server Error: /api/token/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:23:13,128 log Internal Server Error: /api/logout/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 192, in _get_response
+    wrapped_callback = self.make_view_atomic(callback)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 348, in make_view_atomic
+    if settings_dict["ATOMIC_REQUESTS"] and alias not in non_atomic_requests:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'ATOMIC_REQUESTS'
+ERROR 2025-02-18 20:27:43,527 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 373, in fields
+    fields[key] = value
+    ~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\utils\serializer_helpers.py", line 167, in __setitem__
+    field.bind(field_name=key, parent=self.serializer)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 358, in bind
+    assert self.source != field_name, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: It is redundant to specify `source='is_admin'` on field 'BooleanField' in serializer 'UserSerializer', because it is the same as the field name. Remove the `source` keyword argument.
+WARNING 2025-02-18 20:27:44,693 log Bad Request: /api/logout/
+WARNING 2025-02-18 20:31:34,317 log Not Found: /register/
+ERROR 2025-02-18 20:48:44,333 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 373, in fields
+    fields[key] = value
+    ~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\utils\serializer_helpers.py", line 167, in __setitem__
+    field.bind(field_name=key, parent=self.serializer)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 358, in bind
+    assert self.source != field_name, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: It is redundant to specify `source='is_admin'` on field 'BooleanField' in serializer 'UserSerializer', because it is the same as the field name. Remove the `source` keyword argument.
+WARNING 2025-02-18 20:48:45,418 log Bad Request: /api/logout/
+ERROR 2025-02-18 20:48:53,343 log Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 373, in fields
+    fields[key] = value
+    ~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\utils\serializer_helpers.py", line 167, in __setitem__
+    field.bind(field_name=key, parent=self.serializer)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 358, in bind
+    assert self.source != field_name, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: It is redundant to specify `source='is_admin'` on field 'BooleanField' in serializer 'UserSerializer', because it is the same as the field name. Remove the `source` keyword argument.
+WARNING 2025-02-18 20:48:54,423 log Bad Request: /api/logout/
+WARNING 2025-02-18 21:10:38,380 log Unauthorized: /api/logout/
+WARNING 2025-02-18 21:13:53,496 log Bad Request: /api/logout/
+WARNING 2025-02-18 22:18:29,412 log Unauthorized: /api/products/
+WARNING 2025-02-19 10:35:04,899 log Unauthorized: /api/products/
+ERROR 2025-02-19 11:48:16,689 log Internal Server Error: /api/products/29/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+ERROR 2025-02-19 11:48:17,115 log Internal Server Error: /api/products/30/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 90, in destroy
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+ERROR 2025-02-19 11:48:33,625 log Internal Server Error: /api/products/35/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+ERROR 2025-02-19 11:48:34,041 log Internal Server Error: /api/products/36/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 90, in destroy
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+ERROR 2025-02-19 11:52:53,369 log Internal Server Error: /api/products/41/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+ERROR 2025-02-19 11:52:54,014 log Internal Server Error: /api/products/42/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\mixins.py", line 90, in destroy
+    instance = self.get_object()
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 87, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\store\views.py", line 61, in get_queryset
+    return Product.objects.filter(user=user)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: barcode, cartitem, category, category_id, description, id, image, invoiceitem, invoicereturn, name, orderitem, price, stock_info, stockmovement
+WARNING 2025-02-19 11:58:55,306 log Not Found: /api/products/48/
+WARNING 2025-02-19 11:58:55,699 log Not Found: /api/products/49/
+WARNING 2025-02-19 12:07:03,265 log Forbidden: /api/low-stock/
+WARNING 2025-02-21 14:34:00,432 log Unauthorized: /api/inventory/stock/
+WARNING 2025-02-21 14:34:00,732 log Not Found: /api/inventory/stock/188/
+WARNING 2025-02-21 14:34:00,743 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 14:34:00,752 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 14:34:00,765 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 14:38:06,717 log Unauthorized: /api/inventory/stock/
+WARNING 2025-02-21 14:38:06,742 log Not Found: /api/inventory/stock/201/
+WARNING 2025-02-21 14:38:06,749 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 14:38:06,758 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 14:38:06,766 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:11:45,200 log Not Found: /api/inventory/stock/244/
+WARNING 2025-02-21 18:11:45,499 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:11:45,798 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:15:10,212 log Not Found: /api/inventory/stock/256/
+WARNING 2025-02-21 18:15:10,509 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:15:10,808 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:22:45,135 log Not Found: /api/inventory/stock/267/
+WARNING 2025-02-21 18:22:45,453 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:22:45,751 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:33:19,936 log Not Found: /api/inventory/stock/270/
+WARNING 2025-02-21 18:33:20,235 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:33:20,537 log Not Found: /api/inventory/stock-movements/
+WARNING 2025-02-21 18:44:08,992 log Not Found: /api/inventory/stock/285/
+WARNING 2025-02-21 19:07:00,616 log Not Found: /api/inventory/stock/368/
+WARNING 2025-02-21 19:07:31,347 log Not Found: /api/inventory/stock/370/
+WARNING 2025-02-21 19:07:31,724 log Not Found: /api/inventory/sales-points/386/
+WARNING 2025-02-22 18:16:23,919 log Not Found: /api/inventory/stock/382/
+WARNING 2025-02-22 18:16:24,330 log Not Found: /api/inventory/sales-points/404/
+WARNING 2025-02-22 18:45:45,996 log Not Found: /orders/create/
+ERROR 2025-02-22 18:53:12,314 log Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (158, -3, 2025-02-22 21:53:12.281577+00, Reserva para pedido 39, 612, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\orders\views.py", line 119, in create
+    StockMovement.objects.bulk_create(stock_movements)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 835, in bulk_create
+    returned_columns = self._batched_insert(
+        objs_without_pk,
+    ...<4 lines>...
+        unique_fields=unique_fields,
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1875, in _batched_insert
+    self._insert(
+    ~~~~~~~~~~~~^
+        item,
+        ^^^^^
+    ...<5 lines>...
+        returning_fields=self.model._meta.db_returning_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (158, -3, 2025-02-22 21:53:12.281577+00, Reserva para pedido 39, 612, null).
+
+ERROR 2025-02-22 19:02:25,837 log Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (159, -3, 2025-02-22 22:02:25.814804+00, Reserva para pedido 54, 625, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\orders\views.py", line 119, in create
+    StockMovement.objects.bulk_create(stock_movements)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 835, in bulk_create
+    returned_columns = self._batched_insert(
+        objs_without_pk,
+    ...<4 lines>...
+        unique_fields=unique_fields,
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1875, in _batched_insert
+    self._insert(
+    ~~~~~~~~~~~~^
+        item,
+        ^^^^^
+    ...<5 lines>...
+        returning_fields=self.model._meta.db_returning_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (159, -3, 2025-02-22 22:02:25.814804+00, Reserva para pedido 54, 625, null).
+
+ERROR 2025-02-22 19:04:32,221 log Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (160, -3, 2025-02-22 22:04:32.178741+00, Reserva para pedido 69, 638, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\orders\views.py", line 119, in create
+    StockMovement.objects.bulk_create(stock_movements)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 835, in bulk_create
+    returned_columns = self._batched_insert(
+        objs_without_pk,
+    ...<4 lines>...
+        unique_fields=unique_fields,
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1875, in _batched_insert
+    self._insert(
+    ~~~~~~~~~~~~^
+        item,
+        ^^^^^
+    ...<5 lines>...
+        returning_fields=self.model._meta.db_returning_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: ОШИБКА:  значение NULL в столбце "sales_point_id" отношения "inventory_stockmovement" нарушает ограничение NOT NULL
+DETAIL:  Ошибочная строка содержит (160, -3, 2025-02-22 22:04:32.178741+00, Reserva para pedido 69, 638, null).
+
+WARNING 2025-02-22 19:41:57,637 log Forbidden: /api/orders/orders/86/update/
+WARNING 2025-02-22 19:42:09,565 log Forbidden: /api/orders/orders/101/update/
+WARNING 2025-02-22 19:43:46,328 log Forbidden: /api/orders/orders/116/update/
+WARNING 2025-02-22 21:52:02,571 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:52:02,575 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:52:02,576 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:52:02,854 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:52:03,129 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:52:03,403 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:52:03,405 log Too Many Requests: /api/login/
+WARNING 2025-02-22 21:52:03,406 log Too Many Requests: /api/login/
+WARNING 2025-02-22 21:53:32,938 log Forbidden: /api/795/
+WARNING 2025-02-22 21:53:34,060 log Forbidden: /api/799/
+WARNING 2025-02-22 21:53:34,620 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:53:34,622 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:53:34,623 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:53:34,904 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:53:35,186 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:53:35,459 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:53:35,461 log Too Many Requests: /api/login/
+WARNING 2025-02-22 21:53:35,462 log Too Many Requests: /api/login/
+WARNING 2025-02-22 21:59:08,104 log Forbidden: /api/816/
+WARNING 2025-02-22 21:59:09,217 log Forbidden: /api/820/
+WARNING 2025-02-22 21:59:09,787 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:59:09,788 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:59:09,790 log Too Many Requests: /api/register/
+WARNING 2025-02-22 21:59:10,069 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:59:10,345 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:59:10,618 log Unauthorized: /api/login/
+WARNING 2025-02-22 21:59:10,619 log Too Many Requests: /api/login/
+WARNING 2025-02-22 21:59:10,620 log Too Many Requests: /api/login/
+WARNING 2025-02-22 22:03:41,247 log Bad Request: /api/cart/
+WARNING 2025-02-22 22:32:45,025 log Bad Request: /api/purchases/invoices/create/
+WARNING 2025-02-22 22:32:46,325 log Not Found: /api/purchases/invoices/returns/create/
+WARNING 2025-02-23 13:18:03,085 log Bad Request: /api/purchases/invoices/create/
+WARNING 2025-02-23 13:18:04,577 log Not Found: /api/purchases/invoices/returns/create/
+WARNING 2025-02-23 13:23:20,448 log Forbidden: /api/908/
+WARNING 2025-02-23 13:23:21,603 log Forbidden: /api/912/
+WARNING 2025-02-23 13:23:22,180 log Too Many Requests: /api/register/
+WARNING 2025-02-23 13:23:22,181 log Too Many Requests: /api/register/
+WARNING 2025-02-23 13:23:22,182 log Too Many Requests: /api/register/
+WARNING 2025-02-23 13:23:22,471 log Unauthorized: /api/login/
+WARNING 2025-02-23 13:23:22,757 log Unauthorized: /api/login/
+WARNING 2025-02-23 13:23:23,057 log Unauthorized: /api/login/
+WARNING 2025-02-23 13:23:23,058 log Too Many Requests: /api/login/
+WARNING 2025-02-23 13:23:23,059 log Too Many Requests: /api/login/

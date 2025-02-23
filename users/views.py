@@ -11,6 +11,7 @@ from .permissions import IsAdmin
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework import mixins
 import logging
+from rest_framework_simplejwt.exceptions import TokenError
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +27,11 @@ class UserListView(mixins.ListModelMixin, generics.GenericAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if getattr(user, "role", None) == CustomUser.Role.ADMIN:  # ✅ Проверка через `getattr`
+
+        # 🔥 Исправлено: теперь проверка корректная
+        if user.is_staff or user.is_superuser or user.role == CustomUser.Role.ADMIN:
             return CustomUser.objects.all()
+
         return CustomUser.objects.filter(id=user.id)  # Обычный пользователь видит только себя
 
     def get(self, request, *args, **kwargs):
@@ -100,20 +104,23 @@ class UserDetailView(APIView):
 
 class LogoutView(APIView):
     """
-    ✅ API для выхода (деактивации токена refresh).
+    ✅ API для выхода (деактивации refresh-токена).
     """
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        refresh_token = request.data.get("refresh")
+
+        if not refresh_token:
+            return Response({"error": "Token de actualización no proporcionado."}, status=400)
+
         try:
-            refresh_token = request.data.get("refresh")
-            if not refresh_token:
-                return Response({"error": "Token de actualización no proporcionado."}, status=400)
             token = RefreshToken(refresh_token)
-            token.blacklist()  # Добавляем в черный список (если включена поддержка)
+            token.blacklist()  # ✅ Добавляем токен в черный список (если включен)
             return Response({"detail": "Cierre de sesión exitoso."}, status=200)
-        except Exception as e:
-            return Response({"error": str(e)}, status=400)
+
+        except TokenError:
+            return Response({"error": "Token inválido o ya ha sido utilizado."}, status=400)
 
 class LoginView(TokenObtainPairView):
     """

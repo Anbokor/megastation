@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+import sys
 
 load_dotenv()
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_celery_beat',
+    "rest_framework_simplejwt.token_blacklist",
 
     # Custom Apps
     'users',
@@ -96,9 +98,6 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
-        'TEST': {
-            'NAME': os.getenv('TEST_DB_NAME', 'test_megastation'),
-        },
     }
 }
 
@@ -232,6 +231,10 @@ LOGGING = {
         },
     },
 }
+
+
+
+
 
 
 

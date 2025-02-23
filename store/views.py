@@ -7,10 +7,12 @@ from store.serializers import ProductSerializer, CategorySerializer
 from inventory.models import Stock, StockMovement
 from inventory.serializers import StockMovementSerializer
 
+
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
+
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
@@ -30,9 +32,7 @@ class ProductListView(generics.ListCreateAPIView):
         user = self.request.user
         if user.is_staff:
             return Product.objects.all()
-
-        sales_points = user.sales_points.all()  # Получаем все точки продаж продавца
-        return Product.objects.filter(stock_info__sales_point__in=sales_points).distinct()
+        return Product.objects.filter(stock_info__sales_point__in=user.sales_points.all()).distinct()
 
     def perform_create(self, serializer):
         """
@@ -42,9 +42,9 @@ class ProductListView(generics.ListCreateAPIView):
         product = serializer.save()
 
         # Автоматически создаём `Stock` для всех точек продаж продавца
-        sales_points = user.sales_points.all()
-        for sales_point in sales_points:
+        for sales_point in user.sales_points.all():
             Stock.objects.create(product=product, sales_point=sales_point, quantity=0)
+
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
@@ -52,13 +52,14 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         """
-        ✅ Продавцы могут редактировать только свои товары.
+        ✅ Продавцы могут редактировать только товары своих точек продаж.
         ✅ Администраторы могут редактировать все товары.
         """
         user = self.request.user
         if user.is_staff:
             return Product.objects.all()
-        return Product.objects.filter(user=user)
+        return Product.objects.filter(stock_info__sales_point__in=user.sales_points.all()).distinct()
+
 
 class LowStockProductsView(generics.ListAPIView):
     """
@@ -76,7 +77,9 @@ class LowStockProductsView(generics.ListAPIView):
         category_id = self.request.query_params.get("category_id")
 
         # Используем Stock для поиска товаров с низким запасом
-        low_stock_products = Stock.objects.filter(quantity__lt=F("product__category__min_stock")).select_related("product")
+        low_stock_products = Stock.objects.filter(
+            quantity__lt=F("product__category__min_stock")
+        ).select_related("product")
 
         if category_id:
             low_stock_products = low_stock_products.filter(product__category_id=category_id)
@@ -88,6 +91,7 @@ class LowStockProductsView(generics.ListAPIView):
         if not queryset:
             return Response({"message": "No hay productos con stock bajo."})
         return super().list(request, *args, **kwargs)
+
 
 class StockMovementListView(generics.ListAPIView):
     """
