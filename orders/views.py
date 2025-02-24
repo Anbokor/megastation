@@ -11,65 +11,37 @@ from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from .utils import send_order_status_email
 from rest_framework.request import Request
+from django.db import transaction
 
-class OrderListView(generics.ListAPIView):
+class OrderListView(generics.ListCreateAPIView):
+    """✅ API для просмотра списка заказов и создания нового заказа."""
+    queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user
-        return Order.objects.all() if user.is_staff else Order.objects.filter(user=user)
+    def perform_create(self, serializer):
+        """✅ Заказы создаются без резервирования, оно произойдет при оплате."""
+        serializer.save(user=self.request.user)
 
-class OrderDetailView(generics.RetrieveUpdateAPIView):
+class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """✅ API для просмотра, обновления и удаления заказа."""
+    queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
-
-    def get_queryset(self):
-        return Order.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_update(self, serializer):
-        request = self.request
-        if isinstance(request, Request):
-            if "status" in request.data:
-                order = self.get_object()
-                old_status = order.status
-                new_status = request.data["status"]
+        """✅ Обновление заказа с учетом логики резервирования при оплате."""
+        instance = serializer.instance
+        old_status = instance.status
+        new_status = self.request.data.get("status", old_status)
 
-                if not request.user.is_staff:
-                    raise ValidationError({"status": "No tienes permiso para cambiar el estado del pedido."})
+        if old_status != new_status:
+            instance.update_status(new_status)
 
-                if old_status in ["pendiente", "en_proceso"] and new_status == "enviado":
-                    self.finalize_stock(order)
-
-                serializer.save(status=new_status)
-            else:
-                serializer.save()
-        else:
-            raise ValidationError("Error interno: request no es un objeto válido de DRF.")
-
-    def finalize_stock(self, order):
-        stock_movements = []
-        for item in order.items.all():
-            stock = Stock.objects.filter(product=item.product).first()
-            if stock:
-                if stock.reserved_quantity >= item.quantity:
-                    stock.reserved_quantity -= item.quantity  # Списываем из резерва
-                else:
-                    stock.quantity -= item.quantity  # Только если нет резерва
-
-                stock.save()
-
-                stock_movements.append(StockMovement(
-                    product=item.product,
-                    sales_point=stock.sales_point,
-                    change=-item.quantity,
-                    reason=f"Pedido enviado {order.id}"
-                ))
-
-        if stock_movements:
-            StockMovement.objects.bulk_create(stock_movements)
+        serializer.save()
 
 class OrderCreateView(generics.CreateAPIView):
+    """✅ Создание заказа из корзины с резервированием товара при оплате."""
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -115,6 +87,7 @@ class OrderCreateView(generics.CreateAPIView):
         return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
 
 class CancelOrderView(APIView):
+    """✅ API для отмены заказа и возврата товаров на склад."""
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
@@ -154,6 +127,7 @@ class CancelOrderView(APIView):
         return Response({"message": "Pedido cancelado con éxito."}, status=status.HTTP_200_OK)
 
 class OrderUpdateView(generics.UpdateAPIView):
+    """✅ API для обновления заказа (администратор может продвигать статус)."""
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated, CanAdvanceOrderStatus]
@@ -171,3 +145,19 @@ class OrderUpdateView(generics.UpdateAPIView):
         send_order_status_email(order.user.email, order.id, new_status)
 
         return response
+
+class OrderUpdateStatusView(generics.UpdateAPIView):
+    """✅ API для обновления статуса заказа с резервированием товара при оплате."""
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def patch(self, request, *args, **kwargs):
+        order = self.get_object()
+        new_status = request.data.get("status")
+
+        if not new_status:
+            return Response({"error": "Estado requerido."}, status=status.HTTP_400_BAD_REQUEST)
+
+        order.update_status(new_status)
+        return Response(OrderSerializer(order).data, status=status.HTTP_200_OK)

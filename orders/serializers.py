@@ -6,13 +6,13 @@ class OrderItemSerializer(serializers.ModelSerializer):
     stock = serializers.SerializerMethodField()
 
     def get_stock(self, obj):
-        """Возвращает доступное количество товара на складе (учитывает резерв)."""
+        """✅ Возвращает доступное количество товара на складе (учитывает резерв)."""
         stock = Stock.objects.filter(product=obj.product).first()
         return stock.quantity - stock.reserved_quantity if stock else 0
 
     def validate(self, data):
         """
-        Проверяет наличие товара перед созданием `OrderItem`, учитывая `reserved_quantity`.
+        ✅ Проверяет наличие товара перед созданием `OrderItem`, учитывая `reserved_quantity`.
         """
         product = data["product"]
         quantity = data["quantity"]
@@ -44,7 +44,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def validate_status(self, value):
         """
-        Solo los administradores pueden cambiar el estado del pedido.
+        ✅ Разрешаем менять статус только администраторам.
         """
         request = self.context.get("request")
 
@@ -54,7 +54,7 @@ class OrderSerializer(serializers.ModelSerializer):
         if not request.user.is_staff:
             raise serializers.ValidationError("No tienes permisos para cambiar el estado del pedido.")
 
-        # 🔥 Исправление: Если статус не передан, оставляем текущий статус заказа
+        # 🔥 Если статус не передан, оставляем текущий статус заказа
         if not value:
             return self.instance.status if self.instance else "pendiente"
 

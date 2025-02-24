@@ -1088,3 +1088,13 @@ WARNING 2025-02-23 14:26:31,911 log Unauthorized: /api/login/
 WARNING 2025-02-23 14:26:32,194 log Unauthorized: /api/login/
 WARNING 2025-02-23 14:26:32,195 log Too Many Requests: /api/login/
 WARNING 2025-02-23 14:26:32,197 log Too Many Requests: /api/login/
+WARNING 2025-02-23 23:37:21,720 log Forbidden: /api/1262/
+WARNING 2025-02-23 23:37:22,964 log Forbidden: /api/1266/
+WARNING 2025-02-23 23:37:23,588 log Too Many Requests: /api/register/
+WARNING 2025-02-23 23:37:23,589 log Too Many Requests: /api/register/
+WARNING 2025-02-23 23:37:23,591 log Too Many Requests: /api/register/
+WARNING 2025-02-23 23:37:23,912 log Unauthorized: /api/login/
+WARNING 2025-02-23 23:37:24,220 log Unauthorized: /api/login/
+WARNING 2025-02-23 23:37:24,530 log Unauthorized: /api/login/
+WARNING 2025-02-23 23:37:24,532 log Too Many Requests: /api/login/
+WARNING 2025-02-23 23:37:24,533 log Too Many Requests: /api/login/

@@ -22,6 +22,9 @@ class Order(models.Model):
         return f"Orden {self.id} - {self.user.username} - {self.get_status_display()}"
 
     def update_status(self, new_status):
+        """
+        ✅ Обновляет статус заказа с учётом логики резервирования товара при оплате.
+        """
         if self.status == "pendiente" and new_status == "en_proceso":
             for item in self.items.all():
                 stock = Stock.objects.get(product=item.product)
@@ -50,12 +53,16 @@ class Order(models.Model):
         verbose_name = "Orden"
         verbose_name_plural = "Órdenes"
 
+
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name="Cantidad")
 
     def save(self, *args, **kwargs):
+        """
+        ✅ При добавлении товара в заказ — резервируем его на складе.
+        """
         stock = Stock.objects.get(product=self.product)
         if stock.quantity < self.quantity:
             raise ValidationError(f"No hay suficiente stock para {self.product.name}.")
@@ -65,6 +72,9 @@ class OrderItem(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        """
+        ✅ При удалении товара из заказа — снимаем резерв и возвращаем на склад.
+        """
         stock = Stock.objects.get(product=self.product)
         stock.quantity += self.quantity
         stock.reserved_quantity -= self.quantity
