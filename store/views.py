@@ -9,74 +9,75 @@ from inventory.serializers import StockMovementSerializer
 
 
 class CategoryListView(generics.ListCreateAPIView):
+    """
+    ✅ Любой пользователь может просматривать категории.
+    ✅ Только администраторы могут создавать категории.
+    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:  # GET, HEAD, OPTIONS
+            return [permissions.AllowAny()]  # 👈 Открытый доступ
+        return [permissions.IsAdminUser()]  # 👈 Создавать может только админ
 
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    ✅ Любой пользователь может просматривать категории.
+    ✅ Только администраторы могут изменять категории.
+    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return [permissions.AllowAny()]
+        return [permissions.IsAdminUser()]
 
 
 class ProductListView(generics.ListCreateAPIView):
+    """
+    ✅ Любой пользователь может просматривать товары.
+    ✅ Только авторизованные продавцы или администраторы могут добавлять товары.
+    """
     serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        """
-        ✅ Продавцы видят только товары своих точек продаж.
-        ✅ Админы видят все товары.
-        """
-        user = self.request.user
-        if user.is_staff:
-            return Product.objects.all()
-        return Product.objects.filter(stock_info__sales_point__in=user.sales_points.all()).distinct()
+        return Product.objects.all()  # 👈 Все товары видны всем пользователям
 
-    def perform_create(self, serializer):
-        """
-        ✅ Продавец может добавлять только товары в свои точки продаж.
-        """
-        user = self.request.user
-        product = serializer.save()
-
-        # Автоматически создаём `Stock` для всех точек продаж продавца
-        for sales_point in user.sales_points.all():
-            Stock.objects.create(product=product, sales_point=sales_point, quantity=0)
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return [permissions.AllowAny()]
+        return [permissions.IsAuthenticated()]  # 👈 Создавать могут только авторизованные
 
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    ✅ Любой пользователь может просматривать товар.
+    ✅ Только продавцы (с доступом к точке продаж) или администраторы могут редактировать/удалять.
+    """
     serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        """
-        ✅ Продавцы могут редактировать только товары своих точек продаж.
-        ✅ Администраторы могут редактировать все товары.
-        """
-        user = self.request.user
-        if user.is_staff:
-            return Product.objects.all()
-        return Product.objects.filter(stock_info__sales_point__in=user.sales_points.all()).distinct()
+        return Product.objects.all()
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return [permissions.AllowAny()]
+        return [permissions.IsAuthenticated()]
 
 
 class LowStockProductsView(generics.ListAPIView):
     """
-    ✅ Показывает товары с низким запасом.
-    - Если товаров мало → предупреждение.
+    ✅ Показывает товары с низким запасом (доступно только администраторам).
     """
     serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
 
     def get_queryset(self):
-        user = self.request.user
-        if not user.is_staff:
-            raise PermissionDenied("No tienes permisos para ver el stock bajo.")
-
         category_id = self.request.query_params.get("category_id")
 
-        # Используем Stock для поиска товаров с низким запасом
         low_stock_products = Stock.objects.filter(
             quantity__lt=F("product__category__min_stock")
         ).select_related("product")
@@ -95,9 +96,7 @@ class LowStockProductsView(generics.ListAPIView):
 
 class StockMovementListView(generics.ListAPIView):
     """
-    ✅ API для просмотра истории складских движений.
-    - Фильтры: `product_id`, `date_from`, `date_to`.
-    - Доступ только у администраторов.
+    ✅ Администраторы могут просматривать историю складских движений.
     """
     serializer_class = StockMovementSerializer
     permission_classes = [permissions.IsAdminUser]

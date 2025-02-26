@@ -1098,3 +1098,69 @@ WARNING 2025-02-23 23:37:24,220 log Unauthorized: /api/login/
 WARNING 2025-02-23 23:37:24,530 log Unauthorized: /api/login/
 WARNING 2025-02-23 23:37:24,532 log Too Many Requests: /api/login/
 WARNING 2025-02-23 23:37:24,533 log Too Many Requests: /api/login/
+WARNING 2025-02-25 15:24:07,394 log Not Found: /api/products/
+WARNING 2025-02-25 15:24:07,399 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:24:09,230 log Not Found: /api/products/
+WARNING 2025-02-25 15:24:09,230 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:24:18,988 log Not Found: /api/products/
+WARNING 2025-02-25 15:24:18,989 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:24:20,549 log Not Found: /api/products/
+WARNING 2025-02-25 15:24:20,549 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:24:45,461 log Not Found: /api/products/
+WARNING 2025-02-25 15:24:45,461 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:25:34,677 log Not Found: /api/products/
+WARNING 2025-02-25 15:25:34,678 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:30:02,428 log Not Found: /api/products/
+WARNING 2025-02-25 15:30:02,436 basehttp "GET /api/products/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 15:35:05,701 log Not Found: /favicon.ico
+WARNING 2025-02-25 15:35:05,702 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-02-25 15:48:53,036 log Unauthorized: /api/store/products/
+WARNING 2025-02-25 15:48:53,039 basehttp "GET /api/store/products/ HTTP/1.1" 401 5212
+WARNING 2025-02-25 15:52:03,382 log Unauthorized: /api/store/products/
+WARNING 2025-02-25 15:52:03,384 basehttp "GET /api/store/products/ HTTP/1.1" 401 5212
+WARNING 2025-02-25 18:23:53,557 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 18:23:53,563 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 18:25:12,409 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 18:25:12,412 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 18:25:19,888 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 18:25:19,893 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 18:25:19,894 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 18:25:19,894 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 18:26:31,514 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 18:26:31,518 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:02,873 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:16:02,878 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:24,429 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 19:16:24,430 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:24,433 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:16:24,434 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:28,143 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 19:16:28,150 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:16:28,150 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:28,151 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:16:45,544 log Not Found: /favicon.ico
+WARNING 2025-02-25 19:16:45,544 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-02-25 19:16:47,491 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 19:16:47,494 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:16:47,495 basehttp "GET /api/store/products/ HTTP/1.1" 429 68
+WARNING 2025-02-25 19:16:47,495 basehttp "GET /api/store/categories/ HTTP/1.1" 429 68
+WARNING 2025-02-25 19:19:14,416 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:19:14,418 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:19:16,396 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 19:19:16,397 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:19:16,398 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:19:16,399 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:20:22,252 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:20:22,254 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:27:19,059 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:27:19,063 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:27:23,950 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 19:27:23,952 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 19:27:23,953 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 19:27:23,953 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 20:53:51,006 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 20:53:51,012 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 20:53:53,546 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 20:53:53,549 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 20:53:53,549 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 20:53:53,550 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69

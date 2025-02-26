@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_celery_beat',
     "rest_framework_simplejwt.token_blacklist",
+    "corsheaders",
 
     # Custom Apps
     'users',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'megastation.urls'
@@ -155,12 +157,12 @@ REST_FRAMEWORK = {
         'users.throttling.LoginAttemptUserThrottle',  # ✅ Ограничение попыток входа (зарегистрированные)
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '10/minute',  # 10 запросов в минуту для анонимов
+        'anon': '15/minute',  # 10 запросов в минуту для анонимов
         'user': '100/minute',  # 100 запросов в минуту для авторизованных пользователей
         'login_attempt': '5/minute',  # ✅ 5 попыток входа в минуту (анонимы)
         'login_attempt_user': '10/minute',  # ✅ 10 попыток входа в минуту (авторизованные)
         'user_register': '3/minute',  # 3 регистрации в минуту
-        'user_list': '10/minute',  # 10 запросов списка пользователей в минуту
+        'user_list': '15/minute',  # 10 запросов списка пользователей в минуту
         'user_detail': '5/minute',  # 5 запросов деталей пользователя в минуту
     },
 }
@@ -231,6 +233,18 @@ LOGGING = {
         },
     },
 }
+
+# ✅ Разрешаем запросы с фронтенда (Vite)
+CORS_ALLOW_ALL_ORIGINS = False  # ❌ Отключаем полный доступ для безопасности
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # ✅ Разрешаем фронтенд
+    "http://127.0.0.1:5173",
+]
+
+# ✅ Разрешаем заголовки CORS
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["*"]
 
 
 
