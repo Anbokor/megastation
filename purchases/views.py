@@ -110,16 +110,11 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
         if new_status not in ["procesada", "anulada"]:
             raise ValidationError({"error": "Estado inválido."})
 
-        with transaction.atomic():
-            if invoice.status == "pendiente" and new_status == "procesada":
-                invoice.update_stock()
-            elif invoice.status == "procesada" and new_status == "anulada":
-                invoice.revert_stock()
-            else:
-                raise ValidationError({"error": "No se puede cambiar el estado de esta manera."})
-
+        try:
             invoice.status = new_status
-            invoice.save()
+            invoice.save()  # Вызовет update_stock или revert_stock из модели
+        except ValidationError as e:
+            raise DRFValidationError({"error": str(e)})
 
         return Response(InvoiceSerializer(invoice).data)
 
@@ -151,7 +146,11 @@ class InvoiceReturnCreateView(generics.CreateAPIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         invoice_item = InvoiceItem.objects.filter(invoice=invoice, product=product).first()
-        if not invoice_item or quantity > invoice_item.quantity:
+        if not invoice_item:
+            return Response({"error": "El producto no está en la factura."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        if quantity > invoice_item.quantity:
             return Response({"error": "No se puede devolver más de lo comprado en la factura."},
                             status=status.HTTP_400_BAD_REQUEST)
 
@@ -160,11 +159,8 @@ class InvoiceReturnCreateView(generics.CreateAPIView):
                 invoice=invoice, product=product, sales_point=sales_point, quantity=quantity, reason=reason
             )
 
-            try:
-                return_entry.full_clean()
-                return_entry.save()
-            except ValidationError as e:
-                raise DRFValidationError({"error": e.messages if hasattr(e, "messages") else [str(e)]})
+            return_entry.full_clean()
+            return_entry.save()
 
         return Response(InvoiceReturnSerializer(return_entry).data, status=status.HTTP_201_CREATED)
 
@@ -176,7 +172,7 @@ class InvoiceReturnListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return InvoiceReturn.objects.prefetch_related("product") if user.is_staff else InvoiceReturn.objects.filter(sales_point__sellers=user)
+        return InvoiceReturn.objects.prefetch_related("product") if user.is_staff else InvoiceReturn.objects.filter(invoice__sales_point__sellers=user)
 
 
 class InvoiceReturnDetailView(generics.RetrieveAPIView):
@@ -186,4 +182,4 @@ class InvoiceReturnDetailView(generics.RetrieveAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return InvoiceReturn.objects.prefetch_related("product") if user.is_staff else InvoiceReturn.objects.filter(sales_point__sellers=user)
+        return InvoiceReturn.objects.prefetch_related("product") if user.is_staff else InvoiceReturn.objects.filter(invoice__sales_point__sellers=user)

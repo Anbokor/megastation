@@ -1,21 +1,35 @@
 import pytest
+import tempfile
+import shutil
 from django.conf import settings
 from rest_framework.test import APIClient
 from users.models import CustomUser
 from store.models import Product, Category
 from inventory.models import Stock, SalesPoint
 
-
 @pytest.fixture(scope="session")
 def django_db_setup():
     """
-    Используем SQLite в памяти для тестов.
+    Используем реальную базу данных (PostgreSQL) для тестов, чтобы данные сохранялись.
     """
-    settings.DATABASES["default"] = {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
-        'ATOMIC_REQUESTS': True,
-    }
+    # Не переопределяем БД, оставляем PostgreSQL из settings.py
+    pass
+
+
+@pytest.fixture(autouse=True)
+def temp_media_root():
+    """
+    Автоматически устанавливает временную директорию для MEDIA_ROOT в тестах и очищает её после завершения.
+    """
+    media_root = tempfile.mkdtemp()  # Создаем временную директорию
+    original_media_root = settings.MEDIA_ROOT
+    settings.MEDIA_ROOT = media_root
+
+    yield  # Выполняем тест
+
+    # Очищаем временную директорию после теста
+    shutil.rmtree(media_root, ignore_errors=True)
+    settings.MEDIA_ROOT = original_media_root  # Восстанавливаем оригинальный путь
 
 
 @pytest.fixture
@@ -48,6 +62,8 @@ def product(db):
 
 @pytest.fixture
 def stock(db, product):
-    from inventory.models import Stock, SalesPoint
+    """
+    ✅ Создает тестовый запас для товара.
+    """
     sales_point = SalesPoint.objects.create(name="Main Warehouse")
     return Stock.objects.create(product=product, sales_point=sales_point, quantity=10)

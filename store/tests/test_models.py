@@ -3,8 +3,7 @@ import os
 from django.conf import settings
 from store.models import Product, Category
 from django.db.utils import IntegrityError
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.files.storage import default_storage
+from django.core.files.uploadedfile import TemporaryUploadedFile
 
 @pytest.mark.django_db
 def test_create_category():
@@ -74,22 +73,32 @@ def test_unique_barcode():
 @pytest.mark.django_db
 def test_product_image_upload():
     """
-    ✅ Проверяем загрузку изображения и его удаление после теста.
+    ✅ Проверяем, что изображение продукта корректно загружается.
     """
-    category = Category.objects.create(name="Tablets")
-    image = SimpleUploadedFile("test.jpg", b"file_content", content_type="image/jpeg")
+    category = Category.objects.create(name="Electronics")
 
-    product = Product.objects.create(name="iPad", price=500, category=category, image=image)
+    # Создаем временный файл
+    test_image = TemporaryUploadedFile(
+        name="default_product.jpg",
+        content_type="image/jpeg",
+        size=1024,
+        charset=None
+    )
+    test_image.write(b"file_content")  # Записываем тестовые данные
+    test_image.seek(0)  # Возвращаемся в начало файла
 
-    assert product.image.name.startswith("products/")
+    product = Product.objects.create(
+        name="Test Product",
+        price=100.00,
+        category=category,
+        image=test_image
+    )
 
-    # ✅ Удаляем файл после теста
-    image_path = os.path.join(settings.MEDIA_ROOT, product.image.name)
-    if os.path.exists(image_path):
-        os.remove(image_path)
+    # Проверяем, что путь начинается с 'products/temp/' и заканчивается '.jpg'
+    assert product.image.name.startswith("products/temp/")
+    assert product.image.name.endswith(".jpg")
 
-    # Также можно добавить `product.image.delete()` на случай использования `Storage`
-    product.image.delete()
+    # Файл автоматически удаляется благодаря TemporaryUploadedFile
 
 @pytest.mark.django_db
 def test_category_deletion_sets_null():

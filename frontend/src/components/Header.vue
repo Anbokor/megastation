@@ -1,97 +1,203 @@
-<template>
-  <header>
-    <div class="logo-container">
-      <router-link to="/">
-        <img :src="logoSrc" alt="Megastation Logo" class="logo" />
-      </router-link>
-    </div>
-
-    <div class="search-bar">
-      <input type="text" v-model="searchQuery" placeholder="Buscar productos..." @keyup.enter="searchProducts" />
-      <button @click="searchProducts">🔍</button>
-    </div>
-
-    <nav>
-      <ul>
-        <li><router-link to="/">Inicio</router-link></li>
-        <li><router-link to="/catalog">Catálogo</router-link></li>
-        <li><router-link to="/cart">🛒 Carrito ({{ cartStore.totalItems }})</router-link></li>
-        <li v-if="!userStore.isAuthenticated"><router-link to="/login">Iniciar Sesión</router-link></li>
-        <li v-else><button @click="logout">Salir</button></li>
-      </ul>
-    </nav>
-  </header>
-</template>
-
 <script setup>
+import { useRouter } from "vue-router";
 import { useCartStore } from "@/store/cart";
 import { useUserStore } from "@/store/user";
-import { ref, computed } from "vue";
-import logo from "@/assets/logo.png";
+import { ref } from "vue";
 
+const router = useRouter();
 const cartStore = useCartStore();
 const userStore = useUserStore();
-const logoSrc = logo || "/static/default-logo.png";
 const searchQuery = ref("");
+const isMobileMenuOpen = ref(false);
 
 const searchProducts = () => {
-  console.log("🔍 Buscando:", searchQuery.value);
+  router.push({ path: "/catalog", query: { search: searchQuery.value } });
 };
 
 const logout = () => {
   userStore.logout();
+  router.push("/login");
+};
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 </script>
 
+<template>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-container">
+        <router-link to="/">
+          <img src="@/assets/MGST - Logo - Blanco.png" alt="Megastation" class="logo" />
+        </router-link>
+      </div>
+      <div class="search-bar">
+        <input v-model="searchQuery" placeholder="Buscar productos..." @keyup.enter="searchProducts" />
+        <button @click="searchProducts"><font-awesome-icon icon="search" /></button>
+      </div>
+      <nav :class="{ 'mobile-open': isMobileMenuOpen }">
+        <router-link to="/"><font-awesome-icon icon="home" /> Inicio</router-link>
+        <router-link to="/catalog"><font-awesome-icon icon="list" /> Catálogo</router-link>
+        <router-link to="/cart"><font-awesome-icon icon="shopping-cart" /> Carrito ({{ cartStore.totalItems }})</router-link>
+        <router-link v-if="!userStore.isAuthenticated" to="/login"><font-awesome-icon icon="sign-in-alt" /> Iniciar Sesión</router-link>
+        <button v-else @click="logout"><font-awesome-icon icon="sign-out-alt" /> Salir</button>
+      </nav>
+      <button class="menu-toggle" @click="toggleMobileMenu"><font-awesome-icon icon="bars" /></button>
+    </div>
+  </header>
+</template>
+
 <style scoped>
-header {
+.header {
+  background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+  padding: 10px 20px; /* Уменьшил верхний и нижний padding до 10px */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #006899;
-  padding: 15px 20px;
-  color: white;
+  flex-wrap: wrap;
 }
 
 .logo {
-  height: 50px;
+  height: 80px; /* Сохраняем размер логотипа */
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
 }
 
 .search-bar {
   display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 20px;
-  padding: 5px 10px;
+  background: var(--color-neutral);
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar input {
   border: none;
   outline: none;
-  padding: 5px;
-  width: 200px;
+  padding: 8px; /* Уменьшил внутренний padding для компактности */
+  width: 280px; /* Уменьшил ширину для сохранения баланса */
+  border-radius: 25px 0 0 25px;
+  font-family: 'Candara', sans-serif;
 }
 
 .search-bar button {
+  background: var(--color-accent);
+  border: none;
+  padding: 8px 12px; /* Уменьшил padding для компактности */
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  color: var(--color-neutral);
+  transition: background 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: var(--color-accent-hover);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a, nav button {
+  color: var(--color-neutral);
+  margin: 0 10px; /* Уменьшил отступы для компактности */
+  text-decoration: none;
+  font-family: 'Gotham', sans-serif;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a svg, nav button svg {
+  margin-right: 5px;
+}
+
+nav button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
+nav a:hover, nav button:hover {
+  color: var(--color-neutral-light);
 }
 
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a,
-nav ul li button {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-neutral);
+  font-size: 24px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo {
+    height: 60px; /* Сохраняем размер для мобильных, но можно уменьшить при необходимости */
+  }
+
+  .search-bar input {
+    width: 140px; /* Уменьшил для мобильных */
+    padding: 6px; /* Уменьшил внутренний padding */
+  }
+
+  .search-bar button {
+    padding: 6px 10px; /* Уменьшил padding для мобильных */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background: var(--color-secondary);
+    position: absolute;
+    top: 60px; /* Уменьшил расстояние от шапки */
+    left: 0;
+    padding: 10px; /* Уменьшил padding для компактности */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.mobile-open {
+    display: flex;
+  }
+
+  nav a, nav button {
+    margin: 8px 0; /* Уменьшил отступы */
+    width: 100%;
+    text-align: center;
+  }
+
+  nav a:hover, nav button:hover {
+    color: var(--color-neutral-light);
+  }
+}
+
+/* Добавляем переменную для светлого цвета */
+:root {
+  --color-neutral-light: #f0f0f0;
 }
 </style>

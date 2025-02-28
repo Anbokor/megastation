@@ -1164,3 +1164,1602 @@ WARNING 2025-02-25 20:53:53,546 log Too Many Requests: /api/store/products/
 WARNING 2025-02-25 20:53:53,549 log Too Many Requests: /api/store/categories/
 WARNING 2025-02-25 20:53:53,549 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
 WARNING 2025-02-25 20:53:53,550 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 22:42:47,437 log Not Found: /api/users/me/
+WARNING 2025-02-25 22:42:47,440 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-02-25 22:42:47,541 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 22:42:47,542 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 22:47:51,240 log Too Many Requests: /api/store/products/
+WARNING 2025-02-25 22:47:51,247 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-25 22:47:51,247 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-25 22:47:51,247 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-25 22:56:39,279 log Not Found: /api/store/category
+WARNING 2025-02-25 22:56:39,286 basehttp "GET /api/store/category HTTP/1.1" 404 7037
+WARNING 2025-02-25 22:56:55,466 log Not Found: /api/store/categorys/
+WARNING 2025-02-25 22:56:55,466 basehttp "GET /api/store/categorys/ HTTP/1.1" 404 7043
+WARNING 2025-02-25 23:12:14,282 log Not Found: /favicon.ico
+WARNING 2025-02-25 23:12:14,292 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-02-26 15:14:21,057 log Too Many Requests: /api/store/products/
+WARNING 2025-02-26 15:14:21,065 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-26 15:14:21,066 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-26 15:14:21,067 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-26 15:14:24,212 log Too Many Requests: /api/store/products/
+WARNING 2025-02-26 15:14:24,215 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-26 15:14:24,219 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-26 15:14:24,221 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-26 17:03:39,280 log Not Found: /api/users/me/
+WARNING 2025-02-26 17:03:39,281 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-02-26 17:04:11,656 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-26 17:04:11,656 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-26 17:04:52,693 log Bad Request: /api/register/
+WARNING 2025-02-26 17:04:56,554 log Forbidden: /api/1332/
+WARNING 2025-02-26 17:04:57,727 log Forbidden: /api/1336/
+WARNING 2025-02-26 17:04:57,732 log Bad Request: /api/register/
+WARNING 2025-02-26 17:04:57,736 log Bad Request: /api/register/
+WARNING 2025-02-26 17:04:57,738 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:04:57,739 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:04:57,741 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:04:58,036 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:04:58,327 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:04:58,619 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:04:58,620 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:04:58,622 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:18:46,574 log Forbidden: /api/1385/
+WARNING 2025-02-26 17:18:47,790 log Forbidden: /api/1389/
+WARNING 2025-02-26 17:18:47,796 log Bad Request: /api/register/
+WARNING 2025-02-26 17:18:47,799 log Bad Request: /api/register/
+WARNING 2025-02-26 17:18:47,801 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:18:47,803 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:18:47,804 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:18:48,105 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:18:48,403 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:18:48,691 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:18:48,693 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:18:48,694 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:21:43,295 log Forbidden: /api/1438/
+WARNING 2025-02-26 17:21:44,488 log Forbidden: /api/1442/
+WARNING 2025-02-26 17:21:44,494 log Bad Request: /api/register/
+WARNING 2025-02-26 17:21:44,496 log Bad Request: /api/register/
+WARNING 2025-02-26 17:21:44,497 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:21:44,499 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:21:44,500 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:21:44,798 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:21:45,095 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:21:45,390 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:21:45,392 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:21:45,393 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:23:14,960 log Forbidden: /api/1491/
+WARNING 2025-02-26 17:23:16,169 log Forbidden: /api/1495/
+WARNING 2025-02-26 17:23:16,175 log Bad Request: /api/register/
+WARNING 2025-02-26 17:23:16,177 log Bad Request: /api/register/
+WARNING 2025-02-26 17:23:16,178 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:23:16,180 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:23:16,182 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:23:16,477 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:23:16,768 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:23:17,060 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:23:17,061 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:23:17,062 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:26:01,664 log Forbidden: /api/1544/
+WARNING 2025-02-26 17:26:02,844 log Forbidden: /api/1548/
+WARNING 2025-02-26 17:26:02,849 log Bad Request: /api/register/
+WARNING 2025-02-26 17:26:02,852 log Bad Request: /api/register/
+WARNING 2025-02-26 17:26:02,854 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:26:02,856 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:26:02,857 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:26:03,152 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:26:03,459 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:26:03,754 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:26:03,756 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:26:03,758 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:27:26,871 log Forbidden: /api/1600/
+WARNING 2025-02-26 17:27:28,095 log Forbidden: /api/1604/
+WARNING 2025-02-26 17:27:28,101 log Bad Request: /api/register/
+WARNING 2025-02-26 17:27:28,104 log Bad Request: /api/register/
+WARNING 2025-02-26 17:27:28,106 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:27:28,107 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:27:28,108 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:27:28,417 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:27:28,710 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:27:29,005 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:27:29,006 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:27:29,007 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:32:15,969 log Forbidden: /api/1659/
+WARNING 2025-02-26 17:32:17,153 log Forbidden: /api/1663/
+WARNING 2025-02-26 17:32:17,158 log Bad Request: /api/register/
+WARNING 2025-02-26 17:32:17,160 log Bad Request: /api/register/
+WARNING 2025-02-26 17:32:17,162 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:32:17,163 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:32:17,164 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:32:17,457 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:32:17,748 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:32:18,037 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:32:18,039 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:32:18,040 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:34:10,942 log Forbidden: /api/1718/
+WARNING 2025-02-26 17:34:12,124 log Forbidden: /api/1722/
+WARNING 2025-02-26 17:34:12,129 log Bad Request: /api/register/
+WARNING 2025-02-26 17:34:12,131 log Bad Request: /api/register/
+WARNING 2025-02-26 17:34:12,133 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:34:12,134 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:34:12,135 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:34:12,426 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:34:12,720 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:34:13,017 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:34:13,019 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:34:13,020 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:36:08,986 log Forbidden: /api/1777/
+WARNING 2025-02-26 17:36:10,173 log Forbidden: /api/1781/
+WARNING 2025-02-26 17:36:10,178 log Bad Request: /api/register/
+WARNING 2025-02-26 17:36:10,181 log Bad Request: /api/register/
+WARNING 2025-02-26 17:36:10,182 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:36:10,184 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:36:10,185 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:36:10,481 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:36:10,770 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:36:11,062 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:36:11,064 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:36:11,065 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:40:19,104 log Forbidden: /api/1836/
+WARNING 2025-02-26 17:40:20,289 log Forbidden: /api/1840/
+WARNING 2025-02-26 17:40:20,295 log Bad Request: /api/register/
+WARNING 2025-02-26 17:40:20,298 log Bad Request: /api/register/
+WARNING 2025-02-26 17:40:20,299 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:40:20,300 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:40:20,302 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:40:20,594 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:40:20,887 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:40:21,177 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:40:21,178 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:40:21,180 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:52:16,534 log Forbidden: /api/1894/
+WARNING 2025-02-26 17:52:18,693 log Forbidden: /api/1898/
+WARNING 2025-02-26 17:52:18,702 log Bad Request: /api/register/
+WARNING 2025-02-26 17:52:18,707 log Bad Request: /api/register/
+WARNING 2025-02-26 17:52:18,709 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:52:18,712 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:52:18,715 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:52:19,138 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:52:19,533 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:52:19,911 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:52:19,913 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:52:19,915 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:57:19,183 log Forbidden: /api/1952/
+WARNING 2025-02-26 17:57:20,360 log Forbidden: /api/1956/
+WARNING 2025-02-26 17:57:20,365 log Bad Request: /api/register/
+WARNING 2025-02-26 17:57:20,367 log Bad Request: /api/register/
+WARNING 2025-02-26 17:57:20,368 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:57:20,369 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:57:20,370 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:57:20,664 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:57:20,954 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:57:21,246 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:57:21,248 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:57:21,249 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:59:28,576 log Forbidden: /api/purchases/invoices/create/
+WARNING 2025-02-26 17:59:29,339 log Not Found: /api/purchases/invoices/170/
+WARNING 2025-02-26 17:59:29,641 log Not Found: /api/purchases/invoices/171/status/
+WARNING 2025-02-26 17:59:29,950 log Forbidden: /api/purchases/invoices/returns/create/
+WARNING 2025-02-26 17:59:30,574 log Not Found: /api/purchases/invoices/returns/70/
+WARNING 2025-02-26 17:59:31,843 log Forbidden: /api/store/low-stock/
+WARNING 2025-02-26 17:59:39,146 log Forbidden: /api/2008/
+WARNING 2025-02-26 17:59:39,757 log Forbidden: /api/2010/
+WARNING 2025-02-26 17:59:40,629 log Forbidden: /api/2012/
+WARNING 2025-02-26 17:59:41,501 log Forbidden: /api/2014/
+WARNING 2025-02-26 17:59:41,507 log Bad Request: /api/register/
+WARNING 2025-02-26 17:59:41,509 log Bad Request: /api/register/
+WARNING 2025-02-26 17:59:41,511 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:59:41,512 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:59:41,513 log Too Many Requests: /api/register/
+WARNING 2025-02-26 17:59:41,892 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:59:42,299 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:59:42,687 log Unauthorized: /api/login/
+WARNING 2025-02-26 17:59:42,688 log Too Many Requests: /api/login/
+WARNING 2025-02-26 17:59:42,690 log Too Many Requests: /api/login/
+WARNING 2025-02-26 18:00:22,541 log Forbidden: /api/purchases/invoices/create/
+WARNING 2025-02-26 18:00:23,260 log Not Found: /api/purchases/invoices/176/
+WARNING 2025-02-26 18:00:23,573 log Not Found: /api/purchases/invoices/177/status/
+WARNING 2025-02-26 18:00:23,883 log Forbidden: /api/purchases/invoices/returns/create/
+WARNING 2025-02-26 18:00:24,503 log Not Found: /api/purchases/invoices/returns/72/
+WARNING 2025-02-26 18:00:25,793 log Forbidden: /api/store/low-stock/
+WARNING 2025-02-26 18:00:32,506 log Forbidden: /api/2066/
+WARNING 2025-02-26 18:00:33,116 log Forbidden: /api/2068/
+WARNING 2025-02-26 18:00:33,702 log Forbidden: /api/2070/
+WARNING 2025-02-26 18:00:34,301 log Forbidden: /api/2072/
+WARNING 2025-02-26 18:00:34,305 log Bad Request: /api/register/
+WARNING 2025-02-26 18:00:34,307 log Bad Request: /api/register/
+WARNING 2025-02-26 18:00:34,308 log Too Many Requests: /api/register/
+WARNING 2025-02-26 18:00:34,310 log Too Many Requests: /api/register/
+WARNING 2025-02-26 18:00:34,310 log Too Many Requests: /api/register/
+WARNING 2025-02-26 18:00:34,606 log Unauthorized: /api/login/
+WARNING 2025-02-26 18:00:34,899 log Unauthorized: /api/login/
+WARNING 2025-02-26 18:00:35,192 log Unauthorized: /api/login/
+WARNING 2025-02-26 18:00:35,193 log Too Many Requests: /api/login/
+WARNING 2025-02-26 18:00:35,195 log Too Many Requests: /api/login/
+WARNING 2025-02-27 12:23:16,969 log Forbidden: /api/2127/
+WARNING 2025-02-27 12:23:18,128 log Forbidden: /api/2131/
+WARNING 2025-02-27 12:23:18,133 log Bad Request: /api/register/
+WARNING 2025-02-27 12:23:18,135 log Bad Request: /api/register/
+WARNING 2025-02-27 12:23:18,136 log Too Many Requests: /api/register/
+WARNING 2025-02-27 12:23:18,138 log Too Many Requests: /api/register/
+WARNING 2025-02-27 12:23:18,139 log Too Many Requests: /api/register/
+WARNING 2025-02-27 12:23:18,429 log Unauthorized: /api/login/
+WARNING 2025-02-27 12:23:18,714 log Unauthorized: /api/login/
+WARNING 2025-02-27 12:23:19,001 log Unauthorized: /api/login/
+WARNING 2025-02-27 12:23:19,002 log Too Many Requests: /api/login/
+WARNING 2025-02-27 12:23:19,003 log Too Many Requests: /api/login/
+WARNING 2025-02-27 12:27:24,247 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:27:24,251 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-27 12:27:24,251 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:27:24,252 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:27:26,082 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:27:26,083 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:27:26,085 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-27 12:27:26,086 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:37:51,755 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:37:51,759 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:37:56,874 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:37:56,877 log Too Many Requests: /api/store/categories/
+WARNING 2025-02-27 12:37:56,877 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:37:56,877 basehttp "GET /api/store/categories/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:37:58,324 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:37:58,325 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:38:42,605 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:38:42,606 basehttp "GET /api/store/products/ HTTP/1.1" 429 67
+WARNING 2025-02-27 12:43:18,547 log Too Many Requests: /api/store/products/
+WARNING 2025-02-27 12:43:18,548 basehttp "GET /api/store/products/ HTTP/1.1" 429 69
+WARNING 2025-02-27 12:58:02,957 log Not Found: /favicon.ico
+WARNING 2025-02-27 12:58:02,958 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-02-27 13:01:27,594 log Forbidden: /api/2186/
+WARNING 2025-02-27 13:01:28,755 log Forbidden: /api/2190/
+WARNING 2025-02-27 13:01:28,760 log Bad Request: /api/register/
+WARNING 2025-02-27 13:01:28,762 log Bad Request: /api/register/
+WARNING 2025-02-27 13:01:28,763 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:01:28,764 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:01:28,765 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:01:29,050 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:01:29,334 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:01:29,619 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:01:29,621 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:01:29,622 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:11:10,325 log Forbidden: /api/2245/
+WARNING 2025-02-27 13:11:11,487 log Forbidden: /api/2249/
+WARNING 2025-02-27 13:11:11,491 log Bad Request: /api/register/
+WARNING 2025-02-27 13:11:11,493 log Bad Request: /api/register/
+WARNING 2025-02-27 13:11:11,495 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:11:11,495 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:11:11,496 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:11:11,781 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:11:12,066 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:11:12,352 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:11:12,354 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:11:12,355 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:12:04,229 log Forbidden: /api/2304/
+WARNING 2025-02-27 13:12:05,385 log Forbidden: /api/2308/
+WARNING 2025-02-27 13:12:05,390 log Bad Request: /api/register/
+WARNING 2025-02-27 13:12:05,392 log Bad Request: /api/register/
+WARNING 2025-02-27 13:12:05,394 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:12:05,395 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:12:05,397 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:12:05,695 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:12:05,992 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:12:06,283 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:12:06,285 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:12:06,286 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:26:13,860 log Forbidden: /api/2363/
+WARNING 2025-02-27 13:26:15,023 log Forbidden: /api/2367/
+WARNING 2025-02-27 13:26:15,028 log Bad Request: /api/register/
+WARNING 2025-02-27 13:26:15,030 log Bad Request: /api/register/
+WARNING 2025-02-27 13:26:15,032 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:26:15,033 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:26:15,034 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:26:15,321 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:26:15,607 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:26:15,892 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:26:15,894 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:26:15,895 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:27:31,226 log Forbidden: /api/2422/
+WARNING 2025-02-27 13:27:32,404 log Forbidden: /api/2426/
+WARNING 2025-02-27 13:27:32,410 log Bad Request: /api/register/
+WARNING 2025-02-27 13:27:32,412 log Bad Request: /api/register/
+WARNING 2025-02-27 13:27:32,413 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:27:32,413 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:27:32,415 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:27:32,704 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:27:32,991 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:27:33,280 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:27:33,281 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:27:33,283 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:38:39,296 log Forbidden: /api/2481/
+WARNING 2025-02-27 13:38:40,459 log Forbidden: /api/2485/
+WARNING 2025-02-27 13:38:40,465 log Bad Request: /api/register/
+WARNING 2025-02-27 13:38:40,467 log Bad Request: /api/register/
+WARNING 2025-02-27 13:38:40,468 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:38:40,469 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:38:40,471 log Too Many Requests: /api/register/
+WARNING 2025-02-27 13:38:40,756 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:38:41,040 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:38:41,324 log Unauthorized: /api/login/
+WARNING 2025-02-27 13:38:41,325 log Too Many Requests: /api/login/
+WARNING 2025-02-27 13:38:41,326 log Too Many Requests: /api/login/
+ERROR 2025-02-28 12:42:28,187 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 12:42:28,200 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221782
+ERROR 2025-02-28 13:01:08,295 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 13:01:08,304 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221784
+ERROR 2025-02-28 13:04:55,585 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 13:04:55,590 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221784
+ERROR 2025-02-28 13:07:47,499 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 13:07:47,508 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221784
+ERROR 2025-02-28 13:12:24,487 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 13:12:24,496 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221802
+ERROR 2025-02-28 16:56:31,048 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 147, in get_prep_lookup
+    self.rhs = get_normalized_value(self.rhs, self.lhs)[0]
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 45, in get_normalized_value
+    raise ValueError("Model instances passed to related filters must be saved.")
+ValueError: Model instances passed to related filters must be saved.
+ERROR 2025-02-28 16:56:31,056 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 221784
+ERROR 2025-02-28 17:00:46,599 log Internal Server Error: /admin/purchases/invoice/add/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1870, in _changeform_view
+    if all_valid(formsets) and form_validated:
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 579, in all_valid
+    return all([formset.is_valid() for formset in formsets])
+                ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 384, in is_valid
+    self.errors
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 366, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\formsets.py", line 429, in full_clean
+    form_errors = form.errors
+                  ^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\forms\models.py", line 498, in _post_clean
+    self.instance.full_clean(exclude=exclude, validate_unique=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\base.py", line 1626, in full_clean
+    self.clean()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 143, in clean
+    existing_item = InvoiceItem.objects.filter(invoice=self.invoice, product=self.product).exclude(pk=self.pk).first()
+                                                       ^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+purchases.models.InvoiceItem.invoice.RelatedObjectDoesNotExist: InvoiceItem has no invoice.. Did you mean: 'invoice_id'?
+ERROR 2025-02-28 17:00:46,605 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 171682
+ERROR 2025-02-28 17:06:03,892 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 17:06:03,899 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 17:23:46,677 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\admin.py", line 100, in save_model
+    raise ValidationError({"status": "No se puede modificar una factura procesada."})
+django.core.exceptions.ValidationError: {'status': ['No se puede modificar una factura procesada.']}
+ERROR 2025-02-28 17:23:46,680 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 138236
+ERROR 2025-02-28 17:24:02,162 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\admin.py", line 100, in save_model
+    raise ValidationError({"status": "No se puede modificar una factura procesada."})
+django.core.exceptions.ValidationError: {'status': ['No se puede modificar una factura procesada.']}
+ERROR 2025-02-28 17:24:02,173 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 138236
+ERROR 2025-02-28 17:26:47,090 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 17:26:47,095 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 17:34:51,934 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\admin.py", line 87, in save_model
+    super().save_model(request, obj, form, change)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1294, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 42, in save
+    self.update_stock()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 57, in update_stock
+    with transaction.atomic():
+         ^^^^^^^^^^^
+NameError: name 'transaction' is not defined
+ERROR 2025-02-28 17:34:51,940 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 150385
+ERROR 2025-02-28 17:38:22,133 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 17:38:22,136 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 17:49:42,969 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 17:49:42,977 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 17:49:54,312 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 17:49:54,317 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 18:04:30,545 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\admin.py", line 190, in construct_change_message
+    for obj in formset.save_new_objects:
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'method' object is not iterable
+ERROR 2025-02-28 18:04:30,557 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 137848
+ERROR 2025-02-28 18:48:16,763 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 18:48:16,768 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142599
+ERROR 2025-02-28 18:48:23,278 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 18:48:23,283 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 18:50:18,264 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 18:50:18,271 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142599
+ERROR 2025-02-28 18:59:35,249 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 18:59:35,254 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142599
+ERROR 2025-02-28 19:40:18,443 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 19:40:18,449 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 20:03:50,705 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 20:03:50,712 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142700
+ERROR 2025-02-28 20:08:21,463 log Internal Server Error: /admin/purchases/invoice/230/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1873, in _changeform_view
+    change_message = self.construct_change_message(
+        request, form, formsets, add
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1253, in construct_change_message
+    return construct_change_message(form, formsets, add)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\utils.py", line 573, in construct_change_message
+    for added_object in formset.new_objects:
+                        ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
+ERROR 2025-02-28 20:08:21,468 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142599

@@ -6,7 +6,7 @@ from store.models import Product, Category
 from store.serializers import ProductSerializer, CategorySerializer
 from inventory.models import Stock, StockMovement
 from inventory.serializers import StockMovementSerializer
-
+from rest_framework.throttling import ScopedRateThrottle
 
 class CategoryListView(generics.ListCreateAPIView):
     """
@@ -15,11 +15,13 @@ class CategoryListView(generics.ListCreateAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "category_list"
 
     def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:  # GET, HEAD, OPTIONS
-            return [permissions.AllowAny()]  # 👈 Открытый доступ
-        return [permissions.IsAdminUser()]  # 👈 Создавать может только админ
+        if self.request.method in permissions.SAFE_METHODS:
+            return [permissions.AllowAny()]
+        return [permissions.IsAdminUser()]
 
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -29,6 +31,8 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "category_list"
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
@@ -42,22 +46,26 @@ class ProductListView(generics.ListCreateAPIView):
     ✅ Только авторизованные продавцы или администраторы могут добавлять товары.
     """
     serializer_class = ProductSerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "product_list"
 
     def get_queryset(self):
-        return Product.objects.all()  # 👈 Все товары видны всем пользователям
+        return Product.objects.all()
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return [permissions.AllowAny()]
-        return [permissions.IsAuthenticated()]  # 👈 Создавать могут только авторизованные
+        return [permissions.IsAuthenticated()]
 
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     ✅ Любой пользователь может просматривать товар.
-    ✅ Только продавцы (с доступом к точке продаж) или администраторы могут редактировать/удалять.
+    ✅ Только продавцы или администраторы могут редактировать/удалять.
     """
     serializer_class = ProductSerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "product_list"
 
     def get_queryset(self):
         return Product.objects.all()
@@ -77,14 +85,11 @@ class LowStockProductsView(generics.ListAPIView):
 
     def get_queryset(self):
         category_id = self.request.query_params.get("category_id")
-
         low_stock_products = Stock.objects.filter(
             quantity__lt=F("product__category__min_stock")
         ).select_related("product")
-
         if category_id:
             low_stock_products = low_stock_products.filter(product__category_id=category_id)
-
         return [stock.product for stock in low_stock_products]
 
     def list(self, request, *args, **kwargs):
@@ -106,7 +111,6 @@ class StockMovementListView(generics.ListAPIView):
         product_id = self.request.query_params.get("product_id")
         date_from = self.request.query_params.get("date_from")
         date_to = self.request.query_params.get("date_to")
-
         filters = Q()
         if product_id:
             filters &= Q(product_id=product_id)
@@ -114,5 +118,4 @@ class StockMovementListView(generics.ListAPIView):
             filters &= Q(created_at__gte=date_from)
         if date_to:
             filters &= Q(created_at__lte=date_to)
-
         return queryset.filter(filters)

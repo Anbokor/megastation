@@ -8,28 +8,24 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ["id", "name"]
 
-
 class ProductSerializer(serializers.ModelSerializer):
-    """✅ Сериализатор для продуктов"""
     stock = serializers.SerializerMethodField()
     image_url = serializers.SerializerMethodField()
+    category_id = serializers.PrimaryKeyRelatedField(source='category', queryset=Category.objects.all(), allow_null=True)
 
     def get_stock(self, obj):
-        """✅ Возвращает количество товара на складе"""
         stock = Stock.objects.filter(product=obj).first()
         return stock.quantity if stock else 0
 
     def get_image_url(self, obj):
-        """✅ Возвращает полный URL изображения"""
         request = self.context.get("request")
         if obj.image:
             return request.build_absolute_uri(obj.image.url) if request else obj.image.url
-        return "/static/default-product.jpg"  # 👈 Теперь нет `None`, если изображения нет
+        return "/static/default-product.jpg"
 
     class Meta:
         model = Product
-        fields = ["id", "name", "description", "price", "stock", "barcode", "image", "image_url"]
-
+        fields = ["id", "name", "description", "price", "stock", "barcode", "image", "image_url", "category_id"]
 
 class StockMovementSerializer(serializers.ModelSerializer):
     """✅ Сериализатор для движения товаров на складе"""
@@ -37,19 +33,13 @@ class StockMovementSerializer(serializers.ModelSerializer):
     category_name = serializers.ReadOnlyField(source="product.category.name")
 
     def validate(self, data):
-        """
-        ✅ Проверяем, что изменение `change` не приведёт к отрицательному `Stock.quantity`.
-        """
         product = data.get("product")
         sales_point = data.get("sales_point")
-
         stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
         if not stock:
             raise serializers.ValidationError({"sales_point": "No hay stock registrado para este producto en este punto de venta."})
-
         if stock.quantity + data["change"] < 0:
             raise serializers.ValidationError({"change": "El stock no puede ser negativo."})
-
         return data
 
     class Meta:

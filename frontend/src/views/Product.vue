@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/store/products";
 import { useCartStore } from "@/store/cart";
@@ -8,71 +8,137 @@ const route = useRoute();
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
-const product = ref(null);
+const defaultImage = "/static/default-product.jpg";
 
-onMounted(async () => {
-  const productId = route.params.id;
-  await productStore.fetchProduct(productId);
-  product.value = productStore.currentProduct;
-});
+onMounted(() => productStore.fetchProduct(route.params.id));
+watch(() => route.params.id, newId => productStore.fetchProduct(newId));
+
+const product = computed(() => productStore.currentProduct);
 </script>
 
 <template>
-  <div v-if="product" class="product-page">
-    <img :src="product.image_url" :alt="product.name" class="product-image" />
-    <h1>{{ product.name }}</h1>
-    <p class="description">{{ product.description }}</p>
-    <p class="price">💲 {{ product.price }}</p>
-    <p class="stock">📦 Stock: {{ product.stock }}</p>
-
-    <button @click="cartStore.addToCart(product)">🛒 Agregar al carrito</button>
+  <div class="product">
+    <div v-if="productStore.loading" class="loading">🔄 Cargando...</div>
+    <div v-else-if="productStore.error" class="error">{{ productStore.error }}</div>
+    <div v-else-if="product" class="product-detail">
+      <img :src="product.image_url || defaultImage" :alt="product.name" />
+      <div class="info">
+        <h1>{{ product.name }}</h1>
+        <p class="description">{{ product.description }}</p>
+        <p class="price">$ {{ product.price }}</p>
+        <p :class="{ 'out-of-stock': product.stock === 0 }">
+          📦 {{ product.stock > 0 ? `En stock: ${product.stock}` : "Sin stock" }}
+        </p>
+        <button v-if="product.stock > 0" @click="cartStore.addToCart(product)">
+          <font-awesome-icon icon="shopping-cart" /> 🛒 Agregar al carrito
+        </button>
+      </div>
+    </div>
   </div>
-
-  <div v-else class="loading">🔄 Cargando producto...</div>
 </template>
 
 <style scoped>
-.product-page {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
+/* Стили остаются без изменений */
+.product {
+  max-width: 900px;
+  margin: 60px auto 20px;
+  padding: 40px;
+  background: var(--color-neutral);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-.product-image {
+.product::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  max-height: 300px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(23, 190, 219, 0.1), transparent);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.product-detail {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+img {
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   object-fit: contain;
-  background-color: #f8f8f8;
-  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-.price {
-  font-size: 24px;
-  font-weight: bold;
-  color: #006899;
+img:hover {
+  transform: scale(1.05);
 }
 
-.stock {
-  font-size: 18px;
-  color: #17BEDB;
+.info {
+  flex: 1;
+  padding: 20px 0;
 }
 
 .description {
-  font-size: 16px;
-  color: #333;
+  font-family: 'Candara', sans-serif;
+  color: #555;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 32px;
+  color: var(--color-primary);
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.out-of-stock {
+  color: #D9534F;
+  font-weight: 500;
 }
 
 button {
-  background-color: #17BEDB;
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-neutral);
+  padding: 15px 30px;
   border: none;
-  padding: 10px;
-  margin-top: 10px;
+  border-radius: 25px;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 button:hover {
-  background-color: #10A4C7;
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .product {
+    margin: 40px auto 10px;
+    padding: 20px;
+  }
+
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .info {
+    padding: 0;
+  }
 }
 </style>

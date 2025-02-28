@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Invoice, InvoiceItem, InvoiceReturn
 from store.models import Product
-from inventory.models import SalesPoint
+from inventory.models import SalesPoint, Stock
 from inventory.serializers import SalesPointSerializer
 
 
@@ -46,6 +46,27 @@ class InvoiceSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Una factura debe contener al menos un artículo.")
         return value
 
+    def create(self, validated_data):
+        items_data = validated_data.pop("items")
+        invoice = Invoice.objects.create(**validated_data)
+        for item_data in items_data:
+            InvoiceItem.objects.create(invoice=invoice, **item_data)
+        return invoice
+
+    def update(self, instance, validated_data):
+        items_data = validated_data.pop("items", None)
+        instance.supplier = validated_data.get("supplier", instance.supplier)
+        instance.sales_point = validated_data.get("sales_point", instance.sales_point)
+        instance.status = validated_data.get("status", instance.status)
+        instance.save()
+
+        if items_data is not None:
+            instance.items.all().delete()
+            for item_data in items_data:
+                InvoiceItem.objects.create(invoice=instance, **item_data)
+
+        return instance
+
 
 class InvoiceReturnSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
@@ -66,6 +87,7 @@ class InvoiceReturnSerializer(serializers.ModelSerializer):
         invoice = data.get("invoice")
         product = data.get("product")
         quantity = data.get("quantity")
+        sales_point = data.get("sales_point")
 
         if invoice.status != "procesada":
             raise serializers.ValidationError({"invoice": "Solo se pueden devolver productos de facturas procesadas."})
@@ -76,5 +98,9 @@ class InvoiceReturnSerializer(serializers.ModelSerializer):
 
         if quantity > invoice_item.quantity:
             raise serializers.ValidationError({"quantity": "No se puede devolver más cantidad de la comprada."})
+
+        stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
+        if not stock or stock.quantity < quantity:
+            raise serializers.ValidationError({"quantity": "No hay suficiente stock disponible para devolver."})
 
         return data

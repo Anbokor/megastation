@@ -6,15 +6,24 @@ from users.models import CustomUser
 
 @pytest.mark.django_db
 def test_user_registration():
-    """Тест регистрации пользователя"""
-    CustomUser.objects.all().delete()  # ✅ Очистка перед тестом
+    """Тест регистрации пользователя (только с ролью customer)"""
+    CustomUser.objects.all().delete()  # Очистка перед тестом
 
     client = APIClient()
-    url = reverse("users:register")  # ✅ Используем `users:register`
-    data = {"username": "newuser", "password": "newpassword"}
+    url = reverse("users:register")  # Используем `users:register`
+    data = {
+        "username": "newuser",
+        "password": "newpassword",
+        "email": "newuser@example.com"
+    }
     response = client.post(url, data)
 
-    assert response.status_code == 201  # ✅ 201 Created
+    assert response.status_code == 201  # 201 Created
+    assert "user" in response.data
+    assert "token" in response.data
+
+    user = CustomUser.objects.get(username="newuser")
+    assert user.role == CustomUser.Role.CUSTOMER  # Убедимся, что роль всегда customer
 
 
 @pytest.mark.django_db
@@ -61,6 +70,9 @@ def test_user_logout():
 @pytest.mark.django_db
 def test_user_list_admin():
     """✅ Админ должен видеть всех пользователей"""
+    # Удаляем всех пользователей, включая старых
+    CustomUser.objects.all().delete()
+
     client = APIClient()
     admin = CustomUser.objects.create_superuser(username="admin", password="adminpass")
     user1 = CustomUser.objects.create_user(username="user1", password="pass1")
@@ -70,7 +82,7 @@ def test_user_list_admin():
     response = client.get(reverse("users:list"))
 
     assert response.status_code == 200
-    assert len(response.data) == 3  # Должно быть 3 пользователя (admin, user1, user2)
+    assert len(response.data) == 3  # Должно быть только admin, user1, user2
 
 @pytest.mark.django_db
 def test_user_list_customer():

@@ -6,12 +6,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import get_object_or_404
 from .models import CustomUser
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserRegisterSerializer
 from .permissions import IsAdmin
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework import mixins
 import logging
 from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.tokens import AccessToken
 
 logger = logging.getLogger(__name__)
 
@@ -43,21 +44,31 @@ class UserListView(mixins.ListModelMixin, generics.GenericAPIView):
 
 class UserRegisterView(generics.CreateAPIView):
     """
-    ✅ Регистрация нового пользователя.
+    ✅ Allows users to register with username, password, and email as customers only.
+    Returns an access token for immediate login.
     """
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [AllowAny]
-    throttle_classes = [ScopedRateThrottle]  # ✅ Ограничиваем частоту
+    serializer_class = UserRegisterSerializer
+    permission_classes = [permissions.AllowAny]
+    throttle_classes = [ScopedRateThrottle]
     throttle_scope = "user_register"
 
     def perform_create(self, serializer):
         """
-        ✅ Создаём нового пользователя с активным статусом.
+        ✅ Создаём нового пользователя с активным статусом и ролью customer.
         """
         user = serializer.save()
         user.is_active = True
         user.save()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        token = AccessToken.for_user(user)
+        return Response({
+            'user': serializer.data,
+            'token': str(token)
+        }, status=201)
 
 
 class UserDetailView(APIView):

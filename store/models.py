@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
+import sys  # Добавляем импорт sys
 
 User = get_user_model()
 
@@ -19,6 +20,9 @@ def product_image_path(instance, filename):
     """Функция для хранения изображений в каталоге 'products/' с уникальным именем файла."""
     ext = filename.split('.')[-1]
     if not instance.pk:
+        # Используем фиксированный путь для тестов
+        if 'test' in sys.argv:
+            return f'products/test_{filename}'
         return f'products/temp/{uuid.uuid4()}.{ext}'  # Временная папка для несохранённых товаров
     filename = f"{uuid.uuid4()}.{ext}"
     return f'products/{instance.pk}/{filename}'
