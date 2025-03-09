@@ -2,28 +2,41 @@
 import { useCartStore } from "@/store/cart";
 import { useRouter } from "vue-router";
 import { ref, watch } from "vue";
+import { useToast } from "vue-toastification";
 
 const cartStore = useCartStore();
 const router = useRouter();
-const cartItems = ref(cartStore.items); // Добавляем реактивность для UI
+const toast = useToast();
+const cartItems = ref(cartStore.items);
 
-// Синхронизируем cartItems с cartStore.items
 watch(() => cartStore.items, (newItems) => {
   cartItems.value = [...newItems];
 }, { deep: true });
 
 const checkout = () => {
   if (cartStore.totalItems === 0) {
-    alert("El carrito está vacío.");
+    toast.warning("El carrito está vacío.", {
+      toastClassName: "custom-toast-warning",
+    });
     return;
   }
-  router.push("/checkout");
+  router.push("/checkout").catch(() => {
+    toast.error("Error al ir a finalizar compra.", {
+      toastClassName: "custom-toast-error",
+    });
+  });
 };
 
-// Явно вызываем удаление и обновляем UI
-const removeItem = (id) => {
-  cartStore.removeFromCart(id);
-  cartItems.value = cartStore.items; // Обновляем локальное состояние
+const removeItem = (id) => cartStore.removeFromCart(id);
+const increaseQuantity = (id) => cartStore.increaseQuantity(id);
+const decreaseQuantity = (id) => cartStore.decreaseQuantity(id);
+
+const goToCatalog = () => {
+  router.push("/catalog").catch(() => {
+    toast.error("Error al ir al catálogo.", {
+      toastClassName: "custom-toast-error",
+    });
+  });
 };
 </script>
 
@@ -32,7 +45,9 @@ const removeItem = (id) => {
     <h1>🛒 Carrito de Compras</h1>
     <div v-if="cartStore.totalItems === 0" class="empty-cart">
       <p>Tu carrito está vacío.</p>
-      <router-link to="/catalog" class="btn"><font-awesome-icon icon="store" /> 🛍️ Explorar productos</router-link>
+      <button @click="goToCatalog" class="catalog-btn" title="Explora nuestro catálogo de productos">
+        <font-awesome-icon icon="store" /> Explorar productos
+      </button>
     </div>
     <div v-else class="cart-content">
       <div class="cart-list">
@@ -44,15 +59,31 @@ const removeItem = (id) => {
             <p class="total-item">Total: $ {{ (item.price * item.quantity).toFixed(2) }}</p>
           </div>
           <div class="actions">
-            <button @click="cartStore.increaseQuantity(item.id)"><font-awesome-icon icon="plus" /> ➕</button>
-            <button @click="cartStore.decreaseQuantity(item.id)"><font-awesome-icon icon="minus" /> ➖</button>
-            <button @click="removeItem(item.id)"><font-awesome-icon icon="trash" /> ❌</button>
+            <button
+              @click="increaseQuantity(item.id)"
+              class="action-btn increase"
+              title="Aumentar cantidad"
+            >
+              <font-awesome-icon icon="plus" />
+            </button>
+            <button
+              @click="decreaseQuantity(item.id)"
+              class="action-btn decrease"
+              title="Reducir cantidad"
+            >
+              <font-awesome-icon icon="minus" />
+            </button>
+            <button @click="removeItem(item.id)" class="action-btn remove" title="Eliminar del carrito">
+              <font-awesome-icon icon="trash" />
+            </button>
           </div>
         </div>
       </div>
       <div class="summary">
         <h2>Total: $ {{ cartStore.totalPrice.toFixed(2) }}</h2>
-        <button @click="checkout" class="checkout-btn"><font-awesome-icon icon="credit-card" /> 💳 Finalizar Compra</button>
+        <button @click="checkout" class="checkout-btn" title="Proceder al pago">
+          <font-awesome-icon icon="credit-card" /> Finalizar Compra
+        </button>
       </div>
     </div>
   </div>
@@ -125,20 +156,64 @@ img {
   color: var(--color-primary);
 }
 
-.actions button {
-  background: var(--color-secondary);
-  color: var(--color-neutral);
-  padding: 10px 14px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
+.actions {
+  display: flex;
+  gap: 12px;
 }
 
-.actions button:hover {
-  background: var(--color-accent-hover);
-  transform: scale(1.1);
+.action-btn {
+  background: var(--color-secondary);
+  color: var(--color-neutral);
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn.increase {
+  background: var(--color-accent);
+}
+
+.action-btn.decrease {
+  background: var(--color-primary);
+}
+
+.action-btn.remove {
+  background: #D9534F;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  filter: brightness(110%);
+}
+
+.action-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.action-btn:hover::after {
+  width: 120px;
+  height: 120px;
 }
 
 .summary {
@@ -156,6 +231,9 @@ img {
   border: none;
   border-radius: 25px;
   color: var(--color-neutral);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, background 0.3s ease;
 }
@@ -170,19 +248,21 @@ img {
   padding: 30px;
 }
 
-.btn {
+.catalog-btn {
   display: inline-block;
   margin-top: 15px;
   background: var(--color-secondary);
   padding: 12px 25px;
+  border: none;
   border-radius: 25px;
   color: var(--color-neutral);
-  text-decoration: none;
+  font-size: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
 }
 
-.btn:hover {
+.catalog-btn:hover {
   background: var(--color-accent-hover);
   transform: translateY(-2px);
 }
@@ -208,12 +288,43 @@ img {
   }
 
   .actions {
-    margin-top: 10px;
+    margin-top: 15px;
+    gap: 15px;
+  }
+
+  .action-btn {
+    width: 50px;
+    height: 50px;
   }
 
   .summary {
     text-align: center;
     padding: 15px;
   }
+}
+
+/* Кастомизация тостов */
+:deep(.custom-toast-success) {
+  background-color: var(--color-primary);
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
+}
+
+:deep(.custom-toast-error) {
+  background-color: #D9534F;
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
+}
+
+:deep(.custom-toast-warning) {
+  background-color: #F0AD4E;
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
 }
 </style>

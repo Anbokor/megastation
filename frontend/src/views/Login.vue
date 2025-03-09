@@ -2,73 +2,150 @@
 import { ref } from "vue";
 import { useUserStore } from "@/store/user";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 const userStore = useUserStore();
 const router = useRouter();
-const isLogin = ref(true); // Переключение между логином и регистрацией
+const toast = useToast();
+const isLogin = ref(true);
 const username = ref("");
 const password = ref("");
-const email = ref(""); // Для регистрации
+const email = ref("");
 const loading = ref(false);
-const error = ref(null);
+const errors = ref({});
 
-// Функция для входа
-const login = async () => {
-  error.value = null;
-  loading.value = true;
-  try {
-    await userStore.login({ username: username.value, password: password.value });
-    router.push("/");
-  } catch (err) {
-    error.value = "Error de autenticación. Verifica tus datos.";
+const validateForm = () => {
+  errors.value = {};
+  if (!username.value) errors.value.username = "Usuario es obligatorio";
+  if (!password.value) errors.value.password = "Contraseña es obligatoria";
+  if (!isLogin.value && !email.value) errors.value.email = "Email es obligatorio";
+  if (!isLogin.value && email.value && !/\S+@\S+\.\S+/.test(email.value)) {
+    errors.value.email = "Introduce un correo válido";
   }
-  loading.value = false;
+  return Object.keys(errors.value).length === 0;
 };
 
-// Функция для регистрации (только клиенты)
-const register = async () => {
-  error.value = null;
+const submitAction = async (actionType) => {
+  if (!validateForm()) {
+    toast.warning("Por favor, corrige los errores en el formulario.", {
+      toastClassName: "custom-toast-warning",
+    });
+    return;
+  }
   loading.value = true;
   try {
-    await userStore.register({ username: username.value, password: password.value, email: email.value });
-    alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-    isLogin.value = true; // Переключаемся на форму входа
+    if (actionType === "login") {
+      await userStore.login({ username: username.value, password: password.value });
+      toast.success("¡Inicio de sesión exitoso!", {
+        icon: "✅",
+        toastClassName: "custom-toast-success",
+      });
+    } else {
+      await userStore.register({ username: username.value, password: password.value, email: email.value });
+      toast.success("¡Registro exitoso!", {
+        icon: "✅",
+        toastClassName: "custom-toast-success",
+      });
+    }
+    router.push("/").catch((err) => {
+      toast.error(`Error al redirigir: ${err.message}`, {
+        toastClassName: "custom-toast-error",
+      });
+    });
   } catch (err) {
-    error.value = "Error al registrar. Verifica los datos o intenta de nuevo.";
+    toast.error(err.message || "Ocurrió un error inesperado.", {
+      icon: "❌",
+      toastClassName: "custom-toast-error",
+    });
+  } finally {
+    loading.value = false;
   }
-  loading.value = false;
 };
+
+const login = () => submitAction("login");
+const register = () => submitAction("register");
 </script>
 
 <template>
   <div class="login">
     <h1>{{ isLogin ? "🔑 Iniciar Sesión" : "📋 Registrarse" }}</h1>
     <div class="toggle-buttons">
-      <button @click="isLogin = true" :class="{ 'active': isLogin }">Iniciar Sesión</button>
-      <button @click="isLogin = false" :class="{ 'active': !isLogin }">Registrarse</button>
+      <button
+        @click="isLogin = true"
+        :class="{ 'active': isLogin }"
+        title="Accede con tu cuenta existente"
+      >
+        Iniciar Sesión
+      </button>
+      <button
+        @click="isLogin = false"
+        :class="{ 'active': !isLogin }"
+        title="Crea una nueva cuenta"
+      >
+        Registrarse
+      </button>
     </div>
     <form @submit.prevent="isLogin ? login() : register()" class="login-form">
       <div class="input-group">
-        <label><font-awesome-icon icon="user" /> Usuario</label>
-        <input v-model="username" type="text" required />
+        <label title="Introduce tu nombre de usuario (mínimo 3 caracteres)">
+          <font-awesome-icon icon="user" /> Usuario
+        </label>
+        <input
+          v-model="username"
+          type="text"
+          :class="{ 'error': errors.username }"
+          autocomplete="username"
+          placeholder="Ej: juan123"
+          @input="errors.username = null"
+        />
+        <transition name="fade">
+          <span v-if="errors.username" class="error-text">{{ errors.username }}</span>
+        </transition>
       </div>
-      <div class="input-group" :class="{ 'hidden': !isLogin }">
-        <label><font-awesome-icon icon="lock" /> Contraseña</label>
-        <input v-model="password" type="password" required />
+      <div class="input-group">
+        <label title="Introduce tu contraseña (mínimo 6 caracteres)">
+          <font-awesome-icon icon="lock" /> Contraseña
+        </label>
+        <input
+          v-model="password"
+          type="password"
+          :class="{ 'error': errors.password }"
+          autocomplete="current-password"
+          placeholder="••••••"
+          @input="errors.password = null"
+        />
+        <transition name="fade">
+          <span v-if="errors.password" class="error-text">{{ errors.password }}</span>
+        </transition>
       </div>
       <div v-if="!isLogin" class="input-group">
-        <label><font-awesome-icon icon="envelope" /> Email</label>
-        <input v-model="email" type="email" required />
+        <label title="Introduce tu correo electrónico (ejemplo@dominio.com)">
+          <font-awesome-icon icon="envelope" /> Email
+        </label>
+        <input
+          v-model="email"
+          type="email"
+          :class="{ 'error': errors.email }"
+          autocomplete="email"
+          placeholder="Ej: juan@ejemplo.com"
+          @input="errors.email = null"
+        />
+        <transition name="fade">
+          <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
+        </transition>
       </div>
-      <div v-if="!isLogin" class="input-group">
-        <label><font-awesome-icon icon="lock" /> Contraseña</label>
-        <input v-model="password" type="password" required />
-      </div>
-      <button type="submit" :disabled="loading">
-        <font-awesome-icon :icon="isLogin ? 'sign-in-alt' : 'user-plus'" /> {{ loading ? "🔄 Procesando..." : isLogin ? "Iniciar Sesión" : "Registrarse" }}
+      <button
+        type="submit"
+        :disabled="loading"
+        class="submit-btn"
+        :class="{ 'loading': loading }"
+        :title="loading ? 'Procesando tu solicitud...' : isLogin ? 'Inicia sesión ahora' : 'Regístrate ahora'"
+      >
+        <font-awesome-icon v-if="loading" icon="spinner" spin />
+        <font-awesome-icon v-else :icon="isLogin ? 'sign-in-alt' : 'user-plus'" />
+        {{ loading ? "Procesando..." : isLogin ? "Iniciar Sesión" : "Registrarse" }}
       </button>
     </form>
-    <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
@@ -82,6 +159,11 @@ const register = async () => {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.login:hover {
+  transform: translateY(-2px);
 }
 
 .login::before {
@@ -119,25 +201,23 @@ const register = async () => {
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .toggle-buttons button.active {
   background: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-buttons button:hover:not(.active) {
   background: var(--color-accent-hover);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .input-group {
   margin-bottom: 20px;
   text-align: left;
-}
-
-.input-group.hidden {
-  display: none;
 }
 
 .input-group label {
@@ -148,6 +228,7 @@ const register = async () => {
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  cursor: help;
 }
 
 .input-group input {
@@ -156,15 +237,33 @@ const register = async () => {
   border: 1px solid var(--color-text);
   border-radius: 8px;
   font-family: 'Candara', sans-serif;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #f9f9f9;
 }
 
 .input-group input:focus {
   border-color: var(--color-primary);
   outline: none;
+  box-shadow: 0 0 8px rgba(16, 164, 199, 0.3);
 }
 
-button {
+.input-group input.error {
+  border-color: #D9534F;
+  box-shadow: 0 0 8px rgba(217, 83, 79, 0.3);
+}
+
+.input-group input::placeholder {
+  color: #999;
+  opacity: 0.8;
+}
+
+.error-text {
+  color: #D9534F;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.submit-btn {
   width: 100%;
   background: var(--color-accent);
   color: var(--color-neutral);
@@ -173,40 +272,89 @@ button {
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Gotham', sans-serif;
+  font-weight: 500;
 }
 
-button:hover {
+.submit-btn:hover:not(:disabled) {
   background: var(--color-accent-hover);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-button:disabled {
-  background: gray;
+.submit-btn:disabled {
+  background: #b0b0b0;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-.error {
-  color: #D9534F;
-  margin-top: 15px;
-  text-align: center;
+.submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 1.5s infinite;
 }
 
-@media (max-width: 768px) {
-  .login {
-    margin: 40px auto 10px;
-    padding: 20px;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
 
-  .login-form {
-    gap: 15px;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
-  .toggle-buttons {
-    flex-direction: column;
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
   }
+  50% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
 
-  .toggle-buttons button {
-    padding: 8px;
-  }
+/* Кастомизация тостов */
+:deep(.custom-toast-success) {
+  background-color: var(--color-primary);
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
+}
+
+:deep(.custom-toast-error) {
+  background-color: #D9534F;
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
+}
+
+:deep(.custom-toast-warning) {
+  background-color: #F0AD4E;
+  color: var(--color-neutral);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Candara', sans-serif;
 }
 </style>

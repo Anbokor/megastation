@@ -1,24 +1,40 @@
 /* Global Styles */
 :root {
-  --color-primary: #10A4C7;
-  --color-secondary: #006899;
-  --color-accent: #17BEDB;
-  --color-accent-hover: #2279D8;
+  --color-primary: #10A4C7; /* Основной синий */
+  --color-secondary: #006899; /* Темно-синий */
+  --color-accent: #17BEDB; /* Голубой */
+  --color-accent-hover: #14A9C9; /* Чуть темнее акцент для hover */
   --color-neutral: #FFFFFF;
   --color-text: #333333;
+  --color-neutral-light: #F0F0F0; /* Светлый для hover в шапке */
 }
 
 body {
   margin: 0;
   font-family: 'Candara', sans-serif;
-  background: var(--color-neutral);
+  background: linear-gradient(to bottom, rgba(23, 190, 219, 0.2), var(--color-neutral)); /* Добавляем легкий градиент */
   color: var(--color-text);
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Добавляем декоративный фон с волнами */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/assets/wave-bg.png') no-repeat bottom center / cover; /* Предполагается, что есть такой файл */
+  opacity: 0.1;
+  z-index: -1;
 }
 
 h1, h2, h3 {
   font-family: 'Gotham', sans-serif;
   font-weight: 700;
+  color: var(--color-secondary); /* Темно-синий для заголовков */
 }
 
 .loading, .error {
@@ -31,9 +47,29 @@ h1, h2, h3 {
   color: #D9534F;
 }
 
-/* Enhanced Button Styles */
+/* Улучшенные стили кнопок с ripple-эффектом */
 button {
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+button:hover::after {
+  width: 300%;
+  height: 300%;
 }
 
 /* Responsive Design */

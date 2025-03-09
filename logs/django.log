@@ -2763,3 +2763,75 @@ Traceback (most recent call last):
                         ^^^^^^^^^^^^^^^^^^^
 AttributeError: 'InvoiceItemFormFormSet' object has no attribute 'new_objects'. Did you mean: 'save_new_objects'?
 ERROR 2025-02-28 20:08:21,468 basehttp "POST /admin/purchases/invoice/230/change/ HTTP/1.1" 500 142599
+WARNING 2025-03-02 00:08:05,407 log Not Found: /
+WARNING 2025-03-02 00:08:05,409 basehttp "GET / HTTP/1.1" 404 3608
+WARNING 2025-03-02 00:08:06,253 log Not Found: /favicon.ico
+WARNING 2025-03-02 00:08:06,254 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-03-02 00:21:21,339 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:21:21,340 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:28:00,769 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:28:00,771 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:28:32,479 log Unauthorized: /api/login/
+WARNING 2025-03-02 00:28:32,480 basehttp "POST /api/login/ HTTP/1.1" 401 63
+WARNING 2025-03-02 00:28:34,240 log Unauthorized: /api/login/
+WARNING 2025-03-02 00:28:34,241 basehttp "POST /api/login/ HTTP/1.1" 401 63
+WARNING 2025-03-02 00:29:00,120 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:29:00,121 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:29:04,537 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:29:04,537 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:29:06,178 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:29:06,179 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:33:20,179 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:33:20,183 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:36:11,340 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:36:11,341 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:36:27,513 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:36:27,514 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:36:31,328 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:36:31,329 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:36:44,670 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:36:44,671 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-02 00:37:13,853 log Not Found: /api/users/me/
+WARNING 2025-03-02 00:37:13,854 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-05 17:21:59,048 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:21:59,049 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:22:03,255 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:22:03,258 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:22:03,259 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:22:03,259 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:22:05,603 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:22:05,605 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:22:05,608 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:22:05,610 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:12,532 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:12,538 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:27:12,541 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:12,543 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:14,302 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:14,303 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:15,732 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:15,734 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:27:15,736 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:15,736 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:25,286 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:25,312 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:25,329 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:27:25,351 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:27,188 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:27,190 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:27,201 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:27:27,202 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:29,745 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:29,746 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:30,920 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 17:27:30,921 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 17:27:30,925 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 17:27:30,926 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-05 18:08:02,524 log Unauthorized: /api/orders/create/
+WARNING 2025-03-05 18:08:02,529 basehttp "POST /api/orders/create/ HTTP/1.1" 401 183
+WARNING 2025-03-05 18:08:58,695 log Unauthorized: /api/store/products/2197/
+WARNING 2025-03-05 18:08:58,697 basehttp "GET /api/store/products/2197/ HTTP/1.1" 401 183
+WARNING 2025-03-05 18:09:03,697 log Unauthorized: /api/store/products/
+WARNING 2025-03-05 18:09:03,697 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
+WARNING 2025-03-05 18:09:03,753 log Unauthorized: /api/store/categories/
+WARNING 2025-03-05 18:09:03,754 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183

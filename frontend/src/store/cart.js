@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./user";
+import { useToast } from "vue-toastification";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -15,36 +16,105 @@ export const useCartStore = defineStore("cart", {
     addToCart(product) {
       const userStore = useUserStore();
       const router = useRouter();
+      const toast = useToast();
 
       if (!userStore.isAuthenticated) {
-        alert("Por favor, inicia sesión o regístrate para añadir productos al carrito.");
+        toast.warning("Por favor, inicia sesión o regístrate para añadir productos.", {
+          toastClassName: "custom-toast-warning",
+        });
         router.push("/login");
         return;
       }
 
-      const existing = this.items.find(item => item.id === product.id);
-      if (existing) existing.quantity++;
-      else this.items.push({ ...product, quantity: 1 });
-      this.saveCart();
+      try {
+        const existing = this.items.find(item => item.id === product.id);
+        if (existing) {
+          existing.quantity++;
+          toast.success("Cantidad aumentada en el carrito.", {
+            toastClassName: "custom-toast-success",
+          });
+        } else {
+          this.items.push({ ...product, quantity: 1 });
+          toast.success("Producto añadido al carrito.", {
+            toastClassName: "custom-toast-success",
+          });
+        }
+        this.saveCart();
+      } catch (error) {
+        toast.error("Error al añadir el producto al carrito.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
     },
     increaseQuantity(productId) {
-      const item = this.items.find(item => item.id === productId);
-      if (item) item.quantity++;
-      this.saveCart();
+      const toast = useToast();
+      try {
+        const item = this.items.find(item => item.id === productId);
+        if (item) {
+          item.quantity++;
+          toast.success("Cantidad aumentada.", {
+            toastClassName: "custom-toast-success",
+          });
+        }
+        this.saveCart();
+      } catch (error) {
+        toast.error("Error al aumentar la cantidad.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
     },
     decreaseQuantity(productId) {
-      const item = this.items.find(item => item.id === productId);
-      if (item && item.quantity > 1) item.quantity--;
-      else this.removeFromCart(productId);
-      this.saveCart();
+      const toast = useToast();
+      try {
+        const item = this.items.find(item => item.id === productId);
+        if (item && item.quantity > 1) {
+          item.quantity--;
+          toast.success("Cantidad reducida.", {
+            toastClassName: "custom-toast-success",
+          });
+        } else {
+          this.removeFromCart(productId);
+          toast.success("Producto eliminado por cantidad mínima.", {
+            toastClassName: "custom-toast-success",
+          });
+        }
+        this.saveCart();
+      } catch (error) {
+        toast.error("Error al reducir la cantidad.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
     },
     removeFromCart(productId) {
-      this.items = this.items.filter(item => item.id !== productId);
-      this.saveCart();
+      const toast = useToast();
+      try {
+        const index = this.items.findIndex(item => item.id === productId);
+        if (index !== -1) {
+          this.items.splice(index, 1);
+          toast.success("Producto eliminado del carrito.", {
+            toastClassName: "custom-toast-success",
+          });
+        }
+        this.saveCart();
+      } catch (error) {
+        toast.error("Error al eliminar el producto.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
     },
     clearCart() {
-      this.items.length = 0;
-      localStorage.removeItem("cart");
+      const toast = useToast();
+      try {
+        this.items.length = 0;
+        localStorage.removeItem("cart");
+        toast.success("Carrito vaciado.", {
+          toastClassName: "custom-toast-success",
+        });
+      } catch (error) {
+        toast.error("Error al vaciar el carrito.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
     },
     saveCart() {
       localStorage.setItem("cart", JSON.stringify(this.items));

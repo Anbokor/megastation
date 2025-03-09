@@ -3,12 +3,14 @@ import { useRouter } from "vue-router";
 import { useCartStore } from "@/store/cart";
 import { useUserStore } from "@/store/user";
 import { ref } from "vue";
+import { useToast } from "vue-toastification";
 
 const router = useRouter();
 const cartStore = useCartStore();
 const userStore = useUserStore();
 const searchQuery = ref("");
 const isMobileMenuOpen = ref(false);
+const toast = useToast();
 
 const searchProducts = () => {
   router.push({ path: "/catalog", query: { search: searchQuery.value } });
@@ -16,7 +18,14 @@ const searchProducts = () => {
 
 const logout = () => {
   userStore.logout();
-  router.push("/login");
+  toast.success("¡Has cerrado sesión correctamente!", {
+    toastClassName: "custom-toast-success",
+  });
+  router.push("/login").catch(() => {
+    toast.error("Error al redirigir.", {
+      toastClassName: "custom-toast-error",
+    });
+  });
 };
 
 const toggleMobileMenu = () => {
@@ -29,7 +38,7 @@ const toggleMobileMenu = () => {
     <div class="header-container">
       <div class="logo-container">
         <router-link to="/">
-          <img src="@/assets/MGST - Logo - Blanco.png" alt="Megastation" class="logo" />
+          <img src="@/assets/MGST-Logo-Blanco.png" alt="Megastation" class="logo" />
         </router-link>
       </div>
       <div class="search-bar">
@@ -51,7 +60,7 @@ const toggleMobileMenu = () => {
 <style scoped>
 .header {
   background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
-  padding: 10px 20px; /* Уменьшил верхний и нижний padding до 10px */
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -69,13 +78,17 @@ const toggleMobileMenu = () => {
   flex-wrap: wrap;
 }
 
+.logo-container {
+  padding: 10px;
+}
+
 .logo {
-  height: 80px; /* Сохраняем размер логотипа */
+  height: 80px;
   transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .search-bar {
@@ -89,8 +102,8 @@ const toggleMobileMenu = () => {
 .search-bar input {
   border: none;
   outline: none;
-  padding: 8px; /* Уменьшил внутренний padding для компактности */
-  width: 280px; /* Уменьшил ширину для сохранения баланса */
+  padding: 8px;
+  width: 280px;
   border-radius: 25px 0 0 25px;
   font-family: 'Candara', sans-serif;
 }
@@ -98,7 +111,7 @@ const toggleMobileMenu = () => {
 .search-bar button {
   background: var(--color-accent);
   border: none;
-  padding: 8px 12px; /* Уменьшил padding для компактности */
+  padding: 8px 12px;
   border-radius: 0 25px 25px 0;
   cursor: pointer;
   color: var(--color-neutral);
@@ -114,16 +127,18 @@ nav {
   align-items: center;
 }
 
-nav a, nav button {
+nav a,
+nav button {
   color: var(--color-neutral);
-  margin: 0 10px; /* Уменьшил отступы для компактности */
+  margin: 0 10px;
   text-decoration: none;
   font-family: 'Gotham', sans-serif;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-nav a svg, nav button svg {
+nav a svg,
+nav button svg {
   margin-right: 5px;
 }
 
@@ -133,7 +148,8 @@ nav button {
   cursor: pointer;
 }
 
-nav a:hover, nav button:hover {
+nav a:hover,
+nav button:hover {
   color: var(--color-neutral-light);
 }
 
@@ -153,16 +169,16 @@ nav a:hover, nav button:hover {
   }
 
   .logo {
-    height: 60px; /* Сохраняем размер для мобильных, но можно уменьшить при необходимости */
+    height: 60px;
   }
 
   .search-bar input {
-    width: 140px; /* Уменьшил для мобильных */
-    padding: 6px; /* Уменьшил внутренний padding */
+    width: 140px;
+    padding: 6px;
   }
 
   .search-bar button {
-    padding: 6px 10px; /* Уменьшил padding для мобильных */
+    padding: 6px 10px;
   }
 
   .menu-toggle {
@@ -175,9 +191,9 @@ nav a:hover, nav button:hover {
     flex-direction: column;
     background: var(--color-secondary);
     position: absolute;
-    top: 60px; /* Уменьшил расстояние от шапки */
+    top: 60px;
     left: 0;
-    padding: 10px; /* Уменьшил padding для компактности */
+    padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
@@ -185,18 +201,14 @@ nav a:hover, nav button:hover {
     display: flex;
   }
 
-  nav a, nav button {
-    margin: 8px 0; /* Уменьшил отступы */
+  nav a,
+  nav button {
+    margin: 8px 0;
     width: 100%;
     text-align: center;
   }
-
-  nav a:hover, nav button:hover {
-    color: var(--color-neutral-light);
-  }
 }
 
-/* Добавляем переменную для светлого цвета */
 :root {
   --color-neutral-light: #f0f0f0;
 }

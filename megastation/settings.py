@@ -40,13 +40,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-]
+    ]
 
 ROOT_URLCONF = 'megastation.urls'
 
@@ -101,6 +101,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',  # Явно разрешаем доступ по умолчанию
+    ),
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle',
@@ -108,15 +111,15 @@ REST_FRAMEWORK = {
         'users.throttling.LoginAttemptUserThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '1000/minute',  # Увеличен лимит для анонимных пользователей
-        'user': '1000/minute',  # Увеличен лимит для авторизованных пользователей
+        'anon': '1000/minute',
+        'user': '1000/minute',
         'login_attempt': '5/minute',
         'login_attempt_user': '10/minute',
         'user_register': '3/minute',
         'user_list': '15/minute',
         'user_detail': '5/minute',
-        'product_list': '1000/minute',  # Кастомный лимит для продуктов
-        'category_list': '1000/minute',  # Кастомный лимит для категорий
+        'product_list': '1000/minute',
+        'category_list': '1000/minute',
     },
 }
 
@@ -185,7 +188,7 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["file", "console"],
-            "level": "DEBUG",
+            "level": "INFO",
             "propagate": True,
         },
         "security": {
@@ -198,8 +201,10 @@ LOGGING = {
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:5174",  # Порт Vite, с которого идет запрос
+    "http://127.0.0.1:5174",  # Для надежности
+    "http://localhost:5173",  # Оставляем, если используется другой порт
+    "http://127.0.0.1:5173",  # Оставляем для совместимости
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]

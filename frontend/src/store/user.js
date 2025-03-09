@@ -17,35 +17,45 @@ export const useUserStore = defineStore("user", {
         this.token = response.data.access;
         localStorage.setItem("token", this.token);
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
-        await this.fetchUser();
+        // Убираем fetchUser, так как данных достаточно из токена
+        // Если нужны данные позже, можно добавить опциональный вызов
       } catch (error) {
-        throw error;
+        let msg = "Credenciales inválidas. Verifica tu usuario y contraseña.";
+        if (error.response && error.response.data && error.response.data.detail) {
+          msg = error.response.data.detail;
+        }
+        throw new Error(msg);
       }
     },
     async register(userData) {
       try {
-        // Фиксируем роль как customer для всех регистраций через фронт
         const response = await axios.post("/api/register/", {
           username: userData.username,
           password: userData.password,
           email: userData.email,
-          role: "customer"  // Фиксируем роль customer
+          role: "customer",
         });
-        this.token = response.data.token;
+        this.token = response.data.access; // Используем access из ответа
+        this.user = response.data.user; // Сохраняем данные пользователя из ответа
         localStorage.setItem("token", this.token);
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
-        this.user = response.data.user;
         return response.data;
       } catch (error) {
-        throw error;
+        let msg = "Error al registrar. Verifica los datos.";
+        if (error.response && error.response.data && error.response.data.detail) {
+          msg = error.response.data.detail;
+        }
+        throw new Error(msg);
       }
     },
+    // Оставляем fetchUser для будущего использования, если добавишь маршрут
     async fetchUser() {
       try {
         const response = await axios.get("/api/users/me/");
         this.user = response.data;
       } catch (error) {
         this.logout();
+        throw new Error("No se pudo obtener los datos del usuario.");
       }
     },
     logout() {
