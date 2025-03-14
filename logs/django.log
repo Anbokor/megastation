@@ -2835,3 +2835,150 @@ WARNING 2025-03-05 18:09:03,697 log Unauthorized: /api/store/products/
 WARNING 2025-03-05 18:09:03,697 basehttp "GET /api/store/products/ HTTP/1.1" 401 183
 WARNING 2025-03-05 18:09:03,753 log Unauthorized: /api/store/categories/
 WARNING 2025-03-05 18:09:03,754 basehttp "GET /api/store/categories/ HTTP/1.1" 401 183
+WARNING 2025-03-14 18:33:32,629 log Not Found: /favicon.ico
+WARNING 2025-03-14 18:33:32,631 basehttp "GET /favicon.ico HTTP/1.1" 404 3659
+WARNING 2025-03-14 18:44:54,270 log Not Found: /api/users/me/
+WARNING 2025-03-14 18:44:54,271 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-14 18:45:52,461 log Not Found: /api/analytics/
+WARNING 2025-03-14 18:45:52,462 basehttp "GET //api/analytics/ HTTP/1.1" 404 5492
+WARNING 2025-03-14 19:00:16,482 log Not Found: /api/users/me/
+WARNING 2025-03-14 19:00:16,483 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-14 19:03:29,638 log Not Found: /api/users/me/
+WARNING 2025-03-14 19:03:29,639 basehttp "GET /api/users/me/ HTTP/1.1" 404 5489
+WARNING 2025-03-14 19:12:11,639 log Not Found: /api/users/login/
+WARNING 2025-03-14 19:12:11,641 basehttp "POST /api/users/login/ HTTP/1.1" 404 5750
+WARNING 2025-03-14 19:13:10,418 log Not Found: /api/users/login/
+WARNING 2025-03-14 19:13:10,419 basehttp "POST /api/users/login/ HTTP/1.1" 404 5750
+ERROR 2025-03-14 19:15:45,935 log Internal Server Error: /api/users/me/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\views.py", line 146, in get
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\serializers.py", line 49, in get_is_admin
+    return obj.is_admin
+           ^^^^^^^^^^^^
+AttributeError: 'CustomUser' object has no attribute 'is_admin'
+ERROR 2025-03-14 19:15:45,941 basehttp "GET /api/users/me/ HTTP/1.1" 500 127599
+ERROR 2025-03-14 19:16:01,861 log Internal Server Error: /api/users/me/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\views.py", line 146, in get
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\serializers.py", line 49, in get_is_admin
+    return obj.is_admin
+           ^^^^^^^^^^^^
+AttributeError: 'CustomUser' object has no attribute 'is_admin'
+ERROR 2025-03-14 19:16:01,865 basehttp "GET /api/users/me/ HTTP/1.1" 500 127599
+ERROR 2025-03-14 19:17:17,878 log Internal Server Error: /api/users/me/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\views.py", line 146, in get
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\serializers.py", line 49, in get_is_admin
+    return obj.is_admin
+           ^^^^^^^^^^^^
+AttributeError: 'CustomUser' object has no attribute 'is_admin'
+ERROR 2025-03-14 19:17:17,887 basehttp "GET /api/users/me/ HTTP/1.1" 500 127599
+WARNING 2025-03-14 19:20:18,102 log Not Found: /api/analytics/
+WARNING 2025-03-14 19:20:18,102 basehttp "GET /api/analytics/ HTTP/1.1" 404 4064
+WARNING 2025-03-14 19:20:23,104 log Not Found: /api/analytics/
+WARNING 2025-03-14 19:20:23,105 basehttp "GET /api/analytics/ HTTP/1.1" 404 4064
+WARNING 2025-03-14 19:20:45,885 log Not Found: /api/analytics/
+WARNING 2025-03-14 19:20:45,886 basehttp "GET /api/analytics/ HTTP/1.1" 404 4064
+WARNING 2025-03-14 19:54:22,430 log Unauthorized: /api/users/me/
+WARNING 2025-03-14 19:54:22,432 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-14 19:54:22,437 log Unauthorized: /api/users/me/
+WARNING 2025-03-14 19:54:22,439 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-14 19:54:46,059 log Unauthorized: /api/users/login/
+WARNING 2025-03-14 19:54:46,060 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-14 20:53:55,171 log Unauthorized: /api/users/me/
+WARNING 2025-03-14 20:53:55,172 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-14 20:54:09,835 log Unauthorized: /api/users/login/
+WARNING 2025-03-14 20:54:09,836 basehttp "POST /api/users/login/ HTTP/1.1" 401 63

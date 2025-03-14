@@ -23,24 +23,20 @@ class UserListView(mixins.ListModelMixin, generics.GenericAPIView):
     """
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-    throttle_classes = [ScopedRateThrottle]  # ✅ Ограничиваем частоту
+    throttle_classes = [ScopedRateThrottle]
     throttle_scope = "user_list"
 
     def get_queryset(self):
         user = self.request.user
-
-        # 🔥 Исправлено: теперь проверка корректная
         if user.is_staff or user.is_superuser or user.role == CustomUser.Role.ADMIN:
             return CustomUser.objects.all()
-
-        return CustomUser.objects.filter(id=user.id)  # Обычный пользователь видит только себя
+        return CustomUser.objects.filter(id=user.id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         return Response({"error": "Método no permitido."}, status=405)
-
 
 class UserRegisterView(generics.CreateAPIView):
     """
@@ -70,7 +66,6 @@ class UserRegisterView(generics.CreateAPIView):
             'token': str(token)
         }, status=201)
 
-
 class UserDetailView(APIView):
     """
     ✅ API для просмотра и редактирования пользователей.
@@ -78,24 +73,20 @@ class UserDetailView(APIView):
     - Обычные пользователи могут редактировать только свой профиль.
     """
     permission_classes = [permissions.IsAuthenticated]
-    throttle_classes = [ScopedRateThrottle]  # ✅ Ограничиваем частоту
+    throttle_classes = [ScopedRateThrottle]
     throttle_scope = "user_list"
 
     def get(self, request, pk):
         user = get_object_or_404(CustomUser, pk=pk)
-
         if not request.user.is_staff and request.user != user:
             return Response({"error": "No tienes permiso para ver este perfil."}, status=403)
-
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
     def patch(self, request, pk):
         user = get_object_or_404(CustomUser, pk=pk)
-
         if not request.user.is_staff and request.user != user:
             return Response({"error": "No tienes permiso para editar este perfil."}, status=403)
-
         serializer = UserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -108,7 +99,6 @@ class UserDetailView(APIView):
         """
         if not request.user.is_staff:
             return Response({"error": "No tienes permiso para eliminar este usuario."}, status=403)
-
         user = get_object_or_404(CustomUser, pk=pk)
         user.delete()
         return Response({"message": "Usuario eliminado correctamente"}, status=204)
@@ -121,15 +111,12 @@ class LogoutView(APIView):
 
     def post(self, request):
         refresh_token = request.data.get("refresh")
-
         if not refresh_token:
             return Response({"error": "Token de actualización no proporcionado."}, status=400)
-
         try:
             token = RefreshToken(refresh_token)
-            token.blacklist()  # ✅ Добавляем токен в черный список (если включен)
+            token.blacklist()
             return Response({"detail": "Cierre de sesión exitoso."}, status=200)
-
         except TokenError:
             return Response({"error": "Token inválido o ya ha sido utilizado."}, status=400)
 
@@ -142,10 +129,18 @@ class LoginView(TokenObtainPairView):
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
-
         if response.status_code == 200:
             logger.info(f"Usuario {request.data.get('username')} ha iniciado sesión exitosamente.")
         else:
-            logger.warning(f"Intento fallido de inicio de sesión para {request.data.get('username')}.")
-
+            logger.warning(f"Intento fallido de inicio de sesión para {request.data.get('username')}.");
         return response
+
+class UserMeView(APIView):
+    """
+    ✅ API для получения данных текущего пользователя.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

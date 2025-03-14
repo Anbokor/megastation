@@ -5,6 +5,7 @@ import Product from "@/views/Product.vue";
 import Cart from "@/views/Cart.vue";
 import Checkout from "@/views/Checkout.vue";
 import Login from "@/views/Login.vue";
+import Dashboard from "@/views/Dashboard.vue";
 
 const routes = [
   { path: "/", component: Home },
@@ -13,6 +14,7 @@ const routes = [
   { path: "/cart", component: Cart },
   { path: "/checkout", component: Checkout },
   { path: "/login", component: Login },
+  { path: "/dashboard", name: "Dashboard", component: Dashboard },
 ];
 
 const router = createRouter({

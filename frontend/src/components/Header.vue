@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/store/cart";
 import { useUserStore } from "@/store/user";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useToast } from "vue-toastification";
 
 const router = useRouter();
@@ -31,6 +31,12 @@ const logout = () => {
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+onMounted(async () => {
+  if (userStore.isAuthenticated && !userStore.getUser) {
+    await userStore.fetchUser();
+  }
+});
 </script>
 
 <template>
@@ -49,6 +55,9 @@ const toggleMobileMenu = () => {
         <router-link to="/"><font-awesome-icon icon="home" /> Inicio</router-link>
         <router-link to="/catalog"><font-awesome-icon icon="list" /> Catálogo</router-link>
         <router-link to="/cart"><font-awesome-icon icon="shopping-cart" /> Carrito ({{ cartStore.totalItems }})</router-link>
+        <router-link v-if="userStore.isAuthenticated && ['superuser', 'admin', 'store_admin'].includes(userStore.getUser?.role)" to="/dashboard">
+          <font-awesome-icon :icon="['fas', 'chart-pie']" /> Dashboard
+        </router-link>
         <router-link v-if="!userStore.isAuthenticated" to="/login"><font-awesome-icon icon="sign-in-alt" /> Iniciar Sesión</router-link>
         <button v-else @click="logout"><font-awesome-icon icon="sign-out-alt" /> Salir</button>
       </nav>

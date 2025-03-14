@@ -1,0 +1,5 @@
+msgid "Permission denied"
+msgstr "Permiso denegado"
+
+msgid "Invalid credentials"
+msgstr "Credenciales inválidas" 

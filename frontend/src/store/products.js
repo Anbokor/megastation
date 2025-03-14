@@ -12,7 +12,7 @@ export const useProductStore = defineStore("products", {
   actions: {
     async fetchProducts() {
       if (this.products.length > 0) {
-        console.log("Продукты уже загружены, используется кэш");
+        console.log("Productos ya cargados, utilizando caché");
         return;
       }
       this.loading = true;
@@ -24,7 +24,7 @@ export const useProductStore = defineStore("products", {
         this.error = error.response?.status === 429
           ? "Demasiadas solicitudes, espera un momento y recarga la página."
           : "Error al cargar productos.";
-        console.error("Ошибка загрузки продуктов:", error);
+        console.error("Error al cargar productos:", error);
       } finally {
         this.loading = false;
       }
@@ -39,15 +39,15 @@ export const useProductStore = defineStore("products", {
         this.error = error.response?.status === 429
           ? "Demasiadas solicitudes, espera un momento."
           : "Error al cargar el producto.";
+        console.error("Error al cargar el producto:", error);
         this.currentProduct = null;
-        console.error("Ошибка загрузки продукта:", error);
       } finally {
         this.loading = false;
       }
     },
     async fetchCategories() {
       if (this.categories.length > 0) {
-        console.log("Категории уже загружены, используется кэш");
+        console.log("Categorías ya cargadas, utilizando caché");
         return;
       }
       this.loading = true;
@@ -59,7 +59,7 @@ export const useProductStore = defineStore("products", {
         this.error = error.response?.status === 429
           ? "Demasiadas solicitudes, espera un momento y recarga la página."
           : "Error al cargar categorías.";
-        console.error("Ошибка загрузки категорий:", error);
+        console.error("Error al cargar categorías:", error);
       } finally {
         this.loading = false;
       }
