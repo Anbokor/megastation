@@ -1,17 +1,15 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError as DRFValidationError
 from django.shortcuts import get_object_or_404
+from django.db import transaction
+from django.db.models import Sum
 from store.models import Product
 from inventory.models import SalesPoint, Stock, StockMovement
 from .models import Invoice, InvoiceItem, InvoiceReturn
 from .serializers import InvoiceSerializer, InvoiceReturnSerializer
-from rest_framework.exceptions import ValidationError as DRFValidationError
-from django.db import transaction
-
 
 class InvoiceCreateView(generics.CreateAPIView):
-    """ ✅ API para registrar una nueva factura de compra con control de almacén. """
     serializer_class = InvoiceSerializer
     permission_classes = [permissions.IsAdminUser]
 
@@ -33,7 +31,8 @@ class InvoiceCreateView(generics.CreateAPIView):
 
         with transaction.atomic():
             invoice = Invoice.objects.create(
-                invoice_number=invoice_number, supplier=supplier, user=user, sales_point=sales_point
+                invoice_number=invoice_number, supplier=supplier, user=user, sales_point=sales_point,
+                status=data.get("status", "pendiente")
             )
 
             invoice_items = []
@@ -71,21 +70,20 @@ class InvoiceCreateView(generics.CreateAPIView):
             Stock.objects.bulk_update(stock_updates, ["quantity"])
             StockMovement.objects.bulk_create(stock_movements)
 
+            if invoice.status == "procesada":
+                invoice.update_stock()
+
         return Response(InvoiceSerializer(invoice).data, status=status.HTTP_201_CREATED)
 
-
 class InvoiceListView(generics.ListAPIView):
-    """ ✅ API para ver la lista de facturas """
     serializer_class = InvoiceSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         return Invoice.objects.prefetch_related("items__product") if user.is_staff else Invoice.objects.filter(sales_point__sellers=user)
-
 
 class InvoiceDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """ ✅ API para ver, actualizar y eliminar una factura """
     serializer_class = InvoiceSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -93,9 +91,7 @@ class InvoiceDetailView(generics.RetrieveUpdateDestroyAPIView):
         user = self.request.user
         return Invoice.objects.prefetch_related("items__product") if user.is_staff else Invoice.objects.filter(sales_point__sellers=user)
 
-
 class InvoiceUpdateStatusView(generics.UpdateAPIView):
-    """ ✅ API para actualizar el estado de una factura """
     serializer_class = InvoiceSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -108,19 +104,19 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
         new_status = request.data.get("status")
 
         if new_status not in ["procesada", "anulada"]:
-            raise ValidationError({"error": "Estado inválido."})
+            return Response({"error": "Estado inválido."}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
+        with transaction.atomic():
+            if invoice.status == "procesada" and new_status == "anulada":
+                invoice.revert_stock()
+            elif invoice.status == "pendiente" and new_status == "procesada" and invoice.items.exists():
+                invoice.update_stock()
             invoice.status = new_status
-            invoice.save()  # Вызовет update_stock или revert_stock из модели
-        except ValidationError as e:
-            raise DRFValidationError({"error": str(e)})
+            invoice.save()
 
         return Response(InvoiceSerializer(invoice).data)
 
-
 class InvoiceReturnCreateView(generics.CreateAPIView):
-    """ ✅ API para registrar devoluciones de facturas """
     serializer_class = InvoiceReturnSerializer
     permission_classes = [permissions.IsAdminUser]
 
@@ -140,33 +136,15 @@ class InvoiceReturnCreateView(generics.CreateAPIView):
             return Response({"error": "La cantidad de devolución debe ser mayor que 0."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
-        if not stock or stock.quantity < quantity:
-            return Response({"error": f"No hay suficiente stock de {product.name} para devolver."},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        invoice_item = InvoiceItem.objects.filter(invoice=invoice, product=product).first()
-        if not invoice_item:
-            return Response({"error": "El producto no está en la factura."},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        if quantity > invoice_item.quantity:
-            return Response({"error": "No se puede devolver más de lo comprado en la factura."},
-                            status=status.HTTP_400_BAD_REQUEST)
-
         with transaction.atomic():
             return_entry = InvoiceReturn(
                 invoice=invoice, product=product, sales_point=sales_point, quantity=quantity, reason=reason
             )
-
-            return_entry.full_clean()
-            return_entry.save()
+            return_entry.save()  # Логика списания теперь в модели
 
         return Response(InvoiceReturnSerializer(return_entry).data, status=status.HTTP_201_CREATED)
 
-
 class InvoiceReturnListView(generics.ListAPIView):
-    """ ✅ API para ver la lista de devoluciones """
     serializer_class = InvoiceReturnSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -174,9 +152,7 @@ class InvoiceReturnListView(generics.ListAPIView):
         user = self.request.user
         return InvoiceReturn.objects.prefetch_related("product") if user.is_staff else InvoiceReturn.objects.filter(invoice__sales_point__sellers=user)
 
-
 class InvoiceReturnDetailView(generics.RetrieveAPIView):
-    """ ✅ API para ver una devolución específica """
     serializer_class = InvoiceReturnSerializer
     permission_classes = [permissions.IsAuthenticated]
 

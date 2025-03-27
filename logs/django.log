@@ -2982,3 +2982,453 @@ WARNING 2025-03-14 20:53:55,171 log Unauthorized: /api/users/me/
 WARNING 2025-03-14 20:53:55,172 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
 WARNING 2025-03-14 20:54:09,835 log Unauthorized: /api/users/login/
 WARNING 2025-03-14 20:54:09,836 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-14 20:56:21,122 log Forbidden: /api/analytics/
+WARNING 2025-03-14 20:56:21,428 log Forbidden: /api/analytics/
+WARNING 2025-03-14 20:56:28,271 log Forbidden: /api/users/2547/
+WARNING 2025-03-14 20:56:29,456 log Forbidden: /api/users/2551/
+WARNING 2025-03-14 20:56:29,460 log Bad Request: /api/users/register/
+WARNING 2025-03-14 20:56:29,462 log Bad Request: /api/users/register/
+WARNING 2025-03-14 20:56:29,462 log Too Many Requests: /api/users/register/
+WARNING 2025-03-14 20:56:29,463 log Too Many Requests: /api/users/register/
+WARNING 2025-03-14 20:56:29,463 log Too Many Requests: /api/users/register/
+WARNING 2025-03-14 20:56:29,760 log Unauthorized: /api/users/login/
+WARNING 2025-03-14 20:56:30,051 log Unauthorized: /api/users/login/
+WARNING 2025-03-14 20:56:30,349 log Unauthorized: /api/users/login/
+WARNING 2025-03-14 20:56:30,350 log Too Many Requests: /api/users/login/
+WARNING 2025-03-14 20:56:30,351 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 12:49:50,716 log Method Not Allowed: /api/purchases/invoices/
+WARNING 2025-03-15 12:49:55,718 log Forbidden: /api/analytics/
+WARNING 2025-03-15 12:50:02,344 log Forbidden: /api/users/2609/
+WARNING 2025-03-15 12:50:03,496 log Forbidden: /api/users/2613/
+WARNING 2025-03-15 12:50:03,501 log Bad Request: /api/users/register/
+WARNING 2025-03-15 12:50:03,503 log Bad Request: /api/users/register/
+WARNING 2025-03-15 12:50:03,504 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:50:03,504 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:50:03,505 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:50:03,797 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:50:04,080 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:50:04,363 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:50:04,363 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 12:50:04,364 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 12:56:42,097 log Bad Request: /api/purchases/invoices/create/
+WARNING 2025-03-15 12:56:47,896 log Forbidden: /api/analytics/
+WARNING 2025-03-15 12:56:55,476 log Forbidden: /api/users/2671/
+WARNING 2025-03-15 12:56:56,772 log Forbidden: /api/users/2675/
+WARNING 2025-03-15 12:56:56,778 log Bad Request: /api/users/register/
+WARNING 2025-03-15 12:56:56,780 log Bad Request: /api/users/register/
+WARNING 2025-03-15 12:56:56,781 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:56:56,782 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:56:56,783 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 12:56:57,102 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:56:57,413 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:56:57,724 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 12:56:57,725 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 12:56:57,726 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 13:00:24,077 log Bad Request: /api/purchases/invoices/create/
+WARNING 2025-03-15 13:00:29,527 log Forbidden: /api/analytics/
+WARNING 2025-03-15 13:00:36,895 log Forbidden: /api/users/2733/
+WARNING 2025-03-15 13:00:38,278 log Forbidden: /api/users/2737/
+WARNING 2025-03-15 13:00:38,283 log Bad Request: /api/users/register/
+WARNING 2025-03-15 13:00:38,287 log Bad Request: /api/users/register/
+WARNING 2025-03-15 13:00:38,288 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:00:38,288 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:00:38,289 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:00:38,633 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:00:38,963 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:00:39,296 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:00:39,297 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 13:00:39,298 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 13:08:44,874 log Forbidden: /api/analytics/
+WARNING 2025-03-15 13:08:52,550 log Forbidden: /api/users/2795/
+WARNING 2025-03-15 13:08:53,881 log Forbidden: /api/users/2799/
+WARNING 2025-03-15 13:08:53,888 log Bad Request: /api/users/register/
+WARNING 2025-03-15 13:08:53,890 log Bad Request: /api/users/register/
+WARNING 2025-03-15 13:08:53,891 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:08:53,892 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:08:53,893 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 13:08:54,224 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:08:54,543 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:08:54,872 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 13:08:54,873 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 13:08:54,874 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 14:01:59,347 log Unauthorized: /api/users/me/
+WARNING 2025-03-15 14:01:59,348 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-15 14:01:59,352 log Unauthorized: /api/users/me/
+WARNING 2025-03-15 14:01:59,353 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-15 14:02:09,793 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:02:09,794 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-15 14:02:17,307 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:02:17,308 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-15 14:02:34,100 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:02:34,101 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-15 14:02:41,612 log Not Found: /favicon.ico
+WARNING 2025-03-15 14:02:41,614 basehttp "GET /favicon.ico HTTP/1.1" 404 3840
+WARNING 2025-03-15 14:06:25,293 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:06:25,294 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-15 14:54:28,736 log Forbidden: /api/analytics/
+WARNING 2025-03-15 14:54:35,452 log Forbidden: /api/users/2858/
+WARNING 2025-03-15 14:54:36,629 log Forbidden: /api/users/2862/
+WARNING 2025-03-15 14:54:36,636 log Bad Request: /api/users/register/
+WARNING 2025-03-15 14:54:36,638 log Bad Request: /api/users/register/
+WARNING 2025-03-15 14:54:36,639 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:54:36,640 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:54:36,641 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:54:36,949 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:54:37,256 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:54:37,558 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:54:37,558 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 14:54:37,559 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 14:59:35,647 log Forbidden: /api/analytics/
+WARNING 2025-03-15 14:59:42,614 log Forbidden: /api/users/2921/
+WARNING 2025-03-15 14:59:43,837 log Forbidden: /api/users/2925/
+WARNING 2025-03-15 14:59:43,843 log Bad Request: /api/users/register/
+WARNING 2025-03-15 14:59:43,845 log Bad Request: /api/users/register/
+WARNING 2025-03-15 14:59:43,847 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:59:43,848 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:59:43,849 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 14:59:44,171 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:59:44,488 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:59:44,820 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 14:59:44,821 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 14:59:44,822 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 15:51:23,009 log Forbidden: /api/analytics/
+WARNING 2025-03-15 15:51:29,880 log Forbidden: /api/users/2984/
+WARNING 2025-03-15 15:51:31,125 log Forbidden: /api/users/2988/
+WARNING 2025-03-15 15:51:31,129 log Bad Request: /api/users/register/
+WARNING 2025-03-15 15:51:31,131 log Bad Request: /api/users/register/
+WARNING 2025-03-15 15:51:31,131 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 15:51:31,132 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 15:51:31,133 log Too Many Requests: /api/users/register/
+WARNING 2025-03-15 15:51:31,443 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 15:51:31,736 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 15:51:32,036 log Unauthorized: /api/users/login/
+WARNING 2025-03-15 15:51:32,037 log Too Many Requests: /api/users/login/
+WARNING 2025-03-15 15:51:32,037 log Too Many Requests: /api/users/login/
+ERROR 2025-03-15 15:59:58,064 log Internal Server Error: /api/users/register/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: ОШИБКА:  отношение "users_customuser" не существует
+LINE 1: SELECT 1 AS "a" FROM "users_customuser" WHERE "users_customu...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\views.py", line 61, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 499, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 757, in run_validation
+    return super().run_validation(data)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 539, in run_validation
+    self.run_validators(value)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\fields.py", line 551, in run_validators
+    validator(value, self)
+    ~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\validators.py", line 73, in __call__
+    if qs_exists(queryset):
+       ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\validators.py", line 21, in qs_exists
+    return queryset.exists()
+           ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\query.py", line 660, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: ОШИБКА:  отношение "users_customuser" не существует
+LINE 1: SELECT 1 AS "a" FROM "users_customuser" WHERE "users_customu...
+                             ^
+
+ERROR 2025-03-15 15:59:58,285 log Internal Server Error: /api/users/login/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: ОШИБКА:  отношение "users_customuser" не существует
+LINE 1: ...."role", "users_customuser"."sales_point_id" FROM "users_cus...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\users\views.py", line 131, in post
+    response = super().post(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework_simplejwt\views.py", line 44, in post
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework_simplejwt\serializers.py", line 73, in validate
+    data = super().validate(attrs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\rest_framework_simplejwt\serializers.py", line 54, in validate
+    self.user = authenticate(**authenticate_kwargs)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 79, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\auth\base_user.py", line 37, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: ОШИБКА:  отношение "users_customuser" не существует
+LINE 1: ...."role", "users_customuser"."sales_point_id" FROM "users_cus...
+                                                             ^
+
+WARNING 2025-03-16 14:22:34,357 log Forbidden: /api/analytics/
+WARNING 2025-03-16 14:22:41,045 log Forbidden: /api/users/50/
+WARNING 2025-03-16 14:22:42,200 log Forbidden: /api/users/54/
+WARNING 2025-03-16 14:22:42,206 log Bad Request: /api/users/register/
+WARNING 2025-03-16 14:22:42,209 log Bad Request: /api/users/register/
+WARNING 2025-03-16 14:22:42,210 log Too Many Requests: /api/users/register/
+WARNING 2025-03-16 14:22:42,211 log Too Many Requests: /api/users/register/
+WARNING 2025-03-16 14:22:42,211 log Too Many Requests: /api/users/register/
+WARNING 2025-03-16 14:22:42,496 log Unauthorized: /api/users/login/
+WARNING 2025-03-16 14:22:42,780 log Unauthorized: /api/users/login/
+WARNING 2025-03-16 14:22:43,066 log Unauthorized: /api/users/login/
+WARNING 2025-03-16 14:22:43,067 log Too Many Requests: /api/users/login/
+WARNING 2025-03-16 14:22:43,068 log Too Many Requests: /api/users/login/
+WARNING 2025-03-16 14:25:13,886 log Not Found: /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg
+WARNING 2025-03-16 14:25:13,888 basehttp "GET /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg HTTP/1.1" 404 4254
+WARNING 2025-03-16 14:25:17,961 log Not Found: /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg
+WARNING 2025-03-16 14:25:17,962 basehttp "GET /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg HTTP/1.1" 404 4254
+WARNING 2025-03-16 14:25:19,471 log Not Found: /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg
+WARNING 2025-03-16 14:25:19,472 basehttp "GET /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg HTTP/1.1" 404 4254
+WARNING 2025-03-16 14:25:34,013 log Not Found: /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg
+WARNING 2025-03-16 14:25:34,014 basehttp "GET /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg HTTP/1.1" 404 4254
+WARNING 2025-03-16 14:25:36,739 log Not Found: /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg
+WARNING 2025-03-16 14:25:36,741 basehttp "GET /media/products/temp/8d4990af-9f48-4522-848c-996492f876cc.jpg HTTP/1.1" 404 4254
+ERROR 2025-03-16 14:27:46,037 log Internal Server Error: /admin/purchases/invoice/277/change/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1294, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 46, in save
+    raise ValidationError({"status": "No se puede modificar una factura procesada."})
+django.core.exceptions.ValidationError: {'status': ['No se puede modificar una factura procesada.']}
+ERROR 2025-03-16 14:27:46,048 basehttp "POST /admin/purchases/invoice/277/change/ HTTP/1.1" 500 140710
+WARNING 2025-03-16 14:56:12,424 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 14:56:12,427 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+ERROR 2025-03-16 14:57:02,110 log Internal Server Error: /admin/purchases/invoice/277/delete/
+Traceback (most recent call last):
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 2181, in delete_view
+    return self._delete_view(request, object_id, extra_context)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 2217, in _delete_view
+    self.delete_model(request, obj)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1300, in delete_model
+    obj.delete()
+    ~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 84, in delete
+    self.revert_stock()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ankalin\PycharmProjects\megastation\purchases\models.py", line 71, in revert_stock
+    raise ValidationError(f"No hay suficiente stock para revertir {item.product.name}.")
+          ^^^^^^^^^^^^^^^
+NameError: name 'ValidationError' is not defined
+ERROR 2025-03-16 14:57:02,122 basehttp "POST /admin/purchases/invoice/277/delete/ HTTP/1.1" 500 137428
+WARNING 2025-03-16 15:49:39,934 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 15:49:39,936 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-16 16:22:33,676 log Unauthorized: /api/analytics/
+WARNING 2025-03-16 16:22:33,683 basehttp "GET /api/analytics/?time_filter=month HTTP/1.1" 401 183
+WARNING 2025-03-16 16:22:36,510 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 16:22:36,511 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-16 16:22:36,516 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 16:22:36,517 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-16 16:54:07,054 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 16:54:07,063 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-16 16:54:07,077 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 16:54:07,081 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+ERROR 2025-03-16 17:12:49,436 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 159524
+ERROR 2025-03-16 17:51:50,361 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149912
+ERROR 2025-03-16 17:58:53,422 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149909
+ERROR 2025-03-16 18:00:40,133 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149978
+ERROR 2025-03-16 18:03:58,561 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149978
+ERROR 2025-03-16 18:05:29,848 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149978
+ERROR 2025-03-16 18:06:13,251 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149978
+ERROR 2025-03-16 18:22:09,491 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149978
+ERROR 2025-03-16 18:22:27,636 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149976
+ERROR 2025-03-16 18:31:24,584 basehttp "POST /admin/purchases/invoice/add/ HTTP/1.1" 500 149976
+WARNING 2025-03-16 18:36:26,491 log Unauthorized: /api/analytics/
+WARNING 2025-03-16 18:36:26,491 basehttp "GET /api/analytics/?time_filter=day HTTP/1.1" 401 183
+WARNING 2025-03-16 18:36:29,332 log Unauthorized: /api/analytics/
+WARNING 2025-03-16 18:36:29,333 basehttp "GET /api/analytics/?time_filter=month HTTP/1.1" 401 183
+WARNING 2025-03-16 18:36:31,826 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 18:36:31,827 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-16 18:36:31,828 log Unauthorized: /api/users/me/
+WARNING 2025-03-16 18:36:31,829 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-19 18:33:20,454 log Unauthorized: /api/users/me/
+WARNING 2025-03-19 18:33:20,456 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-03-27 13:47:06,306 log Not Found: /favicon.ico
+WARNING 2025-03-27 13:47:06,307 basehttp "GET /favicon.ico HTTP/1.1" 404 3840
+WARNING 2025-03-27 13:49:20,367 log Unauthorized: /api/users/login/
+WARNING 2025-03-27 13:49:20,368 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-03-27 13:49:33,203 log Unauthorized: /api/users/login/
+WARNING 2025-03-27 13:49:33,203 basehttp "POST /api/users/login/ HTTP/1.1" 401 63

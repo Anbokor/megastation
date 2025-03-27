@@ -13,7 +13,7 @@ const userStore = useUserStore();
 const toast = useToast();
 const loading = ref(false);
 const review = ref("");
-const reviews = ref([]); // Мок-данные для отзывов
+const reviews = ref([]);
 
 const defaultImage = "/static/default-product.jpg";
 
@@ -23,13 +23,13 @@ watch(() => route.params.id, newId => productStore.fetchProduct(newId));
 const product = computed(() => productStore.currentProduct);
 
 const addToCart = () => {
-  if (product.value && product.value.stock > 0) {
+  if (product.value && product.value.availability === "available") {
     cartStore.addToCart(product.value);
     toast.success("Producto añadido al carrito.", {
       toastClassName: "custom-toast-success",
     });
   } else {
-    toast.warning("Producto sin stock.", {
+    toast.warning("Producto bajo pedido.", {
       toastClassName: "custom-toast-warning",
     });
   }
@@ -73,17 +73,17 @@ const addReview = () => {
         <h1>{{ product.name }}</h1>
         <p class="description">{{ product.description }}</p>
         <p class="price">$ {{ product.price }}</p>
-        <p :class="{ 'out-of-stock': product.stock === 0 }">
-          📦 {{ product.stock > 0 ? `En stock: ${product.stock}` : "Sin stock" }}
+        <p :class="{ 'out-of-stock': product.availability === 'on_order' }">
+          📦 {{ product.availability === "available" ? "Disponible" : "Bajo pedido" }}
         </p>
         <button
-          :disabled="product.stock === 0"
+          :disabled="product.availability === 'on_order'"
           @click="addToCart"
           class="add-btn"
-          :title="product.stock > 0 ? 'Añadir al carrito' : 'Producto no disponible'"
+          :title="product.availability === 'available' ? 'Añadir al carrito' : 'Producto no disponible'"
         >
           <font-awesome-icon icon="shopping-cart" />
-          {{ product.stock > 0 ? "Agregar al carrito" : "Sin stock" }}
+          {{ product.availability === "available" ? "Agregar al carrito" : "Bajo pedido" }}
         </button>
         <div class="reviews-section">
           <h3>Reseñas</h3>
@@ -355,7 +355,7 @@ textarea:focus {
   }
 }
 
-/* Кастомизация тостов */
+/* Custom toast styles */
 :deep(.custom-toast-success) {
   background-color: var(--color-primary);
   color: var(--color-neutral);

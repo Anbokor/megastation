@@ -1,15 +1,15 @@
 from rest_framework import serializers
+from django.db import transaction
+from django.db.models import Sum
 from .models import Invoice, InvoiceItem, InvoiceReturn
 from store.models import Product
 from inventory.models import SalesPoint, Stock
 from inventory.serializers import SalesPointSerializer
 
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ["id", "name", "price"]
-
 
 class InvoiceItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
@@ -24,7 +24,6 @@ class InvoiceItemSerializer(serializers.ModelSerializer):
 
     def get_total_cost(self, obj):
         return obj.quantity * obj.cost_per_item
-
 
 class InvoiceSerializer(serializers.ModelSerializer):
     sales_point = SalesPointSerializer(read_only=True)
@@ -57,16 +56,24 @@ class InvoiceSerializer(serializers.ModelSerializer):
         items_data = validated_data.pop("items", None)
         instance.supplier = validated_data.get("supplier", instance.supplier)
         instance.sales_point = validated_data.get("sales_point", instance.sales_point)
-        instance.status = validated_data.get("status", instance.status)
-        instance.save()
+        new_status = validated_data.get("status", instance.status)
 
-        if items_data is not None:
-            instance.items.all().delete()
-            for item_data in items_data:
-                InvoiceItem.objects.create(invoice=instance, **item_data)
+        with transaction.atomic():
+            if instance.status == "procesada" and new_status == "anulada":
+                instance.revert_stock()
+            instance.status = new_status
+            instance.save()
+
+            if items_data is not None:
+                if instance.status == "procesada":
+                    instance.revert_stock()
+                instance.items.all().delete()
+                for item_data in items_data:
+                    InvoiceItem.objects.create(invoice=instance, **item_data)
+                if instance.status == "procesada":
+                    instance.update_stock()
 
         return instance
-
 
 class InvoiceReturnSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
@@ -96,8 +103,9 @@ class InvoiceReturnSerializer(serializers.ModelSerializer):
         if not invoice_item:
             raise serializers.ValidationError({"product": "El producto no está en la factura."})
 
-        if quantity > invoice_item.quantity:
-            raise serializers.ValidationError({"quantity": "No se puede devolver más cantidad de la comprada."})
+        total_returned = invoice.returns.filter(product=product).aggregate(Sum('quantity'))['quantity__sum'] or 0
+        if total_returned + quantity > invoice_item.quantity:
+            raise serializers.ValidationError({"quantity": f"No se puede devolver más de {invoice_item.quantity - total_returned} unidades."})
 
         stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
         if not stock or stock.quantity < quantity:

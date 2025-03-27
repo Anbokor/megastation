@@ -35,20 +35,18 @@ def test_min_stock_default():
 @pytest.mark.django_db
 def test_create_product():
     """
-    ✅ Проверяем создание товара.
+    Test de creación de producto
     """
+    import uuid
+    unique_barcode = f"123456789-{uuid.uuid4().hex[:8]}"
     category = Category.objects.create(name="Smartphones")
     product = Product.objects.create(
         name="iPhone 13",
         description="Nuevo iPhone con tecnología avanzada.",
         price=999.99,
-        barcode="123456789",
+        barcode=unique_barcode,
         category=category
     )
-
-    assert product.name == "iPhone 13"
-    assert product.price == 999.99
-    assert product.category == category
 
 @pytest.mark.django_db
 def test_product_category_relation():

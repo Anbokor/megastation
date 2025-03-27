@@ -11,10 +11,10 @@ const route = useRoute();
 const toast = useToast();
 const selectedCategory = ref("");
 const searchQuery = ref("");
-const sortOption = ref("price_asc"); // Опции сортировки: price_asc, price_desc, name_asc
+const sortOption = ref("price_asc"); // Sorting options: price_asc, price_desc, name_asc
 
 const filteredProducts = computed(() => {
-  let products = [...productStore.products]; // Копируем массив для сортировки
+  let products = [...productStore.products];
   if (selectedCategory.value) {
     products = products.filter(p => p.category_id === parseInt(selectedCategory.value));
   }
@@ -23,13 +23,20 @@ const filteredProducts = computed(() => {
       p.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
   }
-  // Сортировка
   switch (sortOption.value) {
     case "price_asc":
-      products.sort((a, b) => a.price - b.price);
+      products.sort((a, b) => {
+        const priceA = Number(a.price) || 0; // Convert to number, default to 0 if invalid
+        const priceB = Number(b.price) || 0;
+        return priceA - priceB;
+      });
       break;
     case "price_desc":
-      products.sort((a, b) => b.price - a.price);
+      products.sort((a, b) => {
+        const priceA = Number(a.price) || 0;
+        const priceB = Number(b.price) || 0;
+        return priceB - priceA;
+      });
       break;
     case "name_asc":
       products.sort((a, b) => a.name.localeCompare(b.name));
@@ -51,10 +58,10 @@ onMounted(async () => {
 });
 
 const addToCart = (product) => {
-  if (product.stock > 0) {
+  if (product.availability === "available") {
     cartStore.addToCart(product);
   } else {
-    toast.warning("Producto sin stock.", {
+    toast.warning("Producto bajo pedido.", {
       toastClassName: "custom-toast-warning",
     });
   }
@@ -96,18 +103,18 @@ const addToCart = (product) => {
           <div class="product-info">
             <h3>{{ product.name }}</h3>
             <p>$ {{ product.price }}</p>
-            <p :class="{ 'out-of-stock': product.stock === 0 }">
-              📦 {{ product.stock > 0 ? `Stock: ${product.stock}` : "Sin stock" }}
+            <p :class="{ 'out-of-stock': product.availability === 'on_order' }">
+              📦 {{ product.availability === "available" ? "Disponible" : "Bajo pedido" }}
             </p>
           </div>
         </router-link>
         <button
           @click="addToCart(product)"
-          :disabled="product.stock === 0"
+          :disabled="product.availability === 'on_order'"
           class="add-btn"
-          :title="product.stock > 0 ? 'Añadir al carrito' : 'Producto no disponible'"
+          :title="product.availability === 'available' ? 'Añadir al carrito' : 'Producto no disponible'"
         >
-          <font-awesome-icon icon="shopping-cart" /> {{ product.stock > 0 ? "Agregar" : "Sin stock" }}
+          <font-awesome-icon icon="shopping-cart" /> {{ product.availability === "available" ? "Agregar" : "Bajo pedido" }}
         </button>
       </div>
     </div>
@@ -305,7 +312,7 @@ input::placeholder {
   }
 }
 
-/* Кастомизация тостов */
+/* Custom toast styles */
 :deep(.custom-toast-success) {
   background-color: var(--color-primary);
   color: var(--color-neutral);

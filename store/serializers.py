@@ -1,23 +1,27 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Product, Category
 from inventory.models import Stock, StockMovement
 
 class CategorySerializer(serializers.ModelSerializer):
-    """✅ Сериализатор для категорий"""
+    """Serializer for categories"""
     class Meta:
         model = Category
         fields = ["id", "name"]
 
 class ProductSerializer(serializers.ModelSerializer):
-    stock = serializers.SerializerMethodField()
+    """Serializer for products"""
+    availability = serializers.SerializerMethodField()
     image_url = serializers.SerializerMethodField()
     category_id = serializers.PrimaryKeyRelatedField(source='category', queryset=Category.objects.all(), allow_null=True)
 
-    def get_stock(self, obj):
-        stock = Stock.objects.filter(product=obj).first()
-        return stock.quantity if stock else 0
+    def get_availability(self, obj):
+        """Get product availability status"""
+        total_stock = Stock.objects.filter(product=obj).aggregate(total=Sum('quantity'))['total'] or 0
+        return "available" if total_stock > 0 else "on_order"
 
     def get_image_url(self, obj):
+        """Get product image URL"""
         request = self.context.get("request")
         if obj.image:
             return request.build_absolute_uri(obj.image.url) if request else obj.image.url
@@ -25,14 +29,15 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ["id", "name", "description", "price", "stock", "barcode", "image", "image_url", "category_id"]
+        fields = ["id", "name", "description", "price", "barcode", "image", "image_url", "category_id", "availability"]
 
 class StockMovementSerializer(serializers.ModelSerializer):
-    """✅ Сериализатор для движения товаров на складе"""
+    """Serializer for stock movements"""
     product_name = serializers.ReadOnlyField(source="product.name")
     category_name = serializers.ReadOnlyField(source="product.category.name")
 
     def validate(self, data):
+        """Validate stock changes"""
         product = data.get("product")
         sales_point = data.get("sales_point")
         stock = Stock.objects.filter(product=product, sales_point=sales_point).first()
