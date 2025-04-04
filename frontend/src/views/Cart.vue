@@ -3,10 +3,12 @@ import { useCartStore } from "@/store/cart";
 import { useRouter } from "vue-router";
 import { ref, watch } from "vue";
 import { useToast } from "vue-toastification";
+import { useUserStore } from "@/store/user";
 
 const cartStore = useCartStore();
 const router = useRouter();
 const toast = useToast();
+const userStore = useUserStore();
 const cartItems = ref(cartStore.items);
 
 watch(() => cartStore.items, (newItems) => {
@@ -20,11 +22,26 @@ const checkout = () => {
     });
     return;
   }
+  if (!userStore.isAuthenticated) {
+    toast.warning("Por favor, inicia sesión o regístrate para finalizar la compra.", {
+      toastClassName: "custom-toast-warning",
+    });
+    router.push("/login").catch(() => {
+      toast.error("Error al redirigir al inicio de sesión.", {
+        toastClassName: "custom-toast-error",
+      });
+    });
+    return;
+  }
   router.push("/checkout").catch(() => {
     toast.error("Error al ir a finalizar compra.", {
       toastClassName: "custom-toast-error",
     });
   });
+};
+
+const getDeliveryTime = (availability) => {
+  return availability === "available" ? "Entrega inmediata" : "Entrega en 5-7 días";
 };
 
 const removeItem = (id) => cartStore.removeFromCart(id);
@@ -46,35 +63,37 @@ const goToCatalog = () => {
     <div v-if="cartStore.totalItems === 0" class="empty-cart">
       <p>Tu carrito está vacío.</p>
       <button @click="goToCatalog" class="catalog-btn" title="Explora nuestro catálogo de productos">
-        <font-awesome-icon icon="store" /> Explorar productos
+        <font-awesome-icon icon="store"/>
+        Explorar productos
       </button>
     </div>
     <div v-else class="cart-content">
       <div class="cart-list">
         <div v-for="item in cartItems" :key="item.id" class="cart-item">
-          <img :src="item.image_url || '/static/default-product.jpg'" :alt="item.name" />
+          <img :src="item.image || '/media/default_product.jpg'" :alt="item.name"/>
           <div class="info">
             <h2>{{ item.name }}</h2>
             <p>$ {{ item.price }} x {{ item.quantity }}</p>
             <p class="total-item">Total: $ {{ (item.price * item.quantity).toFixed(2) }}</p>
+            <p class="delivery-time">{{ getDeliveryTime(item.availability) }}</p>
           </div>
           <div class="actions">
             <button
-              @click="increaseQuantity(item.id)"
-              class="action-btn increase"
-              title="Aumentar cantidad"
+                @click="increaseQuantity(item.id)"
+                class="action-btn increase"
+                title="Aumentar cantidad"
             >
-              <font-awesome-icon icon="plus" />
+              <font-awesome-icon icon="plus"/>
             </button>
             <button
-              @click="decreaseQuantity(item.id)"
-              class="action-btn decrease"
-              title="Reducir cantidad"
+                @click="decreaseQuantity(item.id)"
+                class="action-btn decrease"
+                title="Reducir cantidad"
             >
-              <font-awesome-icon icon="minus" />
+              <font-awesome-icon icon="minus"/>
             </button>
             <button @click="removeItem(item.id)" class="action-btn remove" title="Eliminar del carrito">
-              <font-awesome-icon icon="trash" />
+              <font-awesome-icon icon="trash"/>
             </button>
           </div>
         </div>
@@ -82,7 +101,8 @@ const goToCatalog = () => {
       <div class="summary">
         <h2>Total: $ {{ cartStore.totalPrice.toFixed(2) }}</h2>
         <button @click="checkout" class="checkout-btn" title="Proceder al pago">
-          <font-awesome-icon icon="credit-card" /> Finalizar Compra
+          <font-awesome-icon icon="credit-card"/>
+          Finalizar Compra
         </button>
       </div>
     </div>
@@ -154,6 +174,11 @@ img {
 .total-item {
   font-weight: bold;
   color: var(--color-primary);
+}
+
+.delivery-time {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .actions {
@@ -303,7 +328,7 @@ img {
   }
 }
 
-/* Кастомизация тостов */
+/* Custom toast styles */
 :deep(.custom-toast-success) {
   background-color: var(--color-primary);
   color: var(--color-neutral);

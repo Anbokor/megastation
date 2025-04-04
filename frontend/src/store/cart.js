@@ -1,30 +1,19 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
-import { useRouter } from "vue-router";
-import { useUserStore } from "./user";
 import { useToast } from "vue-toastification";
 
 export const useCartStore = defineStore("cart", {
-  state: () => ({
-    items: reactive(JSON.parse(localStorage.getItem("cart")) || []),
-  }),
+  state: () => {
+    const items = reactive(JSON.parse(localStorage.getItem("cart")) || []);
+    return { items };
+  },
   getters: {
     totalItems: (state) => state.items.reduce((sum, item) => sum + item.quantity, 0),
     totalPrice: (state) => state.items.reduce((sum, item) => sum + item.price * item.quantity, 0),
   },
   actions: {
     addToCart(product) {
-      const userStore = useUserStore();
-      const router = useRouter();
       const toast = useToast();
-
-      if (!userStore.isAuthenticated) {
-        toast.warning("Por favor, inicia sesión o regístrate para añadir productos.", {
-          toastClassName: "custom-toast-warning",
-        });
-        router.push("/login");
-        return;
-      }
 
       try {
         const existing = this.items.find(item => item.id === product.id);
@@ -34,7 +23,7 @@ export const useCartStore = defineStore("cart", {
             toastClassName: "custom-toast-success",
           });
         } else {
-          this.items.push({ ...product, quantity: 1 });
+          this.items.push({ ...product, quantity: 1, availability: product.availability });
           toast.success("Producto añadido al carrito.", {
             toastClassName: "custom-toast-success",
           });

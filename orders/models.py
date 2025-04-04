@@ -22,16 +22,15 @@ class Order(models.Model):
         return f"Orden {self.id} - {self.user.username} - {self.get_status_display()}"
 
     def update_status(self, new_status):
-        """
-        ✅ Обновляет статус заказа с учётом логики резервирования товара при оплате.
-        """
+        """Update order status with stock reservation logic"""
         if self.status == "pendiente" and new_status == "en_proceso":
             for item in self.items.all():
-                stock = Stock.objects.get(product=item.product)
-                if stock.reserved_quantity < item.quantity:
-                    raise ValidationError(f"Error en stock de {item.product.name}.")
-                stock.reserved_quantity -= item.quantity
-                stock.save()
+                if item.delivery_time == "Entrega inmediata":  # Only reserve available items
+                    stock = Stock.objects.get(product=item.product)
+                    if stock.reserved_quantity < item.quantity:
+                        raise ValidationError(f"Error en stock de {item.product.name}.")
+                    stock.reserved_quantity -= item.quantity
+                    stock.save()
 
         elif self.status == "pendiente" and new_status == "cancelado":
             for item in self.items.all():
@@ -53,32 +52,35 @@ class Order(models.Model):
         verbose_name = "Orden"
         verbose_name_plural = "Órdenes"
 
-
 class OrderItem(models.Model):
+    DELIVERY_CHOICES = (
+        ('Entrega inmediata', 'Entrega inmediata'),
+        ('Entrega en 5-7 días', 'Entrega en 5-7 días'),
+    )
+
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name="Cantidad")
+    delivery_time = models.CharField(max_length=20, choices=DELIVERY_CHOICES, default='Entrega inmediata', verbose_name="Tiempo de entrega")
 
     def save(self, *args, **kwargs):
-        """
-        ✅ При добавлении товара в заказ — резервируем его на складе.
-        """
+        """Reserve stock only for immediately available items"""
         stock = Stock.objects.get(product=self.product)
-        if stock.quantity < self.quantity:
-            raise ValidationError(f"No hay suficiente stock para {self.product.name}.")
-        stock.quantity -= self.quantity
-        stock.reserved_quantity += self.quantity
-        stock.save()
+        if self.delivery_time == "Entrega inmediata":
+            if stock.quantity < self.quantity:
+                raise ValidationError(f"No hay suficiente stock para {self.product.name}.")
+            stock.quantity -= self.quantity
+            stock.reserved_quantity += self.quantity
+            stock.save()
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        """
-        ✅ При удалении товара из заказа — снимаем резерв и возвращаем на склад.
-        """
+        """Release stock reservation on deletion"""
         stock = Stock.objects.get(product=self.product)
-        stock.quantity += self.quantity
-        stock.reserved_quantity -= self.quantity
-        stock.save()
+        if self.delivery_time == "Entrega inmediata":
+            stock.quantity += self.quantity
+            stock.reserved_quantity -= self.quantity
+            stock.save()
         super().delete(*args, **kwargs)
 
     def __str__(self):

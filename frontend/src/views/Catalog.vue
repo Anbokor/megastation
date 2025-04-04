@@ -11,7 +11,7 @@ const route = useRoute();
 const toast = useToast();
 const selectedCategory = ref("");
 const searchQuery = ref("");
-const sortOption = ref("price_asc"); // Sorting options: price_asc, price_desc, name_asc
+const sortOption = ref("price_asc");
 
 const filteredProducts = computed(() => {
   let products = [...productStore.products];
@@ -99,7 +99,7 @@ const addToCart = (product) => {
     <div v-else class="product-grid">
       <div v-for="product in filteredProducts" :key="product.id" class="product-card">
         <router-link :to="'/product/' + product.id" class="product-link" :title="'Ver detalles de ' + product.name">
-          <img :src="product.image_url || '/static/default-product.jpg'" :alt="product.name" />
+          <img :src="product.image_url || '/media/default_product.jpg'" :alt="product.name" />
           <div class="product-info">
             <h3>{{ product.name }}</h3>
             <p>$ {{ product.price }}</p>

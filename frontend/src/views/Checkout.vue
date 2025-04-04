@@ -41,6 +41,10 @@ const isValid = computed(() => {
   return Object.keys(errors.value).length === 0 && cartStore.totalItems > 0;
 });
 
+const getDeliveryTime = (availability) => {
+  return availability === "available" ? "Entrega inmediata" : "Entrega en 5-7 días";
+};
+
 const submitOrder = async () => {
   if (!isValid.value) {
     toast.warning("Por favor, corrige los errores en el formulario.", {
@@ -51,14 +55,19 @@ const submitOrder = async () => {
   loading.value = true;
   try {
     const orderData = {
-      user: userData.value,
       items: cartStore.items.map(item => ({
-        product_id: item.id,
+        id: item.id,
         quantity: item.quantity,
-      })),
-      total_price: cartStore.totalPrice,
+        price: item.price,
+        availability: item.availability
+      }))
     };
-    await axios.post("/api/orders/create/", orderData);
+    await axios.post("/api/orders/create/", orderData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    });
     toast.success("¡Pedido realizado con éxito!", {
       icon: "✅",
       toastClassName: "custom-toast-success",
@@ -86,40 +95,44 @@ const submitOrder = async () => {
     <div v-if="cartStore.items.length === 0" class="empty-cart">
       <p>Tu carrito está vacío.</p>
       <router-link to="/catalog" class="btn" title="Explora nuestro catálogo de productos">
-        <font-awesome-icon icon="store" /> Explorar productos
+        <font-awesome-icon icon="store"/>
+        Explorar productos
       </router-link>
     </div>
     <div v-else class="checkout-content">
       <h2>📦 Productos en tu pedido</h2>
       <ul class="cart-items">
         <li v-for="item in cartStore.items" :key="item.id" class="cart-item">
-          <img :src="item.image_url || '/static/default-product.jpg'" :alt="item.name" />
+          <img :src="item.image || '/media/default_product.jpg'" :alt="item.name"/>
           <div class="item-info">
             <h3>{{ item.name }}</h3>
             <p>{{ item.quantity }} x $ {{ item.price }}</p>
+            <p class="delivery-time">{{ getDeliveryTime(item.availability) }}</p>
           </div>
         </li>
       </ul>
       <form @submit.prevent="submitOrder" class="checkout-form">
         <div v-for="(field, index) in ['name', 'email', 'address', 'phone']" :key="index" class="input-group">
           <label :title="`Introduce tu ${field === 'phone' ? 'teléfono' : field}`">
-            <font-awesome-icon :icon="[field === 'name' ? 'user' : field === 'email' ? 'envelope' : field === 'address' ? 'map-marker-alt' : 'phone']" />
-            {{ field === 'name' ? 'Nombre completo:' : field === 'email' ? 'Email:' : field === 'address' ? 'Dirección de envío:' : 'Teléfono:' }}
+            <font-awesome-icon
+                :icon="[field === 'name' ? 'user' : field === 'email' ? 'envelope' : field === 'address' ? 'map-marker-alt' : 'phone']"/>
+            {{
+              field === 'name' ? 'Nombre completo:' : field === 'email' ? 'Email:' : field === 'address' ? 'Dirección de envío:' : 'Teléfono:'
+            }}
           </label>
           <input
-            v-model="userData[field]"
-            :type="field === 'email' ? 'email' : 'text'"
-            :placeholder="`Ej: ${field === 'name' ? 'Juan Pérez' : field === 'email' ? 'juan@ejemplo.com' : field === 'address' ? 'Calle 123' : '+123456789'}`"
-            @input="errors[field] = null"
-            :class="{ 'error': errors[field] }"
+              v-model="userData[field]"
+              :type="field === 'email' ? 'email' : 'text'"
+              :placeholder="`Ej: ${field === 'name' ? 'Juan Pérez' : field === 'email' ? 'juan@ejemplo.com' : field === 'address' ? 'Calle 123' : '+123456789'}`"
+              @input="errors[field] = null"
+              :class="{ 'error': errors[field] }"
           />
-          <transition name="fade">
-            <span v-if="errors[field]" class="error-text">{{ errors[field] }}</span>
-          </transition>
+          <span v-if="errors[field]" class="error-text">{{ errors[field] }}</span>
         </div>
         <div class="input-group">
           <label title="Selecciona tu método de pago">
-            <font-awesome-icon icon="credit-card" /> Método de pago:
+            <font-awesome-icon icon="credit-card"/>
+            Método de pago:
           </label>
           <select v-model="userData.paymentMethod">
             <option value="card">💳 Tarjeta</option>
@@ -129,14 +142,14 @@ const submitOrder = async () => {
         </div>
         <h3>Total: $ {{ totalPrice }}</h3>
         <button
-          type="submit"
-          :disabled="loading || !isValid"
-          class="submit-btn"
-          :class="{ 'loading': loading }"
-          title="Confirma tu pedido"
+            type="submit"
+            :disabled="loading || !isValid"
+            class="submit-btn"
+            :class="{ 'loading': loading }"
+            title="Confirma tu pedido"
         >
-          <font-awesome-icon v-if="loading" icon="spinner" spin />
-          <font-awesome-icon v-else icon="check" />
+          <font-awesome-icon v-if="loading" icon="spinner" spin/>
+          <font-awesome-icon v-else icon="check"/>
           {{ loading ? "Procesando..." : "Confirmar Pedido" }}
         </button>
       </form>
@@ -214,6 +227,11 @@ img {
 .item-info p {
   margin: 0;
   color: var(--color-text);
+}
+
+.delivery-time {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .checkout-form {
@@ -338,16 +356,6 @@ input::placeholder {
   transform: translateY(-2px);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
 @keyframes ripple {
   0% {
     width: 0;
@@ -361,30 +369,5 @@ input::placeholder {
     width: 0;
     height: 0;
   }
-}
-
-/* Кастомизация тостов */
-:deep(.custom-toast-success) {
-  background-color: var(--color-primary);
-  color: var(--color-neutral);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-family: 'Candara', sans-serif;
-}
-
-:deep(.custom-toast-error) {
-  background-color: #D9534F;
-  color: var(--color-neutral);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-family: 'Candara', sans-serif;
-}
-
-:deep(.custom-toast-warning) {
-  background-color: #F0AD4E;
-  color: var(--color-neutral);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-family: 'Candara', sans-serif;
 }
 </style>
