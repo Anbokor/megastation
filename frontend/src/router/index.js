@@ -7,6 +7,7 @@ import Checkout from "@/views/Checkout.vue";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import Orders from "@/views/Orders.vue";
+import StaffOrders from "@/views/StaffOrders.vue";
 
 const routes = [
   { path: "/", component: Home },
@@ -17,6 +18,7 @@ const routes = [
   { path: "/login", component: Login },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/orders", name: "Orders", component: Orders },
+  { path: "/staff-orders", name: "StaffOrders", component: StaffOrders },
 ];
 
 const router = createRouter({

@@ -7,7 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import get_object_or_404
 from .models import CustomUser
 from .serializers import UserSerializer, UserRegisterSerializer
-from .permissions import IsAdmin
+from .permissions import IsAdmin, IsSuperuser, IsStoreAdmin
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework import mixins
 import logging
@@ -18,8 +18,8 @@ logger = logging.getLogger(__name__)
 
 class UserListView(mixins.ListModelMixin, generics.GenericAPIView):
     """
-    ✅ Администратор видит всех пользователей.
-    ✅ Обычные пользователи видят только свой профиль.
+    Admins see all users.
+    Regular users see only their own profile.
     """
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -40,7 +40,7 @@ class UserListView(mixins.ListModelMixin, generics.GenericAPIView):
 
 class UserRegisterView(generics.CreateAPIView):
     """
-    ✅ Allows users to register with username, password, and email as customers only.
+    Allows users to register with username, password, and email as customers only.
     Returns an access token for immediate login.
     """
     serializer_class = UserRegisterSerializer
@@ -50,7 +50,7 @@ class UserRegisterView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         """
-        ✅ Создаём нового пользователя с активным статусом и ролью customer.
+        Create a new user with active status and customer role.
         """
         user = serializer.save()
         user.is_active = True
@@ -68,9 +68,9 @@ class UserRegisterView(generics.CreateAPIView):
 
 class UserDetailView(APIView):
     """
-    ✅ API для просмотра и редактирования пользователей.
-    - Администраторы могут видеть и редактировать любые профили.
-    - Обычные пользователи могут редактировать только свой профиль.
+    API for viewing and editing users.
+    - Admins can view/edit any profile.
+    - Regular users can edit only their own profile.
     """
     permission_classes = [permissions.IsAuthenticated]
     throttle_classes = [ScopedRateThrottle]
@@ -95,7 +95,7 @@ class UserDetailView(APIView):
 
     def delete(self, request, pk):
         """
-        ✅ Только администраторы могут удалять пользователей.
+        Only admins can delete users.
         """
         if not request.user.is_staff:
             return Response({"error": "No tienes permiso para eliminar este usuario."}, status=403)
@@ -105,7 +105,7 @@ class UserDetailView(APIView):
 
 class LogoutView(APIView):
     """
-    ✅ API для выхода (деактивации refresh-токена).
+    API for logging out (blacklisting refresh token).
     """
     permission_classes = [IsAuthenticated]
 
@@ -122,7 +122,7 @@ class LogoutView(APIView):
 
 class LoginView(TokenObtainPairView):
     """
-    ✅ API для входа с логированием.
+    API for logging in with logging.
     """
     throttle_classes = [ScopedRateThrottle]
     throttle_scope = "login_attempt"
@@ -137,10 +137,24 @@ class LoginView(TokenObtainPairView):
 
 class UserMeView(APIView):
     """
-    ✅ API для получения данных текущего пользователя.
+    API for retrieving current user's data.
     """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+
+class CustomerListView(generics.ListAPIView):
+    """
+    API to list all customers (role: 'customer').
+    Accessible to superuser, admin, and store_admin.
+    """
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated, (IsSuperuser | IsAdmin | IsStoreAdmin)]
+
+    def get_queryset(self):
+        """
+        Return only users with 'customer' role.
+        """
+        return CustomUser.objects.filter(role=CustomUser.Role.CUSTOMER)

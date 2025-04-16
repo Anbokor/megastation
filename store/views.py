@@ -10,8 +10,8 @@ from rest_framework.throttling import ScopedRateThrottle
 
 class CategoryListView(generics.ListCreateAPIView):
     """
-    ✅ Любой пользователь может просматривать категории.
-    ✅ Только администраторы могут создавать категории.
+    Any user can view categories.
+    Only admins can create categories.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -22,12 +22,11 @@ class CategoryListView(generics.ListCreateAPIView):
         if self.request.method in permissions.SAFE_METHODS:
             return [permissions.AllowAny()]
         return [permissions.IsAdminUser()]
-
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
-    ✅ Любой пользователь может просматривать категории.
-    ✅ Только администраторы могут изменять категории.
+    Any user can view categories.
+    Only admins can edit categories.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -39,11 +38,10 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
             return [permissions.AllowAny()]
         return [permissions.IsAdminUser()]
 
-
 class ProductListView(generics.ListCreateAPIView):
     """
-    ✅ Любой пользователь может просматривать товары.
-    ✅ Только авторизованные продавцы или администраторы могут добавлять товары.
+    Any user can view products.
+    Only authenticated sellers or admins can add products.
     """
     serializer_class = ProductSerializer
     throttle_classes = [ScopedRateThrottle]
@@ -56,12 +54,11 @@ class ProductListView(generics.ListCreateAPIView):
         if self.request.method in permissions.SAFE_METHODS:
             return [permissions.AllowAny()]
         return [permissions.IsAuthenticated()]
-
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
-    ✅ Любой пользователь может просматривать товар.
-    ✅ Только продавцы или администраторы могут редактировать/удалять.
+    Any user can view a product.
+    Only sellers or admins can edit/delete.
     """
     serializer_class = ProductSerializer
     throttle_classes = [ScopedRateThrottle]
@@ -75,10 +72,9 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
             return [permissions.AllowAny()]
         return [permissions.IsAuthenticated()]
 
-
 class LowStockProductsView(generics.ListAPIView):
     """
-    ✅ Показывает товары с низким запасом (доступно только администраторам).
+    Shows products with low stock (admin only).
     """
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAdminUser]
@@ -98,10 +94,9 @@ class LowStockProductsView(generics.ListAPIView):
             return Response({"message": "No hay productos con stock bajo."})
         return super().list(request, *args, **kwargs)
 
-
 class StockMovementListView(generics.ListAPIView):
     """
-    ✅ Администраторы могут просматривать историю складских движений.
+    Admins can view stock movement history.
     """
     serializer_class = StockMovementSerializer
     permission_classes = [permissions.IsAdminUser]

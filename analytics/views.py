@@ -9,7 +9,7 @@ import logging
 from users.permissions import IsSuperuser, IsAdmin, IsStoreAdmin
 from orders.models import Order, OrderItem
 from store.models import Product
-from inventory.models import Stock, StockMovement
+from inventory.models import Stock, StockMovement, SalesPoint  # Added SalesPoint
 from purchases.models import Invoice
 
 logger = logging.getLogger(__name__)
@@ -23,6 +23,8 @@ class AnalyticsView(APIView):
             time_filter = request.query_params.get('time_filter', 'month')
             start_date_str = request.query_params.get('start_date')
             end_date_str = request.query_params.get('end_date')
+            sales_point_id = request.query_params.get('sales_point_id')  # Added filter by SalesPoint
+            customer_id = request.query_params.get('customer_id')  # Added filter by customer
 
             # Define time range
             now = timezone.now()
@@ -42,6 +44,14 @@ class AnalyticsView(APIView):
             order_filter = Q(created_at__gte=start_date, created_at__lte=end_date)
             invoice_filter = Q(created_at__gte=start_date, created_at__lte=end_date) & Q(status='procesada')
             stock_movement_filter = Q(created_at__gte=start_date, created_at__lte=end_date)
+
+            # Additional filters
+            if sales_point_id:
+                order_filter &= Q(items__product__stock_info__sales_point_id=sales_point_id)
+                invoice_filter &= Q(sales_point_id=sales_point_id)
+                stock_movement_filter &= Q(sales_point_id=sales_point_id)
+            if customer_id:
+                order_filter &= Q(user_id=customer_id)
 
             if user.role in ['superuser', 'admin']:
                 # Full statistics for superuser and admin
@@ -85,6 +95,20 @@ class AnalyticsView(APIView):
                 ).annotate(
                     total_purchased=Sum('items__quantity')
                 ).order_by('-total_purchased')[:5]
+                # Added: Sales by SalesPoint
+                sales_by_salespoint = Order.objects.filter(order_filter).values(
+                    'items__product__stock_info__sales_point__name'
+                ).annotate(
+                    total_orders=Count('id', distinct=True),
+                    total_revenue=Sum('total_price')
+                ).order_by('-total_revenue')
+                # Added: Sales by Customer
+                sales_by_customer = Order.objects.filter(order_filter).values(
+                    'user__username'
+                ).annotate(
+                    total_orders=Count('id'),
+                    total_revenue=Sum('total_price')
+                ).order_by('-total_revenue')[:5]
             elif user.role == 'store_admin' and user.sales_point:
                 # Statistics for store_admin limited to their sales point
                 product_stats = Stock.objects.filter(sales_point=user.sales_point).aggregate(
@@ -130,6 +154,22 @@ class AnalyticsView(APIView):
                 ).values('items__product__name').annotate(
                     total_purchased=Sum('items__quantity')
                 ).order_by('-total_purchased')[:5]
+                # Added: Sales by SalesPoint (only for the user's SalesPoint)
+                sales_by_salespoint = Order.objects.filter(
+                    order_filter,
+                    items__product__stock_info__sales_point=user.sales_point
+                ).values('items__product__stock_info__sales_point__name').annotate(
+                    total_orders=Count('id', distinct=True),
+                    total_revenue=Sum('total_price')
+                ).order_by('-total_revenue')
+                # Added: Sales by Customer (filtered by SalesPoint)
+                sales_by_customer = Order.objects.filter(
+                    order_filter,
+                    items__product__stock_info__sales_point=user.sales_point
+                ).values('user__username').annotate(
+                    total_orders=Count('id', distinct=True),
+                    total_revenue=Sum('total_price')
+                ).order_by('-total_revenue')[:5]
             else:
                 return Response({'error': 'Permiso denegado'}, status=403)
 
@@ -144,7 +184,9 @@ class AnalyticsView(APIView):
                     'total_orders': order_stats['total_orders'] or 0,
                     'total_revenue': float(order_stats['total_revenue'] or 0),
                     'daily_sales': list(daily_sales),
-                    'top_sold_products': list(top_sold_products)
+                    'top_sold_products': list(top_sold_products),
+                    'sales_by_salespoint': list(sales_by_salespoint),  # Added
+                    'sales_by_customer': list(sales_by_customer),  # Added
                 },
                 'purchase_statistics': {
                     'total_purchases': purchase_stats['total_purchases'] or 0,

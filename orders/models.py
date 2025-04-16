@@ -1,9 +1,12 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from users.models import CustomUser
 from store.models import Product
-from inventory.models import Stock
+from inventory.models import Stock, SalesPoint
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
+from .tasks import send_order_notification_emails  # Added import for Celery task
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -25,7 +28,7 @@ class Order(models.Model):
         """Update order status with stock reservation logic"""
         if self.status == "pendiente" and new_status == "en_proceso":
             for item in self.items.all():
-                if item.delivery_time == "Entrega inmediata":  # Only reserve available items
+                if item.delivery_time == "Entrega inmediata":
                     stock = Stock.objects.get(product=item.product)
                     if stock.reserved_quantity < item.quantity:
                         raise ValidationError(f"Error en stock de {item.product.name}.")
@@ -89,3 +92,20 @@ class OrderItem(models.Model):
     class Meta:
         verbose_name = "Artículo en la orden"
         verbose_name_plural = "Artículos en la orden"
+
+@receiver(post_save, sender=Order)
+def notify_staff_on_order_creation(sender, instance, created, **kwargs):
+    """Queue email notifications to staff when an order is created"""
+    if created:
+        sales_points = SalesPoint.objects.filter(
+            stock__product__in=instance.items.values_list('product', flat=True)
+        ).distinct()
+        for sales_point in sales_points:
+            staff_emails = list(sales_point.administrators.values_list('email', flat=True)) + \
+                           list(sales_point.sellers.values_list('email', flat=True))
+            if staff_emails:
+                send_order_notification_emails.delay(
+                    order_id=instance.id,
+                    sales_point_id=sales_point.id,
+                    staff_emails=staff_emails,
+                )

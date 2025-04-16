@@ -1,17 +1,16 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Stock, SalesPoint, StockMovement
-
+from store.models import Product  # Correct import for Product
 
 class SalesPointSerializer(serializers.ModelSerializer):
-    """✅ Сериализатор точки продаж"""
-
+    """Serializer for SalesPoints"""
     class Meta:
         model = SalesPoint
         fields = ["id", "name"]
 
-
 class StockSerializer(serializers.ModelSerializer):
-    """✅ Сериализатор склада"""
+    """Serializer for Stock"""
     product_name = serializers.ReadOnlyField(source="product.name")
     category_name = serializers.ReadOnlyField(source="product.category.name")
     is_low_stock = serializers.SerializerMethodField()
@@ -21,25 +20,22 @@ class StockSerializer(serializers.ModelSerializer):
         fields = ["product", "product_name", "category_name", "quantity", "low_stock_threshold", "is_low_stock"]
 
     def get_is_low_stock(self, obj):
+        """Check if stock is below the threshold"""
         return obj.quantity < obj.low_stock_threshold
 
-
 class StockMovementSerializer(serializers.ModelSerializer):
-    """✅ Сериализатор движений товара на складе"""
+    """Serializer for stock movements"""
     product_name = serializers.ReadOnlyField(source="product.name")
     category_name = serializers.ReadOnlyField(source="product.category.name")
 
-    class Meta:
-        model = StockMovement
-        fields = ["id", "product", "product_name", "category_name", "sales_point", "change", "created_at", "reason"]
-
     def validate_change(self, value):
+        """Ensure stock change is not zero"""
         if value == 0:
             raise serializers.ValidationError("El cambio en stock no puede ser cero.")
         return value
 
     def validate(self, data):
-        """✅ Проверяем, что изменение `change` не сделает `Stock.quantity` отрицательным."""
+        """Validate that stock change doesn't result in negative quantity"""
         product = data.get("product")
         sales_point = data.get("sales_point")
 
@@ -52,3 +48,7 @@ class StockMovementSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"change": "El stock no puede ser negativo."})
 
         return data
+
+    class Meta:
+        model = StockMovement
+        fields = ["id", "product", "product_name", "category_name", "sales_point", "change", "created_at", "reason"]

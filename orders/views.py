@@ -2,9 +2,11 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 from store.models import Product
+from users.models import CustomUser
 from users.permissions import CanAdvanceOrderStatus
-from inventory.models import Stock, StockMovement
+from inventory.models import Stock, StockMovement, SalesPoint
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from .utils import send_order_status_email
@@ -84,7 +86,7 @@ class OrderCreateView(generics.CreateAPIView):
                     product=item.product,
                     sales_point=stock.sales_point,
                     change=-item.quantity,
-                    reason=f"Reserva para pedido {order.id}"
+                    reason=f"Order reservation {order.id}"
                 ))
 
         if updated_stocks:
@@ -119,7 +121,7 @@ class CancelOrderView(APIView):
                     product=item.product,
                     sales_point=stock.sales_point,
                     change=item.quantity,
-                    reason=f"Cancelación de pedido {order.id}"
+                    reason=f"Order cancellation {order.id}"
                 ))
 
         if updated_stocks:
@@ -130,3 +132,24 @@ class CancelOrderView(APIView):
         order.save()
 
         return Response({"message": "Pedido cancelado con éxito."}, status=status.HTTP_200_OK)
+
+class StaffOrderListView(generics.ListAPIView):
+    """API to list orders for staff by SalesPoint"""
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        # If user is superuser, return all orders
+        if user.role == CustomUser.Role.SUPERUSER:
+            return Order.objects.all()
+        # Get SalesPoints where the user is an administrator or seller
+        sales_points = SalesPoint.objects.filter(
+            Q(administrators=user) | Q(sellers=user)
+        )
+        if not sales_points.exists():
+            return Order.objects.none()  # Return empty queryset if user is not tied to any SalesPoint
+        # Filter orders where items are linked to these SalesPoints via Stock
+        return Order.objects.filter(
+            items__product__stock_info__sales_point__in=sales_points
+        ).distinct()

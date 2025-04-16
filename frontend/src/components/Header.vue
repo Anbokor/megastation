@@ -4,6 +4,12 @@ import { useCartStore } from "@/store/cart";
 import { useUserStore } from "@/store/user";
 import { ref, onMounted } from "vue";
 import { useToast } from "vue-toastification";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie } from "@fortawesome/free-solid-svg-icons"; // Added faList, faChartPie
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+library.add(faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie); // Added faList, faChartPie
 
 const router = useRouter();
 const cartStore = useCartStore();
@@ -11,6 +17,7 @@ const userStore = useUserStore();
 const searchQuery = ref("");
 const isMobileMenuOpen = ref(false);
 const toast = useToast();
+const isStaff = ref(false);
 
 const searchProducts = () => {
   router.push({ path: "/catalog", query: { search: searchQuery.value } });
@@ -36,6 +43,24 @@ onMounted(async () => {
   if (userStore.isAuthenticated && !userStore.getUser) {
     await userStore.fetchUser();
   }
+  // Check if the user is a staff member or superuser
+  if (userStore.isAuthenticated) {
+    if (userStore.getUser?.role === 'superuser') {
+      isStaff.value = true;  // Superuser has access to all orders
+    } else {
+      try {
+        const response = await axios.get("/api/orders/staff/", {
+          headers: { Authorization: `Bearer ${userStore.token}` }
+        });
+        isStaff.value = response.data.length > 0;  // Staff if they have orders in their SalesPoint
+      } catch (error) {
+        isStaff.value = false;
+        toast.error("Error al verificar permisos de personal.", {
+          toastClassName: "custom-toast-error",
+        });
+      }
+    }
+  }
 });
 </script>
 
@@ -56,7 +81,10 @@ onMounted(async () => {
         <router-link to="/catalog"><font-awesome-icon icon="list" /> Catálogo</router-link>
         <router-link to="/cart"><font-awesome-icon icon="shopping-cart" /> Carrito ({{ cartStore.totalItems }})</router-link>
         <router-link v-if="userStore.isAuthenticated && ['superuser', 'admin', 'store_admin'].includes(userStore.getUser?.role)" to="/dashboard">
-          <font-awesome-icon :icon="['fas', 'chart-pie']" /> Dashboard
+          <font-awesome-icon icon="chart-pie" /> Dashboard
+        </router-link>
+        <router-link v-if="userStore.isAuthenticated && isStaff" to="/staff-orders">
+          <font-awesome-icon icon="list" /> Pedidos del Personal
         </router-link>
         <router-link v-if="!userStore.isAuthenticated" to="/login"><font-awesome-icon icon="sign-in-alt" /> Iniciar Sesión</router-link>
         <button v-else @click="logout"><font-awesome-icon icon="sign-out-alt" /> Salir</button>

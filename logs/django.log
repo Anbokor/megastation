@@ -3660,3 +3660,21 @@ WARNING 2025-04-02 20:17:37,521 log Unauthorized: /api/users/me/
 WARNING 2025-04-02 20:17:37,582 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
 WARNING 2025-04-03 17:31:24,394 log Not Found: /favicon.ico
 WARNING 2025-04-03 17:31:24,397 basehttp "GET /favicon.ico HTTP/1.1" 404 3840
+WARNING 2025-04-03 21:32:14,217 log Unauthorized: /api/users/me/
+WARNING 2025-04-03 21:32:14,218 log Unauthorized: /api/orders/staff/
+WARNING 2025-04-03 21:32:14,219 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-04-03 21:32:14,220 basehttp "GET /api/orders/staff/ HTTP/1.1" 401 183
+WARNING 2025-04-03 21:41:07,124 log Unauthorized: /api/users/login/
+WARNING 2025-04-03 21:41:07,126 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-04-15 20:20:22,534 log Not Found: /api/store/sales-points/
+WARNING 2025-04-15 20:20:22,536 basehttp "GET /api/store/sales-points/ HTTP/1.1" 404 5789
+WARNING 2025-04-15 21:16:02,179 log Unauthorized: /api/inventory/sales-points/
+WARNING 2025-04-15 21:16:02,180 basehttp "GET /api/inventory/sales-points/ HTTP/1.1" 401 183
+WARNING 2025-04-15 21:16:06,473 log Unauthorized: /api/users/me/
+WARNING 2025-04-15 21:16:06,475 basehttp "GET /api/users/me/ HTTP/1.1" 401 183
+WARNING 2025-04-15 21:16:06,480 log Unauthorized: /api/inventory/sales-points/
+WARNING 2025-04-15 21:16:06,481 basehttp "GET /api/inventory/sales-points/ HTTP/1.1" 401 183
+WARNING 2025-04-15 21:16:16,483 log Unauthorized: /api/users/login/
+WARNING 2025-04-15 21:16:16,484 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-04-15 21:21:22,754 log Not Found: /favicon.ico
+WARNING 2025-04-15 21:21:22,756 basehttp "GET /favicon.ico HTTP/1.1" 404 3840
