@@ -3678,3 +3678,9 @@ WARNING 2025-04-15 21:16:16,483 log Unauthorized: /api/users/login/
 WARNING 2025-04-15 21:16:16,484 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
 WARNING 2025-04-15 21:21:22,754 log Not Found: /favicon.ico
 WARNING 2025-04-15 21:21:22,756 basehttp "GET /favicon.ico HTTP/1.1" 404 3840
+WARNING 2025-04-15 21:54:21,046 log Unauthorized: /api/users/me/
+WARNING 2025-04-15 21:54:21,047 basehttp "GET /api/users/me/ HTTP/1.1" 401 172
+WARNING 2025-04-15 21:54:41,158 log Unauthorized: /api/users/login/
+WARNING 2025-04-15 21:54:41,158 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
+WARNING 2025-04-15 21:54:43,599 log Unauthorized: /api/users/login/
+WARNING 2025-04-15 21:54:43,600 basehttp "POST /api/users/login/ HTTP/1.1" 401 63
