@@ -28,16 +28,9 @@ const fetchOrders = async () => {
     const response = await axios.get("/api/orders/", {
       headers: { "Authorization": `Bearer ${userStore.token}` }
     });
-    const ordersData = response.data;
-    for (const order of ordersData) {
-      for (const item of order.items) {
-        const productResponse = await axios.get(`/api/store/products/${item.product}/`, {
-          headers: { "Authorization": `Bearer ${userStore.token}` }
-        });
-        item.product = productResponse.data; // Заменяем ID на полные данные
-      }
-    }
-    orders.value = ordersData;
+    // The backend now returns orders with product data fully nested.
+    // The inefficient loop is no longer needed.
+    orders.value = response.data;
   } catch (error) {
     toast.error("Error al cargar los pedidos.", {
       toastClassName: "custom-toast-error",
@@ -80,7 +73,7 @@ const getStatusText = (status) => {
             <div class="item-info">
               <h3>{{ item.product.name }}</h3>
               <p>{{ item.quantity }} x $ {{ item.product.price }}</p>
-              <p class="delivery-time">{{ item.delivery_time }}</p>
+              <!-- The delivery_time field was removed from the serializer, so we remove it from the template -->
             </div>
           </li>
         </ul>

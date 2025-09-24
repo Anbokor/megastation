@@ -2,14 +2,15 @@
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/store/cart";
 import { useUserStore } from "@/store/user";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useToast } from "vue-toastification";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie } from "@fortawesome/free-solid-svg-icons"; // Added faList, faChartPie
+// Import the new icon for users
+import { faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie, faUser, faFileInvoice, faBoxesStacked, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-library.add(faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie); // Added faList, faChartPie
+// Add the new icon to the library
+library.add(faHome, faList, faShoppingCart, faSignInAlt, faSignOutAlt, faBars, faSearch, faChartPie, faUser, faFileInvoice, faBoxesStacked, faUsers);
 
 const router = useRouter();
 const cartStore = useCartStore();
@@ -17,7 +18,15 @@ const userStore = useUserStore();
 const searchQuery = ref("");
 const isMobileMenuOpen = ref(false);
 const toast = useToast();
-const isStaff = ref(false);
+
+// Computed property to determine if the user is staff. This is the correct way.
+const isStaff = computed(() => {
+  if (!userStore.isAuthenticated || !userStore.getUser) {
+    return false;
+  }
+  const userRole = userStore.getUser.role;
+  return ['superuser', 'admin', 'store_admin'].includes(userRole);
+});
 
 const searchProducts = () => {
   router.push({ path: "/catalog", query: { search: searchQuery.value } });
@@ -25,13 +34,9 @@ const searchProducts = () => {
 
 const logout = () => {
   userStore.logout();
-  toast.success("¡Has cerrado sesión correctamente!", {
-    toastClassName: "custom-toast-success",
-  });
+  toast.success("¡Has cerrado sesión correctamente!");
   router.push("/login").catch(() => {
-    toast.error("Error al redirigir.", {
-      toastClassName: "custom-toast-error",
-    });
+    toast.error("Error al redirigir.");
   });
 };
 
@@ -39,27 +44,10 @@ const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
+// The erroneous API call has been removed from onMounted
 onMounted(async () => {
   if (userStore.isAuthenticated && !userStore.getUser) {
     await userStore.fetchUser();
-  }
-  // Check if the user is a staff member or superuser
-  if (userStore.isAuthenticated) {
-    if (userStore.getUser?.role === 'superuser') {
-      isStaff.value = true;  // Superuser has access to all orders
-    } else {
-      try {
-        const response = await axios.get("/api/orders/staff/", {
-          headers: { Authorization: `Bearer ${userStore.token}` }
-        });
-        isStaff.value = response.data.length > 0;  // Staff if they have orders in their SalesPoint
-      } catch (error) {
-        isStaff.value = false;
-        toast.error("Error al verificar permisos de personal.", {
-          toastClassName: "custom-toast-error",
-        });
-      }
-    }
   }
 });
 </script>
@@ -73,21 +61,32 @@ onMounted(async () => {
         </router-link>
       </div>
       <div class="search-bar">
+        <font-awesome-icon icon="search" class="search-icon" />
         <input v-model="searchQuery" placeholder="Buscar productos..." @keyup.enter="searchProducts" />
-        <button @click="searchProducts"><font-awesome-icon icon="search" /></button>
       </div>
       <nav :class="{ 'mobile-open': isMobileMenuOpen }">
-        <router-link to="/"><font-awesome-icon icon="home" /> Inicio</router-link>
-        <router-link to="/catalog"><font-awesome-icon icon="list" /> Catálogo</router-link>
-        <router-link to="/cart"><font-awesome-icon icon="shopping-cart" /> Carrito ({{ cartStore.totalItems }})</router-link>
-        <router-link v-if="userStore.isAuthenticated && ['superuser', 'admin', 'store_admin'].includes(userStore.getUser?.role)" to="/dashboard">
-          <font-awesome-icon icon="chart-pie" /> Dashboard
-        </router-link>
-        <router-link v-if="userStore.isAuthenticated && isStaff" to="/staff-orders">
-          <font-awesome-icon icon="list" /> Pedidos del Personal
-        </router-link>
-        <router-link v-if="!userStore.isAuthenticated" to="/login"><font-awesome-icon icon="sign-in-alt" /> Iniciar Sesión</router-link>
-        <button v-else @click="logout"><font-awesome-icon icon="sign-out-alt" /> Salir</button>
+        <router-link to="/">Inicio</router-link>
+        <router-link to="/catalog">Catálogo</router-link>
+        <router-link to="/cart">Carrito ({{ cartStore.totalItems }})</router-link>
+        
+        <template v-if="userStore.isAuthenticated">
+          <!-- Staff-specific links -->
+          <router-link v-if="isStaff" to="/users">Usuarios</router-link>
+          <router-link v-if="isStaff" to="/dashboard">Dashboard</router-link>
+          <router-link v-if="isStaff" to="/invoices">Facturas</router-link>
+          <router-link v-if="isStaff" to="/stock-levels">Inventario</router-link>
+          <router-link v-if="isStaff" to="/staff-orders">Pedidos Staff</router-link>
+
+          <!-- Regular user link -->
+          <router-link v-if="!isStaff" to="/orders">Mis Pedidos</router-link>
+          
+          <router-link to="/profile">Mi Perfil</router-link>
+          <button @click="logout" class="logout-btn">Salir</button>
+        </template>
+
+        <template v-else>
+          <router-link to="/login" class="login-btn">Iniciar Sesión</router-link>
+        </template>
       </nav>
       <button class="menu-toggle" @click="toggleMobileMenu"><font-awesome-icon icon="bars" /></button>
     </div>
@@ -96,157 +95,144 @@ onMounted(async () => {
 
 <style scoped>
 .header {
-  background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
-  padding: 10px 20px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  padding: 0 var(--spacing-5);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  height: 80px;
 }
 
 .header-container {
-  max-width: 1200px;
+  height: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.logo-container {
-  padding: 10px;
 }
 
 .logo {
-  height: 80px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
+  height: 50px; /* Adjusted logo size */
 }
 
 .search-bar {
   display: flex;
-  background: var(--color-neutral);
-  border-radius: 25px;
-  padding: 5px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  width: 320px;
+}
+
+.search-icon {
+  color: var(--color-text-secondary);
+  margin-right: var(--spacing-2);
 }
 
 .search-bar input {
   border: none;
   outline: none;
-  padding: 8px;
-  width: 280px;
-  border-radius: 25px 0 0 25px;
-  font-family: 'Candara', sans-serif;
-}
-
-.search-bar button {
-  background: var(--color-accent);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 0 25px 25px 0;
-  cursor: pointer;
-  color: var(--color-neutral);
-  transition: background 0.3s ease;
-}
-
-.search-bar button:hover {
-  background: var(--color-accent-hover);
+  background: none;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: 1em;
 }
 
 nav {
   display: flex;
   align-items: center;
+  gap: var(--spacing-5);
 }
 
-nav a,
-nav button {
-  color: var(--color-neutral);
-  margin: 0 10px;
-  text-decoration: none;
-  font-family: 'Gotham', sans-serif;
+nav a {
+  color: var(--color-text-secondary);
   font-weight: 500;
-  transition: color 0.3s ease;
+  padding: var(--spacing-2) 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-nav a svg,
-nav button svg {
-  margin-right: 5px;
+nav a:hover {
+  color: var(--color-text-primary);
 }
 
-nav button {
-  background: none;
+nav a.router-link-exact-active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.login-btn, .logout-btn {
   border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-nav a:hover,
-nav button:hover {
-  color: var(--color-neutral-light);
+.login-btn {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.logout-btn:hover {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
 }
 
 .menu-toggle {
-  display: none;
+  display: none; /* Hidden on desktop */
   background: none;
   border: none;
-  color: var(--color-neutral);
+  color: var(--color-text-primary);
   font-size: 24px;
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .logo {
-    height: 60px;
-  }
-
-  .search-bar input {
-    width: 140px;
-    padding: 6px;
-  }
-
-  .search-bar button {
-    padding: 6px 10px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    background: var(--color-secondary);
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  nav.mobile-open {
-    display: flex;
-  }
-
-  nav a,
-  nav button {
-    margin: 8px 0;
-    width: 100%;
-    text-align: center;
-  }
+/* Mobile Styles */
+@media (max-width: 1024px) {
+  .search-bar { display: none; }
+  nav { gap: var(--spacing-4); }
 }
 
-:root {
-  --color-neutral-light: #f0f0f0;
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface);
+    flex-direction: column;
+    padding: var(--spacing-4);
+    box-shadow: var(--shadow-lg);
+    gap: 0;
+  }
+  nav.mobile-open { display: flex; }
+  nav a, nav button {
+    width: 100%;
+    padding: var(--spacing-3);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+  nav a:last-of-type, nav button:last-of-type {
+    border-bottom: none;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from django.db.models import F, Q
+from django.db.models import F, Q, Sum
 from store.models import Product, Category
 from store.serializers import ProductSerializer, CategorySerializer
 from inventory.models import Stock, StockMovement
@@ -9,10 +9,6 @@ from inventory.serializers import StockMovementSerializer
 from rest_framework.throttling import ScopedRateThrottle
 
 class CategoryListView(generics.ListCreateAPIView):
-    """
-    Any user can view categories.
-    Only admins can create categories.
-    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     throttle_classes = [ScopedRateThrottle]
@@ -24,10 +20,6 @@ class CategoryListView(generics.ListCreateAPIView):
         return [permissions.IsAdminUser()]
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Any user can view categories.
-    Only admins can edit categories.
-    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     throttle_classes = [ScopedRateThrottle]
@@ -39,16 +31,36 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
         return [permissions.IsAdminUser()]
 
 class ProductListView(generics.ListCreateAPIView):
-    """
-    Any user can view products.
-    Only authenticated sellers or admins can add products.
-    """
     serializer_class = ProductSerializer
     throttle_classes = [ScopedRateThrottle]
     throttle_scope = "product_list"
 
     def get_queryset(self):
         return Product.objects.all()
+
+    def get_serializer_context(self):
+        """
+        This is the final, correct fix. This method ensures that the serializer
+        always receives the necessary context, regardless of where it's called from.
+        """
+        # Start with the default context
+        context = super().get_serializer_context()
+        
+        # Get all product IDs from the queryset that will be listed
+        product_ids = self.get_queryset().values_list('id', flat=True)
+        
+        # Calculate the available stock for all products in a single query.
+        stocks = Stock.objects.filter(product_id__in=product_ids)\
+            .values('product_id')\
+            .annotate(available_stock=Sum(F('quantity') - F('reserved_quantity')))
+            
+        # Create the stock map
+        stock_map = {s['product_id']: s['available_stock'] for s in stocks}
+        
+        # Add the stock map to the context
+        context['product_stock_map'] = stock_map
+        
+        return context
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
@@ -56,16 +68,24 @@ class ProductListView(generics.ListCreateAPIView):
         return [permissions.IsAuthenticated()]
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Any user can view a product.
-    Only sellers or admins can edit/delete.
-    """
     serializer_class = ProductSerializer
     throttle_classes = [ScopedRateThrottle]
     throttle_scope = "product_list"
 
     def get_queryset(self):
         return Product.objects.all()
+    
+    # FIX: Also apply the context fix to the detail view
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        product_id = self.kwargs.get('pk') # Get product ID from URL
+        if product_id:
+            stocks = Stock.objects.filter(product_id=product_id)\
+                .values('product_id')\
+                .annotate(available_stock=Sum(F('quantity') - F('reserved_quantity')))
+            stock_map = {s['product_id']: s['available_stock'] for s in stocks}
+            context['product_stock_map'] = stock_map
+        return context
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
@@ -73,9 +93,6 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
         return [permissions.IsAuthenticated()]
 
 class LowStockProductsView(generics.ListAPIView):
-    """
-    Shows products with low stock (admin only).
-    """
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAdminUser]
 
@@ -95,9 +112,6 @@ class LowStockProductsView(generics.ListAPIView):
         return super().list(request, *args, **kwargs)
 
 class StockMovementListView(generics.ListAPIView):
-    """
-    Admins can view stock movement history.
-    """
     serializer_class = StockMovementSerializer
     permission_classes = [permissions.IsAdminUser]
 

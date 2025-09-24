@@ -5,6 +5,7 @@ from .models import Invoice, InvoiceItem, InvoiceReturn
 from store.models import Product
 from inventory.models import SalesPoint, Stock
 from inventory.serializers import SalesPointSerializer
+from users.serializers import SimpleUserSerializer # Import SimpleUserSerializer
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,10 +33,13 @@ class InvoiceSerializer(serializers.ModelSerializer):
     )
     items = InvoiceItemSerializer(many=True)
     total_cost = serializers.SerializerMethodField()
+    # FIX: Use a nested serializer for the user to provide an object with username
+    user = SimpleUserSerializer(read_only=True)
 
     class Meta:
         model = Invoice
-        fields = ["id", "invoice_number", "supplier", "sales_point", "sales_point_id", "status", "created_at", "total_cost", "items"]
+        # FIX: Add 'user' to the fields list
+        fields = ["id", "invoice_number", "supplier", "sales_point", "sales_point_id", "status", "created_at", "total_cost", "items", "user"]
 
     def get_total_cost(self, obj):
         return sum(item.quantity * item.cost_per_item for item in obj.items.all())

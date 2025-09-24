@@ -11,78 +11,70 @@ const userStore = useUserStore();
 const router = useRouter();
 const toast = useToast();
 const loading = ref(false);
-const userData = ref({
-  name: "",
-  email: "",
-  address: "",
-  phone: "",
-  paymentMethod: "card",
-});
+
+// True to simulate Mercado Pago flow without real redirection
+const isSimulation = true; 
+
+const userData = ref({ name: "", email: "", address: "", phone: "" });
+const paymentMethod = ref('card');
+const paymentData = ref({ cardNumber: "", expiryDate: "", cvc: "" });
 const errors = ref({});
 
 onMounted(() => {
   cartStore.loadCart();
   if (userStore.isAuthenticated && userStore.getUser) {
-    userData.value = { ...userStore.getUser, paymentMethod: "card" };
+    const { name, email, address, phone } = userStore.getUser;
+    userData.value = { name: name || '', email: email || '', address: address || '', phone: phone || '' };
   }
 });
 
 const totalPrice = computed(() => cartStore.totalPrice.toFixed(2));
-const isValid = computed(() => {
-  errors.value = {};
-  if (!userData.value.name.trim()) errors.value.name = "Nombre es obligatorio";
-  if (!userData.value.email || !/\S+@\S+\.\S+/.test(userData.value.email)) {
-    errors.value.email = "Email válido es obligatorio";
-  }
-  if (!userData.value.address.trim()) errors.value.address = "Dirección es obligatoria";
-  if (!userData.value.phone || !/^\+?\d{9,15}$/.test(userData.value.phone)) {
-    errors.value.phone = "Teléfono válido (9-15 цифр) es obligatorio";
-  }
-  return Object.keys(errors.value).length === 0 && cartStore.totalItems > 0;
-});
 
-const getDeliveryTime = (availability) => {
-  return availability === "available" ? "Entrega inmediata" : "Entrega en 5-7 días";
+const validateForm = () => {
+    errors.value = {};
+    if (!userData.value.name.trim()) errors.value.name = "Nombre es obligatorio";
+    if (!userData.value.email || !/\S+@\S+\.\S+/.test(userData.value.email)) errors.value.email = "Email válido es obligatorio";
+    if (paymentMethod.value === 'card') {
+        if (!paymentData.value.cardNumber.replace(/\s/g, '') || !/^\d{16}$/.test(paymentData.value.cardNumber.replace(/\s/g, ''))) errors.value.cardNumber = "Número de tarjeta inválido";
+        if (!paymentData.value.expiryDate || !/^\d{2}\s*\/\s*\d{2}$/.test(paymentData.value.expiryDate)) errors.value.expiryDate = "Fecha inválida (MM/AA)";
+        if (!paymentData.value.cvc || !/^\d{3,4}$/.test(paymentData.value.cvc)) errors.value.cvc = "CVC inválido";
+    }
+    return Object.keys(errors.value).length === 0 && cartStore.totalItems > 0;
 };
 
 const submitOrder = async () => {
-  if (!isValid.value) {
-    toast.warning("Por favor, corrige los errores en el formulario.", {
-      toastClassName: "custom-toast-warning",
-    });
+  if (!validateForm()) {
+    toast.warning("Por favor, corrige los errores en el formulario.");
     return;
   }
   loading.value = true;
   try {
-    const orderData = {
-      items: cartStore.items.map(item => ({
-        id: item.id,
-        quantity: item.quantity,
-        price: item.price,
-        availability: item.availability
-      }))
+    const orderPayload = {
+      items: cartStore.items.map(item => ({ id: item.id, quantity: item.quantity })),
+      payment_method: paymentMethod.value,
     };
-    await axios.post("/api/orders/create/", orderData, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
-      }
-    });
-    toast.success("¡Pedido realizado con éxito!", {
-      icon: "✅",
-      toastClassName: "custom-toast-success",
-    });
-    cartStore.clearCart();
-    router.push("/").catch(() => {
-      toast.error("Error al redirigir a la página principal.", {
-        toastClassName: "custom-toast-error",
-      });
-    });
+
+    if (paymentMethod.value === 'card') {
+      orderPayload.payment_token = `sim_token_${Date.now()}`;
+    }
+
+    const orderResponse = await axios.post("/api/orders/create/", orderPayload);
+    const order = orderResponse.data;
+
+    if (paymentMethod.value === 'mercado_pago' && !isSimulation) {
+      const paymentResponse = await axios.post('/api/orders/create-payment/', { order_id: order.id });
+      const { init_point } = paymentResponse.data;
+      window.location.href = init_point;
+    } else {
+      const successMessage = paymentMethod.value === 'mercado_pago' 
+        ? "¡Pedido (simulado) con Mercado Pago realizado con éxito!"
+        : "¡Pedido realizado con éxito!";
+      toast.success(successMessage);
+      cartStore.clearCart();
+      router.push("/orders");
+    }
   } catch (error) {
-    toast.error("Error al procesar el pedido. Intenta de nuevo.", {
-      icon: "❌",
-      toastClassName: "custom-toast-error",
-    });
+    toast.error(error.response?.data?.detail || "Error al procesar el pedido.");
   } finally {
     loading.value = false;
   }
@@ -90,284 +82,120 @@ const submitOrder = async () => {
 </script>
 
 <template>
-  <div class="checkout">
-    <h1>🛍 Finalizar Compra</h1>
-    <div v-if="cartStore.items.length === 0" class="empty-cart">
+  <div class="checkout-page">
+    <h1>Finalizar Compra</h1>
+    <div v-if="cartStore.items.length === 0" class="empty-cart card">
       <p>Tu carrito está vacío.</p>
-      <router-link to="/catalog" class="btn" title="Explora nuestro catálogo de productos">
-        <font-awesome-icon icon="store"/>
-        Explorar productos
-      </router-link>
+      <router-link to="/catalog" class="btn btn-primary">Explorar productos</router-link>
     </div>
-    <div v-else class="checkout-content">
-      <h2>📦 Productos en tu pedido</h2>
-      <ul class="cart-items">
-        <li v-for="item in cartStore.items" :key="item.id" class="cart-item">
-          <img :src="item.image || '/media/default_product.jpg'" :alt="item.name"/>
-          <div class="item-info">
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.quantity }} x $ {{ item.price }}</p>
-            <p class="delivery-time">{{ getDeliveryTime(item.availability) }}</p>
-          </div>
-        </li>
-      </ul>
-      <form @submit.prevent="submitOrder" class="checkout-form">
-        <div v-for="(field, index) in ['name', 'email', 'address', 'phone']" :key="index" class="input-group">
-          <label :title="`Introduce tu ${field === 'phone' ? 'teléfono' : field}`">
-            <font-awesome-icon
-                :icon="[field === 'name' ? 'user' : field === 'email' ? 'envelope' : field === 'address' ? 'map-marker-alt' : 'phone']"/>
-            {{
-              field === 'name' ? 'Nombre completo:' : field === 'email' ? 'Email:' : field === 'address' ? 'Dirección de envío:' : 'Teléfono:'
-            }}
-          </label>
-          <input
-              v-model="userData[field]"
-              :type="field === 'email' ? 'email' : 'text'"
-              :placeholder="`Ej: ${field === 'name' ? 'Juan Pérez' : field === 'email' ? 'juan@ejemplo.com' : field === 'address' ? 'Calle 123' : '+123456789'}`"
-              @input="errors[field] = null"
-              :class="{ 'error': errors[field] }"
-          />
-          <span v-if="errors[field]" class="error-text">{{ errors[field] }}</span>
+    <div v-else class="checkout-grid">
+      <div class="form-container card">
+        <form @submit.prevent="submitOrder">
+          <section>
+            <h3>Datos de Contacto y Envío</h3>
+            <div class="input-group">
+              <label>Nombre completo</label>
+              <input v-model="userData.name" type="text" :class="{ 'input-error': errors.name }"/>
+              <span v-if="errors.name" class="error-text">{{ errors.name }}</span>
+            </div>
+            <div class="input-group">
+              <label>Email</label>
+              <input v-model="userData.email" type="email" :class="{ 'input-error': errors.email }"/>
+              <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
+            </div>
+          </section>
+
+          <section>
+            <h3>Método de Pago</h3>
+            <div class="payment-options">
+                <label :class="{ active: paymentMethod === 'card' }"><input type="radio" v-model="paymentMethod" value="card" /> Tarjeta</label>
+                <label :class="{ active: paymentMethod === 'mercado_pago' }" class="mercado-pago-label"><input type="radio" v-model="paymentMethod" value="mercado_pago" /> Mercado Pago</label>
+                <label :class="{ active: paymentMethod === 'cash' }"><input type="radio" v-model="paymentMethod" value="cash" /> Efectivo</label>
+            </div>
+            <div v-if="paymentMethod === 'card'" class="card-details">
+                <div class="input-group">
+                    <label>Número de Tarjeta</label>
+                    <input v-model="paymentData.cardNumber" placeholder="0000 0000 0000 0000" :class="{ 'input-error': errors.cardNumber }"/>
+                    <span v-if="errors.cardNumber" class="error-text">{{ errors.cardNumber }}</span>
+                </div>
+                <div class="payment-row">
+                    <div class="input-group">
+                        <label>Vencimiento</label>
+                        <input v-model="paymentData.expiryDate" placeholder="MM/AA" :class="{ 'input-error': errors.expiryDate }"/>
+                        <span v-if="errors.expiryDate" class="error-text">{{ errors.expiryDate }}</span>
+                    </div>
+                    <div class="input-group">
+                        <label>CVC</label>
+                        <input v-model="paymentData.cvc" placeholder="123" :class="{ 'input-error': errors.cvc }"/>
+                        <span v-if="errors.cvc" class="error-text">{{ errors.cvc }}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-if="paymentMethod !== 'card'" class="payment-info">
+                <p v-if="paymentMethod === 'mercado_pago'">Serás redirigido a Mercado Pago para completar tu compra de forma segura.</p>
+                <p v-if="paymentMethod === 'cash'">Pagarás en efectivo al momento de la entrega.</p>
+            </div>
+          </section>
+
+          <button type="submit" :disabled="loading" class="btn btn-primary submit-btn">
+            {{ loading ? 'Procesando...' : (paymentMethod === 'mercado_pago' ? 'Pagar con Mercado Pago' : `Finalizar Pedido (ARS ${totalPrice})`) }}
+          </button>
+        </form>
+      </div>
+
+      <div class="summary-container card">
+        <h3>Resumen del Pedido</h3>
+        <ul class="cart-items">
+          <li v-for="item in cartStore.items" :key="item.id" class="cart-item">
+            <img :src="item.image || '/media/default_product.jpg'" :alt="item.name"/>
+            <div class="item-info">
+              <span>{{ item.name }} (x{{ item.quantity }})</span>
+              <strong>ARS {{ (item.price * item.quantity).toFixed(2) }}</strong>
+            </div>
+          </li>
+        </ul>
+        <div class="summary-total">
+          <strong>Total a Pagar:</strong>
+          <strong>ARS {{ totalPrice }}</strong>
         </div>
-        <div class="input-group">
-          <label title="Selecciona tu método de pago">
-            <font-awesome-icon icon="credit-card"/>
-            Método de pago:
-          </label>
-          <select v-model="userData.paymentMethod">
-            <option value="card">💳 Tarjeta</option>
-            <option value="paypal">💰 PayPal</option>
-            <option value="cash">💵 Efectivo</option>
-          </select>
-        </div>
-        <h3>Total: $ {{ totalPrice }}</h3>
-        <button
-            type="submit"
-            :disabled="loading || !isValid"
-            class="submit-btn"
-            :class="{ 'loading': loading }"
-            title="Confirma tu pedido"
-        >
-          <font-awesome-icon v-if="loading" icon="spinner" spin/>
-          <font-awesome-icon v-else icon="check"/>
-          {{ loading ? "Procesando..." : "Confirmar Pedido" }}
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.checkout {
-  max-width: 900px;
-  margin: 60px auto 20px;
-  padding: 30px;
-  background: var(--color-neutral);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
+.checkout-page { max-width: 1200px; margin: 100px auto 40px; padding: var(--spacing-5); }
+.checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--spacing-6); align-items: flex-start; }
+.card { background-color: var(--color-surface); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); padding: var(--spacing-6); }
 
-.checkout:hover {
-  transform: translateY(-2px);
-}
+form section { margin-bottom: var(--spacing-6); }
+form h3 { margin-top: 0; margin-bottom: var(--spacing-4); border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-2); }
+.input-group { margin-bottom: var(--spacing-4); }
+.input-group label { display: block; font-weight: 500; margin-bottom: var(--spacing-2); color: var(--color-text-primary); }
+.input-group input { width: 100%; padding: var(--spacing-3); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); font-size: 1em; }
+.input-group .input-error { border-color: #ef4444; }
+.error-text { color: #ef4444; font-size: 0.9em; margin-top: var(--spacing-1); }
+.payment-row { display: flex; gap: var(--spacing-4); }
 
-.checkout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(23, 190, 219, 0.1), transparent);
-  opacity: 0.3;
-  z-index: 0;
-}
+.payment-options { display: flex; flex-direction: column; gap: var(--spacing-3); margin-bottom: var(--spacing-5); }
+.payment-options label { font-family: 'Candara', sans-serif; display: flex; align-items: center; gap: var(--spacing-3); padding: var(--spacing-3); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); cursor: pointer; transition: all 0.2s ease; }
+.payment-options label.active { border-color: var(--color-primary); background-color: #f0f8ff; }
+.payment-options input[type="radio"] { accent-color: var(--color-primary); }
 
-.checkout-content {
-  position: relative;
-  z-index: 1;
-}
+.mercado-pago-label.active { border-color: #10A4C7; background-color: #e0f7fa; }
 
-.cart-items {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 30px;
-}
+.card-details { margin-top: var(--spacing-4); }
+.payment-info { background-color: var(--color-background); padding: var(--spacing-4); border-radius: var(--border-radius-md); margin-top: var(--spacing-4); }
 
-.cart-item {
-  display: flex;
-  gap: 20px;
-  padding: 15px 0;
-  border-bottom: 1px solid #ddd;
-  transition: transform 0.3s ease;
-}
+.summary-container h3 { margin-top: 0; }
+.cart-items { list-style: none; padding: 0; margin: 0; }
+.cart-item { display: flex; align-items: center; gap: var(--spacing-3); padding: var(--spacing-3) 0; border-bottom: 1px solid var(--color-border); }
+.cart-item:last-child { border-bottom: none; }
+.cart-item img { width: 50px; height: 50px; object-fit: cover; border-radius: var(--border-radius-sm); }
+.item-info { flex-grow: 1; display: flex; justify-content: space-between; }
 
-.cart-item:hover {
-  transform: translateY(-2px);
-}
+.summary-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2em; padding-top: var(--spacing-4); margin-top: var(--spacing-4); border-top: 1px solid var(--color-border); }
 
-img {
-  width: 100px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.item-info {
-  flex-grow: 1;
-}
-
-.item-info h3 {
-  margin: 0 0 5px;
-  font-size: 1.1rem;
-}
-
-.item-info p {
-  margin: 0;
-  color: var(--color-text);
-}
-
-.delivery-time {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.checkout-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.input-group {
-  text-align: left;
-}
-
-label {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 500;
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  cursor: help;
-}
-
-input,
-select {
-  padding: 12px;
-  border: 1px solid var(--color-text);
-  border-radius: 8px;
-  font-family: 'Candara', sans-serif;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  background: #f9f9f9;
-  width: 100%;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--color-primary);
-  outline: none;
-  box-shadow: 0 0 8px rgba(16, 164, 199, 0.3);
-}
-
-input.error {
-  border-color: #D9534F;
-  box-shadow: 0 0 8px rgba(217, 83, 79, 0.3);
-}
-
-input::placeholder {
-  color: #999;
-  opacity: 0.8;
-}
-
-.error-text {
-  color: #D9534F;
-  font-size: 0.9rem;
-  margin-top: 5px;
-}
-
-.submit-btn {
-  background: var(--color-primary);
-  color: var(--color-neutral);
-  padding: 15px 30px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.submit-btn:disabled {
-  background: #b0b0b0;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.submit-btn.loading::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 1.5s infinite;
-}
-
-.empty-cart {
-  text-align: center;
-  padding: 30px;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  background: var(--color-secondary);
-  padding: 12px 25px;
-  border-radius: 25px;
-  color: var(--color-neutral);
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.btn:hover {
-  background: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-  }
-  50% {
-    width: 120px;
-    height: 120px;
-  }
-  100% {
-    width: 0;
-    height: 0;
-  }
-}
+.submit-btn { width: 100%; padding: var(--spacing-4); font-size: 1.2em; font-family: 'Gotham', sans-serif; }
+.empty-cart { text-align: center; padding: 50px; }
 </style>

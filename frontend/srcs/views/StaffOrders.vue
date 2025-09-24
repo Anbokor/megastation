@@ -9,7 +9,6 @@ const userStore = useUserStore();
 const router = useRouter();
 const toast = useToast();
 const orders = ref([]);
-// FIX: Initialize loading to true for better initial state
 const loading = ref(true);
 
 onMounted(async () => {
@@ -24,7 +23,7 @@ onMounted(async () => {
 });
 
 const fetchStaffOrders = async () => {
-  loading.value = true; // Keep this to ensure loading state is set on manual refresh
+  loading.value = true;
   try {
     const response = await axios.get("/api/orders/staff/", {
       headers: { "Authorization": `Bearer ${userStore.token}` }
@@ -53,7 +52,7 @@ const getStatusClass = (status) => {
 const formatDate = (dateString) => {
     if (!dateString) return 'Fecha no disponible';
     const date = new Date(dateString);
-    if (isNaN(date.getTime())) {
+    if (isNaN(date)) {
         return 'Fecha inválida';
     }
     return date.toLocaleDateString();
@@ -85,7 +84,6 @@ const formatDate = (dateString) => {
             <td>{{ order.user?.username || 'N/A' }}</td>
             <!-- FIX: Use the robust formatDate function -->
             <td>{{ formatDate(order.created_at) }}</td>
-            <!-- FIX: Convert string to Number before calling toFixed -->
             <td>ARS {{ Number(order.total_price).toFixed(2) }}</td>
             <td>
               <span :class="['status-badge', getStatusClass(order.status)]">{{ order.status }}</span>

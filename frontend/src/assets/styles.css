@@ -1,92 +1,96 @@
-/* Global Styles */
+/* Import a modern, clean font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 1. Design Tokens - The foundation of our new design system */
 :root {
-  --color-primary: #10A4C7; /* Основной синий */
-  --color-secondary: #006899; /* Темно-синий */
-  --color-accent: #17BEDB; /* Голубой */
-  --color-accent-hover: #14A9C9; /* Чуть темнее акцент для hover */
-  --color-neutral: #FFFFFF;
-  --color-text: #333333;
-  --color-neutral-light: #F0F0F0; /* Светлый для hover в шапке */
+  /* 1.1. Colors - A clean, modern, and professional palette */
+  --color-primary: #4f46e5;         /* A modern, accessible indigo for main actions */
+  --color-primary-hover: #4338ca;  /* A slightly darker shade for hover states */
+  --color-secondary: #10b981;       /* A complementary teal for secondary actions or success states */
+  
+  --color-background: #f8fafc;    /* A very light gray for the main background, almost white */
+  --color-surface: #ffffff;         /* Pure white for cards, modals, and surfaces */
+  
+  --color-text-primary: #1f2937;    /* Dark gray for primary text, high contrast */
+  --color-text-secondary: #6b7280;  /* Lighter gray for secondary or muted text */
+  --color-border: #e5e7eb;         /* Light gray for borders and dividers */
+
+  /* 1.2. Typography */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-headings: 'Inter', -apple-system, sans-serif;
+
+  /* 1.3. Spacing - For consistent margins and padding */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+
+  /* 1.4. Border Radius - For consistent rounding of corners */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+
+  /* 1.5. Shadows - Soft, modern elevation */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+/* 2. Global Resets & Base Styles */
 body {
   margin: 0;
-  font-family: 'Candara', sans-serif;
-  background: linear-gradient(to bottom, rgba(23, 190, 219, 0.2), var(--color-neutral)); /* Добавляем легкий градиент */
-  color: var(--color-text);
-  overflow-x: hidden;
-  position: relative;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Добавляем декоративный фон с волнами */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/assets/wave-bg.png') no-repeat bottom center / cover; /* Предполагается, что есть такой файл */
-  opacity: 0.1;
-  z-index: -1;
-}
-
-h1, h2, h3 {
-  font-family: 'Gotham', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-headings);
   font-weight: 700;
-  color: var(--color-secondary); /* Темно-синий для заголовков */
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4) 0;
 }
 
-.loading, .error {
-  text-align: center;
-  padding: 20px;
-  font-family: 'Candara', sans-serif;
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.error {
-  color: #D9534F;
+a:hover {
+  color: var(--color-primary-hover);
 }
 
-/* Улучшенные стили кнопок с ripple-эффектом */
-button {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+/* 3. Global Component Styles (optional, for base components) */
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-6);
 }
 
-button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-button:hover::after {
-  width: 300%;
-  height: 300%;
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .search-bar input {
-    width: 150px;
-  }
-  .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .search-bar input {
-    width: 100px;
-  }
-  .filters {
-    flex-direction: column;
-  }
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
 }

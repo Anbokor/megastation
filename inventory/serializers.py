@@ -11,17 +11,36 @@ class SalesPointSerializer(serializers.ModelSerializer):
 
 class StockSerializer(serializers.ModelSerializer):
     """Serializer for Stock"""
-    product_name = serializers.ReadOnlyField(source="product.name")
-    category_name = serializers.ReadOnlyField(source="product.category.name")
+    # Use SerializerMethodField for safe access to related object names
+    product_name = serializers.SerializerMethodField()
+    sales_point_name = serializers.SerializerMethodField()
     is_low_stock = serializers.SerializerMethodField()
 
     class Meta:
         model = Stock
-        fields = ["product", "product_name", "category_name", "quantity", "low_stock_threshold", "is_low_stock"]
+        fields = [
+            "id",
+            "product", 
+            "product_name", 
+            "sales_point",
+            "sales_point_name",
+            "quantity", 
+            "reserved_quantity",
+            "low_stock_threshold", 
+            "is_low_stock"
+        ]
+
+    def get_product_name(self, obj):
+        # Safely get product name, return placeholder if product is None
+        return obj.product.name if obj.product else "[Producto Eliminado]"
+
+    def get_sales_point_name(self, obj):
+        # Safely get sales point name, return placeholder if sales_point is None
+        return obj.sales_point.name if obj.sales_point else "[Punto de Venta Eliminado]"
 
     def get_is_low_stock(self, obj):
         """Check if stock is below the threshold"""
-        return obj.quantity < obj.low_stock_threshold
+        return obj.quantity <= obj.low_stock_threshold
 
 class StockMovementSerializer(serializers.ModelSerializer):
     """Serializer for stock movements"""

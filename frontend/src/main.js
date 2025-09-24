@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
+import { useUserStore } from "@/store/user";
 import axios from "axios";
 import "./assets/styles.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -23,8 +24,22 @@ axios.interceptors.request.use(config => {
 });
 
 const app = createApp(App);
-app.use(router);
 app.use(createPinia());
+
+// Set up response interceptor after Pinia is initialized
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 401) {
+      const userStore = useUserStore();
+      userStore.logout(); // This action should clear user state and local storage
+      router.push('/login');
+    }
+    return Promise.reject(error);
+  }
+);
+
+app.use(router);
 app.use(Toast, {
   position: "top-right",
   timeout: 3000,

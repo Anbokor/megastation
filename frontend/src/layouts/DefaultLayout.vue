@@ -5,12 +5,16 @@ import Footer from "@/components/Footer.vue";
 
 <template>
   <div class="layout">
+    <!-- Light Animated Background -->
+    <div class="background-container">
+      <div class="shape shape1"></div>
+      <div class="shape shape2"></div>
+      <div class="shape shape3"></div>
+      <div class="shape shape4"></div>
+    </div>
+
     <Header />
     <main class="content">
-      <!-- Волна как декоративный элемент -->
-      <svg class="wave-top" viewBox="0 0 1440 120">
-        <path fill="var(--color-accent)" fill-opacity="0.4" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,48C1248,53,1344,75,1392,85.3L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-      </svg>
       <router-view />
     </main>
     <Footer />
@@ -22,25 +26,85 @@ import Footer from "@/components/Footer.vue";
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--color-neutral);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Keep shapes contained */
+  background-color: var(--color-background); /* Use the background color from the design system */
 }
 
-.wave-top {
-  position: absolute;
-  top: 60px; /* Под шапкой */
+.background-container {
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 40s ease-in-out infinite;
+}
+
+.shape1 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primary);
+  top: -150px;
+  left: -150px;
+  animation-duration: 45s;
+}
+
+.shape2 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-secondary);
+  bottom: -200px;
+  right: -200px;
+  animation-duration: 50s;
+  animation-delay: -5s;
+}
+
+.shape3 {
+  width: 300px;
+  height: 300px;
+  background: var(--color-primary);
+  bottom: 100px;
+  left: 10%;
+  animation-duration: 55s;
+  animation-delay: -10s;
+}
+
+.shape4 {
+  width: 200px;
+  height: 200px;
+  background: var(--color-secondary);
+  top: 10%;
+  right: 5%;
+  animation-duration: 60s;
+  animation-delay: -15s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
 }
 
 .content {
   flex: 1;
-  padding: 90px 20px 20px 20px;
-  max-width: 1200px;
+  padding: 100px 20px 20px 20px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  position: relative;
-  z-index: 1; /* Контент поверх волны */
+  position: relative; /* Ensure content is above the background */
+  z-index: 1;
 }
 </style>
